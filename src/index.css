@@ -1,0 +1,119 @@
+@config "../tailwind.config.ts";
+@import 'tailwindcss';
+
+@layer base {
+  :root {
+    /* AS Cremosas Brand Colors */
+    --background: 40 100% 96%; /* Beige #FFF7EA */
+    --foreground: 25 75% 23%; /* Marron #633511 */
+
+    --card: 40 100% 98%;
+    --card-foreground: 25 75% 23%;
+
+    --popover: 40 100% 98%;
+    --popover-foreground: 25 75% 23%;
+
+    --primary: 25 75% 23%; /* Marron */
+    --primary-foreground: 40 100% 96%; /* Beige */
+
+    --secondary: 30 60% 88%; /* Lighter cream */
+    --secondary-foreground: 25 75% 23%;
+
+    --muted: 35 50% 92%;
+    --muted-foreground: 25 40% 45%;
+
+    --accent: 25 65% 30%; /* Slightly lighter marron */
+    --accent-foreground: 40 100% 96%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 40 100% 98%;
+
+    --border: 30 40% 85%;
+    --input: 30 40% 90%;
+    --ring: 25 75% 23%;
+
+    --radius: 0.75rem;
+
+    /* Premium shadows */
+    --shadow-sm: 0 2px 8px rgba(99, 53, 17, 0.08);
+    --shadow-md: 0 4px 16px rgba(99, 53, 17, 0.12);
+    --shadow-lg: 0 8px 24px rgba(99, 53, 17, 0.15);
+
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 25 30% 12%;
+    --foreground: 40 100% 96%;
+
+    --card: 25 30% 15%;
+    --card-foreground: 40 100% 96%;
+
+    --popover: 25 30% 15%;
+    --popover-foreground: 40 100% 96%;
+
+    --primary: 40 100% 96%;
+    --primary-foreground: 25 75% 23%;
+
+    --secondary: 25 25% 20%;
+    --secondary-foreground: 40 100% 96%;
+
+    --muted: 25 25% 20%;
+    --muted-foreground: 35 20% 65%;
+
+    --accent: 25 50% 25%;
+    --accent-foreground: 40 100% 96%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 40 100% 98%;
+
+    --border: 25 25% 25%;
+    --input: 25 25% 25%;
+    --ring: 40 100% 96%;
+
+    --sidebar-background: 25 30% 12%;
+    --sidebar-foreground: 40 100% 96%;
+    --sidebar-primary: 40 100% 96%;
+    --sidebar-primary-foreground: 25 75% 23%;
+    --sidebar-accent: 25 25% 20%;
+    --sidebar-accent-foreground: 40 100% 96%;
+    --sidebar-border: 25 25% 25%;
+    --sidebar-ring: 40 100% 96%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+}

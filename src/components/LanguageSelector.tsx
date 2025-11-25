@@ -1,10 +1,10 @@
-import { Languages } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { useLanguage } from '@/context/LanguageContext';
 import type { Language } from '@/i18n/translations';
@@ -12,7 +12,7 @@ import type { Language } from '@/i18n/translations';
 const languages: { code: Language; name: string }[] = [
   { code: 'es', name: 'Español' },
   { code: 'gl', name: 'Galego' },
-  { code: 'en', name: 'English' },
+  { code: 'en', name: 'English' }
 ];
 
 export const LanguageSelector = () => {
@@ -21,16 +21,27 @@ export const LanguageSelector = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="hover:bg-accent/10">
-          <Languages className="h-5 w-5" />
+        <Button
+          variant="ghost"
+          size="icon"
+          className="hover:bg-accent/10 transition-colors"
+        >
+          <Globe className="h-5 w-5" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-card">
-        {languages.map((lang) => (
+        {languages.map(lang => (
           <DropdownMenuItem
             key={lang.code}
             onClick={() => setLanguage(lang.code)}
-            className={language === lang.code ? 'bg-accent/20' : ''}
+            className={`
+              cursor-pointer transition-all duration-200
+              ${
+                language === lang.code
+                  ? 'bg-accent/10 text-primary'
+                  : 'text-foreground/80 hover:text-foreground hover:bg-accent/5'
+              }
+            `}
           >
             {lang.name}
           </DropdownMenuItem>

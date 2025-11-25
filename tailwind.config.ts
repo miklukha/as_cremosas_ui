@@ -9,15 +9,15 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: '1rem',
       screens: {
         '2xl': '1400px'
       }
     },
     extend: {
       fontFamily: {
-        serif: ['Playfair Display', 'serif'],
-        sans: ['Inter', 'sans-serif']
+        serif: ['Montserrat', 'sans-serif'],
+        sans: ['Roboto', 'sans-serif']
       },
       colors: {
         border: 'hsl(var(--border))',

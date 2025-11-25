@@ -9,7 +9,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue,
+  SelectValue
 } from '@/components/ui/select';
 
 export default function Shop() {
@@ -19,7 +19,7 @@ export default function Shop() {
   const [filters, setFilters] = useState<string[]>([]);
 
   const filteredProducts = products
-    .filter((product) => {
+    .filter(product => {
       if (selectedCategory !== 'all' && product.category !== selectedCategory) {
         return false;
       }
@@ -41,11 +41,11 @@ export default function Shop() {
     { value: 'classic', label: t.shop.categories.classic },
     { value: 'chocolate', label: t.shop.categories.chocolate },
     { value: 'fruit', label: t.shop.categories.fruit },
-    { value: 'special', label: t.shop.categories.special },
+    { value: 'special', label: t.shop.categories.special }
   ];
 
   return (
-    <div className="container mx-auto px-4 py-12 animate-fade-in">
+    <div className="container mx-auto px4 py-12 animate-fade-in">
       <h1 className="font-serif text-5xl font-bold mb-12 text-center text-foreground">
         {t.shop.title}
       </h1>
@@ -58,12 +58,16 @@ export default function Shop() {
 
             {/* Categories */}
             <div className="mb-6">
-              <h4 className="font-medium mb-3 text-sm text-muted-foreground">Categorías</h4>
+              <h4 className="font-medium mb-3 text-sm text-muted-foreground">
+                Categorías
+              </h4>
               <div className="space-y-2">
-                {categories.map((category) => (
+                {categories.map(category => (
                   <Button
                     key={category.value}
-                    variant={selectedCategory === category.value ? 'default' : 'ghost'}
+                    variant={
+                      selectedCategory === category.value ? 'default' : 'ghost'
+                    }
                     className="w-full justify-start"
                     onClick={() => setSelectedCategory(category.value)}
                   >
@@ -75,17 +79,25 @@ export default function Shop() {
 
             {/* Additional Filters */}
             <div>
-              <h4 className="font-medium mb-3 text-sm text-muted-foreground">Opciones</h4>
+              <h4 className="font-medium mb-3 text-sm text-muted-foreground">
+                Opciones
+              </h4>
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <Checkbox id="glutenFree" />
-                  <label htmlFor="glutenFree" className="text-sm cursor-pointer">
+                  <label
+                    htmlFor="glutenFree"
+                    className="text-sm cursor-pointer"
+                  >
                     {t.shop.filterOptions.glutenFree}
                   </label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Checkbox id="lactoseFree" />
-                  <label htmlFor="lactoseFree" className="text-sm cursor-pointer">
+                  <label
+                    htmlFor="lactoseFree"
+                    className="text-sm cursor-pointer"
+                  >
                     {t.shop.filterOptions.lactoseFree}
                   </label>
                 </div>
@@ -112,17 +124,25 @@ export default function Shop() {
                 <SelectValue placeholder={t.shop.sort} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="newest">{t.shop.sortOptions.newest}</SelectItem>
-                <SelectItem value="priceAsc">{t.shop.sortOptions.priceAsc}</SelectItem>
-                <SelectItem value="priceDesc">{t.shop.sortOptions.priceDesc}</SelectItem>
-                <SelectItem value="popular">{t.shop.sortOptions.popular}</SelectItem>
+                <SelectItem value="newest">
+                  {t.shop.sortOptions.newest}
+                </SelectItem>
+                <SelectItem value="priceAsc">
+                  {t.shop.sortOptions.priceAsc}
+                </SelectItem>
+                <SelectItem value="priceDesc">
+                  {t.shop.sortOptions.priceDesc}
+                </SelectItem>
+                <SelectItem value="popular">
+                  {t.shop.sortOptions.popular}
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           {/* Products */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {filteredProducts.map((product) => (
+            {filteredProducts.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

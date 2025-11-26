@@ -20,13 +20,20 @@ export const Navbar = () => {
   ];
 
   const isActive = (href: string) => location.pathname === href;
+  // transition-all duration-200 hover:scale-105 hover:text-primary/80
+
+  //px-3 lg:px-5
 
   return (
     <nav className="sticky top-0 z-50 bg-background backdrop-blur-sm border-b border-border shadow-sm">
       <div className="container mx-auto">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
+          <Link
+            to="/"
+            className="flex items-center space-x-3 transition-all duration-200
+                  hover:scale-105"
+          >
             <img
               src={logo}
               alt="AS Cremosas"
@@ -35,17 +42,17 @@ export const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center">
             {navLinks.map(link => (
               <Link
                 key={link.href}
                 to={link.href}
                 className={`
-                  px-3 lg:px-5 py-3 rounded-md font-medium transition-all duration-200
+                 px-5 py-7  transition-all duration-200 hover:scale-105 hover:font-semibold
                   ${
                     isActive(link.href)
-                      ? 'text-primary bg-accent/10 shadow-sm'
-                      : 'text-foreground/80 hover:text-foreground hover:bg-accent/5'
+                      ? 'text-primary font-bold'
+                      : 'font-medium'
                   }
                 `}
               >
@@ -57,11 +64,7 @@ export const Navbar = () => {
           {/* Right Side Actions */}
           <div className="hidden md:flex items-center space-x-2">
             <LanguageSelector />
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hover:bg-accent/10 transition-colors"
-            >
+            <Button variant="grow" size="icon" className="py-2">
               <ShoppingCart className="h-5 w-5" />
             </Button>
           </div>
@@ -70,7 +73,7 @@ export const Navbar = () => {
           <div className="md:hidden flex items-center space-x-2">
             <LanguageSelector />
             <Button
-              variant="ghost"
+              variant="grow"
               size="icon"
               className="hover:bg-accent/10 transition-colors"
             >

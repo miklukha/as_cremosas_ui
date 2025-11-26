@@ -7,21 +7,22 @@ export const translations = {
       shop: 'Tienda',
       contact: 'Contacto',
       faq: 'Preguntas',
-      b2b: 'Pedidos Grandes',
+      b2b: 'Pedidos Grandes'
     },
     home: {
       hero: {
         title: 'Cheesecakes Artesanales Premium',
         subtitle: 'Creadas con amor y los mejores ingredientes',
-        cta: 'Ver Tienda',
+        cta: 'Ver Tienda'
       },
       about: {
         title: 'Nuestra Historia',
-        description: 'En AS Cremosas, cada cheesecake es una obra de arte. Utilizamos solo los ingredientes más frescos y de la más alta calidad para crear sabores inolvidables que deleitan los sentidos.',
+        description:
+          'En AS Cremosas, cada cheesecake es una obra de arte. Utilizamos solo los ingredientes más frescos y de la más alta calidad para crear sabores inolvidables que deleitan los sentidos.'
       },
       testimonials: {
-        title: 'Lo Que Dicen Nuestros Clientes',
-      },
+        title: 'Lo Que Dicen Nuestros Clientes'
+      }
     },
     shop: {
       title: 'Nuestra Tienda',
@@ -32,26 +33,26 @@ export const translations = {
         classic: 'Clásicos',
         chocolate: 'Chocolate',
         fruit: 'Frutas',
-        special: 'Especiales',
+        special: 'Especiales'
       },
       sortOptions: {
         newest: 'Más recientes',
         priceAsc: 'Precio: Menor a Mayor',
         priceDesc: 'Precio: Mayor a Menor',
-        popular: 'Más populares',
+        popular: 'Más populares'
       },
       filterOptions: {
         glutenFree: 'Sin gluten',
         lactoseFree: 'Sin lactosa',
-        seasonal: 'De temporada',
-      },
+        seasonal: 'De temporada'
+      }
     },
     product: {
       ingredients: 'Ingredientes',
       allergens: 'Alérgenos',
       pickupDate: 'Fecha de recogida',
       orderNow: 'Pedir Ahora',
-      recommended: 'Productos Recomendados',
+      recommended: 'Productos Recomendados'
     },
     checkout: {
       title: 'Finalizar Pedido',
@@ -63,7 +64,7 @@ export const translations = {
       phone: 'Teléfono',
       notes: 'Notas adicionales',
       placeOrder: 'Realizar Pedido',
-      total: 'Total',
+      total: 'Total'
     },
     contact: {
       title: 'Contacto',
@@ -72,15 +73,16 @@ export const translations = {
       name: 'Nombre',
       email: 'Email',
       message: 'Mensaje',
-      send: 'Enviar',
+      send: 'Enviar'
     },
     faq: {
-      title: 'Preguntas Frecuentes',
+      title: 'Preguntas Frecuentes'
     },
     b2b: {
       title: 'Pedidos Corporativos y Grandes Volúmenes',
-      description: 'Ofrecemos condiciones especiales para pedidos corporativos y grandes volúmenes.',
-      inquiry: 'Consulta de Pedido',
+      description:
+        'Ofrecemos condiciones especiales para pedidos corporativos y grandes volúmenes.',
+      inquiry: 'Consulta de Pedido'
     },
     footer: {
       about: 'Sobre Nosotros',
@@ -89,7 +91,9 @@ export const translations = {
       cookies: 'Cookies',
       terms: 'Términos',
       rights: 'Todos los derechos reservados',
-    },
+      contact: 'Contactos',
+      social: 'Redes sociales'
+    }
   },
   gl: {
     nav: {
@@ -97,21 +101,22 @@ export const translations = {
       shop: 'Tenda',
       contact: 'Contacto',
       faq: 'Preguntas',
-      b2b: 'Pedidos Grandes',
+      b2b: 'Pedidos Grandes'
     },
     home: {
       hero: {
         title: 'Cheesecakes Artesanais Premium',
         subtitle: 'Creadas con amor e os mellores ingredientes',
-        cta: 'Ver Tenda',
+        cta: 'Ver Tenda'
       },
       about: {
         title: 'A Nosa Historia',
-        description: 'En AS Cremosas, cada cheesecake é unha obra de arte. Utilizamos só os ingredientes máis frescos e da máis alta calidade para crear sabores inolvidables que deleitan os sentidos.',
+        description:
+          'En AS Cremosas, cada cheesecake é unha obra de arte. Utilizamos só os ingredientes máis frescos e da máis alta calidade para crear sabores inolvidables que deleitan os sentidos.'
       },
       testimonials: {
-        title: 'O Que Din Os Nosos Clientes',
-      },
+        title: 'O Que Din Os Nosos Clientes'
+      }
     },
     shop: {
       title: 'A Nosa Tenda',
@@ -122,26 +127,26 @@ export const translations = {
         classic: 'Clásicos',
         chocolate: 'Chocolate',
         fruit: 'Froitas',
-        special: 'Especiais',
+        special: 'Especiais'
       },
       sortOptions: {
         newest: 'Máis recentes',
         priceAsc: 'Prezo: Menor a Maior',
         priceDesc: 'Prezo: Maior a Menor',
-        popular: 'Máis populares',
+        popular: 'Máis populares'
       },
       filterOptions: {
         glutenFree: 'Sen glute',
         lactoseFree: 'Sen lactosa',
-        seasonal: 'De tempada',
-      },
+        seasonal: 'De tempada'
+      }
     },
     product: {
       ingredients: 'Ingredientes',
       allergens: 'Alérxenos',
       pickupDate: 'Data de recollida',
       orderNow: 'Pedir Agora',
-      recommended: 'Produtos Recomendados',
+      recommended: 'Produtos Recomendados'
     },
     checkout: {
       title: 'Finalizar Pedido',
@@ -153,7 +158,7 @@ export const translations = {
       phone: 'Teléfono',
       notes: 'Notas adicionais',
       placeOrder: 'Realizar Pedido',
-      total: 'Total',
+      total: 'Total'
     },
     contact: {
       title: 'Contacto',
@@ -162,15 +167,16 @@ export const translations = {
       name: 'Nome',
       email: 'Email',
       message: 'Mensaxe',
-      send: 'Enviar',
+      send: 'Enviar'
     },
     faq: {
-      title: 'Preguntas Frecuentes',
+      title: 'Preguntas Frecuentes'
     },
     b2b: {
       title: 'Pedidos Corporativos e Grandes Volumes',
-      description: 'Ofrecemos condicións especiais para pedidos corporativos e grandes volumes.',
-      inquiry: 'Consulta de Pedido',
+      description:
+        'Ofrecemos condicións especiais para pedidos corporativos e grandes volumes.',
+      inquiry: 'Consulta de Pedido'
     },
     footer: {
       about: 'Sobre Nós',
@@ -179,7 +185,9 @@ export const translations = {
       cookies: 'Cookies',
       terms: 'Termos',
       rights: 'Todos os dereitos reservados',
-    },
+      contact: 'Contactos',
+      social: 'Redes sociales'
+    }
   },
   en: {
     nav: {
@@ -187,21 +195,22 @@ export const translations = {
       shop: 'Shop',
       contact: 'Contact',
       faq: 'FAQ',
-      b2b: 'Large Orders',
+      b2b: 'Large Orders'
     },
     home: {
       hero: {
         title: 'Premium Artisanal Cheesecakes',
         subtitle: 'Crafted with love and the finest ingredients',
-        cta: 'View Shop',
+        cta: 'View Shop'
       },
       about: {
         title: 'Our Story',
-        description: 'At AS Cremosas, every cheesecake is a work of art. We use only the freshest, highest-quality ingredients to create unforgettable flavors that delight the senses.',
+        description:
+          'At AS Cremosas, every cheesecake is a work of art. We use only the freshest, highest-quality ingredients to create unforgettable flavors that delight the senses.'
       },
       testimonials: {
-        title: 'What Our Customers Say',
-      },
+        title: 'What Our Customers Say'
+      }
     },
     shop: {
       title: 'Our Shop',
@@ -212,26 +221,26 @@ export const translations = {
         classic: 'Classic',
         chocolate: 'Chocolate',
         fruit: 'Fruit',
-        special: 'Special',
+        special: 'Special'
       },
       sortOptions: {
         newest: 'Newest',
         priceAsc: 'Price: Low to High',
         priceDesc: 'Price: High to Low',
-        popular: 'Most Popular',
+        popular: 'Most Popular'
       },
       filterOptions: {
         glutenFree: 'Gluten-free',
         lactoseFree: 'Lactose-free',
-        seasonal: 'Seasonal',
-      },
+        seasonal: 'Seasonal'
+      }
     },
     product: {
       ingredients: 'Ingredients',
       allergens: 'Allergens',
       pickupDate: 'Pickup date',
       orderNow: 'Order Now',
-      recommended: 'Recommended Products',
+      recommended: 'Recommended Products'
     },
     checkout: {
       title: 'Checkout',
@@ -243,7 +252,7 @@ export const translations = {
       phone: 'Phone',
       notes: 'Additional notes',
       placeOrder: 'Place Order',
-      total: 'Total',
+      total: 'Total'
     },
     contact: {
       title: 'Contact',
@@ -252,15 +261,16 @@ export const translations = {
       name: 'Name',
       email: 'Email',
       message: 'Message',
-      send: 'Send',
+      send: 'Send'
     },
     faq: {
-      title: 'Frequently Asked Questions',
+      title: 'Frequently Asked Questions'
     },
     b2b: {
       title: 'Corporate and Large Volume Orders',
-      description: 'We offer special conditions for corporate and large volume orders.',
-      inquiry: 'Order Inquiry',
+      description:
+        'We offer special conditions for corporate and large volume orders.',
+      inquiry: 'Order Inquiry'
     },
     footer: {
       about: 'About Us',
@@ -269,6 +279,8 @@ export const translations = {
       cookies: 'Cookies',
       terms: 'Terms',
       rights: 'All rights reserved',
-    },
-  },
+      contact: 'Contacts',
+      social: 'Social media'
+    }
+  }
 };

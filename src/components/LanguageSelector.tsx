@@ -21,21 +21,22 @@ export const LanguageSelector = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="hover:bg-accent/10 transition-colors"
-        >
+        <Button variant="grow" size="icon" className="py-2">
           <Globe className="h-5 w-5" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-card">
+      <DropdownMenuContent
+        align="start"
+        className="bg-card"
+        side="bottom"
+        // sideOffset={0}
+      >
         {languages.map(lang => (
           <DropdownMenuItem
             key={lang.code}
             onClick={() => setLanguage(lang.code)}
             className={`
-              cursor-pointer transition-all duration-200
+              cursor-pointer transition-all duration-200 font-medium
               ${
                 language === lang.code
                   ? 'bg-accent/10 text-primary'

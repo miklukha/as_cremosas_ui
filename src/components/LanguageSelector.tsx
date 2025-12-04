@@ -29,7 +29,7 @@ export const LanguageSelector = () => {
         align="start"
         className="bg-card"
         side="bottom"
-        // sideOffset={0}
+        sideOffset={0}
       >
         {languages.map(lang => (
           <DropdownMenuItem
@@ -40,7 +40,7 @@ export const LanguageSelector = () => {
               ${
                 language === lang.code
                   ? 'bg-accent/10 text-primary'
-                  : 'text-foreground/80 hover:text-foreground hover:bg-accent/5'
+                  : 'text-foreground/80 hover:text-foreground hover:bg-accent'
               }
             `}
           >

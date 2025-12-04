@@ -20,9 +20,6 @@ export const Navbar = () => {
   ];
 
   const isActive = (href: string) => location.pathname === href;
-  // transition-all duration-200 hover:scale-105 hover:text-primary/80
-
-  //px-3 lg:px-5
 
   return (
     <nav className="sticky top-0 z-50 bg-background backdrop-blur-sm border-b border-border shadow-sm">

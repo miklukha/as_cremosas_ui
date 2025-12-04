@@ -87,12 +87,33 @@ export const translations = {
     footer: {
       about: 'Sobre Nosotros',
       legal: 'Legal',
-      privacy: 'Privacidad',
-      cookies: 'Cookies',
-      terms: 'Términos',
+      privacy: 'Política de Privacidad',
+      cookies: 'Política de Cookies',
+      legalPage: 'Aviso Legal',
+      terms: 'Términos y Condiciones',
       rights: 'Todos los derechos reservados',
       contact: 'Contactos',
-      social: 'Redes sociales'
+      social: 'Redes sociales',
+      phoneLabel: 'Llamar al +34 123 456 789',
+      emailLabel: 'Enviar correo a ascremosas.co@gmail.com',
+      instagramLabel: 'Visitar nuestro Instagram',
+      facebookLabel: 'Visitar nuestro Facebook',
+      tiktokLabel: 'Visitar nuestro TikTok',
+      socialMedia: 'Redes sociales',
+      mainLabel: 'Pie de página',
+      homeLabel: 'Ir a la página principal',
+      legalNav: 'Navegación legal',
+      addressLabel:
+        'Ver ubicación en Google Maps: Calle San Nicolás 5, 15001 A Coruña, España',
+      followUs: 'Síguenos',
+      hours: {
+        title: 'Horario',
+        laborales: 'Martes - Viernes',
+        monday: 'Lunes',
+        saturday: 'Sábado',
+        sunday: 'Domingo',
+        closed: 'Cerrado'
+      }
     }
   },
   gl: {
@@ -181,12 +202,33 @@ export const translations = {
     footer: {
       about: 'Sobre Nós',
       legal: 'Legal',
-      privacy: 'Privacidade',
-      cookies: 'Cookies',
-      terms: 'Termos',
+      privacy: 'Política de Privacidade',
+      cookies: 'Política de Cookies',
+      legalPage: 'Aviso Legal',
+      terms: 'Termos e Condicións',
       rights: 'Todos os dereitos reservados',
       contact: 'Contactos',
-      social: 'Redes sociales'
+      social: 'Redes sociales',
+      phoneLabel: 'Chamar ao +34 123 456 789',
+      emailLabel: 'Enviar correo a ascremosas.co@gmail.com',
+      instagramLabel: 'Visitar o noso Instagram',
+      facebookLabel: 'Visitar o noso Facebook',
+      tiktokLabel: 'Visitar o noso TikTok',
+      socialMedia: 'Redes sociais',
+      mainLabel: 'Pé de páxina',
+      homeLabel: 'Ir á páxina principal',
+      legalNav: 'Navegación legal',
+      addressLabel:
+        'Ver localización en Google Maps: Calle San Nicolás 5, 15001 A Coruña, España',
+      followUs: 'Síguenos',
+      hours: {
+        title: 'Horario',
+        laborales: 'Martes - Venres',
+        monday: 'Luns',
+        saturday: 'Sábado',
+        sunday: 'Domingo',
+        closed: 'Pechado'
+      }
     }
   },
   en: {
@@ -275,12 +317,33 @@ export const translations = {
     footer: {
       about: 'About Us',
       legal: 'Legal',
-      privacy: 'Privacy',
-      cookies: 'Cookies',
-      terms: 'Terms',
+      privacy: 'Privacy Policy',
+      cookies: 'Cookie Policy',
+      legalPage: 'Legal Notice',
+      terms: 'Terms and Conditions',
       rights: 'All rights reserved',
       contact: 'Contacts',
-      social: 'Social media'
+      social: 'Social media',
+      phoneLabel: 'Call +34 123 456 789',
+      emailLabel: 'Send email to ascremosas.co@gmail.com',
+      instagramLabel: 'Visit our Instagram',
+      facebookLabel: 'Visit our Facebook',
+      tiktokLabel: 'Visit our TikTok',
+      socialMedia: 'Social media',
+      mainLabel: 'Footer',
+      homeLabel: 'Go to homepage',
+      legalNav: 'Legal navigation',
+      addressLabel:
+        'View location on Google Maps: Calle San Nicolás 5, 15001 A Coruña, España',
+      followUs: 'Follow Us',
+      hours: {
+        title: 'Hours',
+        laborales: 'Tuesday - Friday',
+        monday: 'Monday',
+        saturday: 'Saturday',
+        sunday: 'Sunday',
+        closed: 'Closed'
+      }
     }
   }
 };

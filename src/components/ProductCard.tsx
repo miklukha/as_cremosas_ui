@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Product } from '@/data/products';
+import { type Product } from '@/data/products';
 import { useLanguage } from '@/context/LanguageContext';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -44,7 +44,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </p>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button asChild className="w-full bg-primary hover:bg-accent transition-colors">
+        <Button
+          asChild
+          className="w-full bg-primary hover:bg-accent transition-colors"
+        >
           <Link to={`/product/${product.id}`}>Ver detalles</Link>
         </Button>
       </CardFooter>

@@ -11,14 +11,10 @@ export const translations = {
     },
     home: {
       hero: {
-        title: 'Cheesecakes Artesanales Premium',
-        subtitle: 'Creadas con amor y los mejores ingredientes',
-        cta: 'Ver Tienda'
-      },
-      about: {
-        title: 'Nuestra Historia',
-        description:
-          'En AS Cremosas, cada cheesecake es una obra de arte. Utilizamos solo los ingredientes más frescos y de la más alta calidad para crear sabores inolvidables que deleitan los sentidos.'
+        title: 'Las tartas de queso de lujo',
+        title2: 'Creadas con los mejores ingredientes',
+        title3: 'Calidad Artesanal en cada detalle',
+        cta: 'Comprar ahora'
       },
       testimonials: {
         title: 'Lo Que Dicen Nuestros Clientes'
@@ -126,15 +122,12 @@ export const translations = {
     },
     home: {
       hero: {
-        title: 'Cheesecakes Artesanais Premium',
-        subtitle: 'Creadas con amor e os mellores ingredientes',
-        cta: 'Ver Tenda'
+        title: 'Tartas de Queixo de Luxo',
+        title2: 'Elaboradas cos Mellores Ingredientes',
+        title3: 'Calidade Artesanal en Cada Detalle',
+        cta: 'Comprar agora'
       },
-      about: {
-        title: 'A Nosa Historia',
-        description:
-          'En AS Cremosas, cada cheesecake é unha obra de arte. Utilizamos só os ingredientes máis frescos e da máis alta calidade para crear sabores inolvidables que deleitan os sentidos.'
-      },
+
       testimonials: {
         title: 'O Que Din Os Nosos Clientes'
       }
@@ -241,14 +234,10 @@ export const translations = {
     },
     home: {
       hero: {
-        title: 'Premium Artisanal Cheesecakes',
-        subtitle: 'Crafted with love and the finest ingredients',
-        cta: 'View Shop'
-      },
-      about: {
-        title: 'Our Story',
-        description:
-          'At AS Cremosas, every cheesecake is a work of art. We use only the freshest, highest-quality ingredients to create unforgettable flavors that delight the senses.'
+        title: 'Luxury Cheesecakes',
+        title2: 'Crafted with the Finest Ingredients',
+        title3: 'Artisanal Quality in Every Detail',
+        cta: 'Buy Now'
       },
       testimonials: {
         title: 'What Our Customers Say'

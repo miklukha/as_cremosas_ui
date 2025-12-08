@@ -3,20 +3,24 @@ import { useLanguage } from '@/context/LanguageContext';
 import { products } from '@/data/products';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from '@/components/ui/popover';
 import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
 import { es, gl, enUS } from 'date-fns/locale';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { ProductCard } from '@/components/ProductCard';
+import { ProductCard } from '@/components';
 
 export default function ProductDetail() {
   const { id } = useParams();
   const { t, language } = useLanguage();
   const [pickupDate, setPickupDate] = useState<Date>();
 
-  const product = products.find((p) => p.id === id);
+  const product = products.find(p => p.id === id);
 
   if (!product) {
     return (
@@ -30,7 +34,9 @@ export default function ProductDetail() {
   }
 
   const locales = { es, gl, en: enUS };
-  const recommendedProducts = products.filter((p) => p.id !== product.id).slice(0, 3);
+  const recommendedProducts = products
+    .filter(p => p.id !== product.id)
+    .slice(0, 3);
 
   return (
     <div className="container mx-auto px-4 py-12 animate-fade-in">
@@ -59,7 +65,9 @@ export default function ProductDetail() {
 
           {/* Ingredients */}
           <div className="mb-6">
-            <h3 className="font-semibold text-lg mb-2">{t.product.ingredients}</h3>
+            <h3 className="font-semibold text-lg mb-2">
+              {t.product.ingredients}
+            </h3>
             <p className="text-muted-foreground">
               {product.ingredients[language].join(', ')}
             </p>
@@ -67,7 +75,9 @@ export default function ProductDetail() {
 
           {/* Allergens */}
           <div className="mb-8">
-            <h3 className="font-semibold text-lg mb-2">{t.product.allergens}</h3>
+            <h3 className="font-semibold text-lg mb-2">
+              {t.product.allergens}
+            </h3>
             <p className="text-muted-foreground">
               {product.allergens[language].join(', ')}
             </p>
@@ -75,7 +85,9 @@ export default function ProductDetail() {
 
           {/* Pickup Date */}
           <div className="mb-8">
-            <label className="block font-semibold mb-2">{t.product.pickupDate}</label>
+            <label className="block font-semibold mb-2">
+              {t.product.pickupDate}
+            </label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -98,7 +110,7 @@ export default function ProductDetail() {
                   mode="single"
                   selected={pickupDate}
                   onSelect={setPickupDate}
-                  disabled={(date) => date < new Date()}
+                  disabled={date => date < new Date()}
                   initialFocus
                   className="pointer-events-auto"
                 />
@@ -107,7 +119,10 @@ export default function ProductDetail() {
           </div>
 
           {/* CTA */}
-          <Button size="lg" className="w-full bg-primary hover:bg-accent text-lg py-6">
+          <Button
+            size="lg"
+            className="w-full bg-primary hover:bg-accent text-lg py-6"
+          >
             {t.product.orderNow}
           </Button>
         </div>
@@ -119,7 +134,7 @@ export default function ProductDetail() {
           {t.product.recommended}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {recommendedProducts.map((p) => (
+          {recommendedProducts.map(p => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>

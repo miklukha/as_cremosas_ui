@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
-import { products, Product } from '@/data/products';
-import { ProductCard } from '@/components/ProductCard';
+import { products, type Product } from '@/data/products';
+import { ProductCard } from '@/components';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {

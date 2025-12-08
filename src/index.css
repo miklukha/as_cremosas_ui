@@ -106,7 +106,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-serif antialiased;
+    @apply bg-background text-foreground font-serif antialiased  tracking-wider;
   }
 
   h1,
@@ -115,7 +115,7 @@
   h4,
   h5,
   h6 {
-    @apply font-serif font-medium;
+    @apply font-serif font-light uppercase tracking-widest;
   }
 
   button {

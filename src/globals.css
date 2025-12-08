@@ -1,0 +1,80 @@
+/* Hero Slider Pagination Styles */
+.hero-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: hsl(var(--muted-foreground)) !important;
+  opacity: 0.5 !important;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  margin: 0 6px !important;
+  cursor: pointer;
+}
+
+.hero-pagination-bullet:hover {
+  opacity: 0.8 !important;
+  transform: scale(1.1);
+}
+
+.hero-pagination-bullet-active {
+  background: hsl(var(--primary)) !important;
+  opacity: 1 !important;
+  /* width: 32px; */
+  border-radius: 6px;
+  transform: scale(1);
+}
+
+/* Swiper Pagination Container */
+.hero-swiper .swiper-pagination {
+  bottom: 30px !important;
+  z-index: 30;
+}
+
+.hero-swiper .swiper-slide img {
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .hero-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    margin: 0 4px !important;
+  }
+
+  /* .hero-pagination-bullet-active { */
+  /* width: 24px; */
+  /* } */
+
+  .hero-swiper .swiper-pagination {
+    bottom: 20px !important;
+  }
+}
+
+/* Button Gradient Animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.bg-size-200 {
+  background-size: 200% 200%;
+}
+
+.bg-pos-0 {
+  background-position: 0% 50%;
+}
+
+.bg-pos-100 {
+  background-position: 100% 50%;
+}

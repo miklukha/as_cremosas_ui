@@ -3,11 +3,15 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { Star } from 'lucide-react';
 import { HeroSlider, ProductCard } from '@/components';
+import { useCategories } from '@/hooks/useCategories';
 
 import { products } from '@/data/products';
 
 export default function Home() {
   const { t, language } = useLanguage();
+  const { categories, loading, error } = useCategories();
+
+  console.log(categories);
 
   const testimonials = [
     {

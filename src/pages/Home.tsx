@@ -4,14 +4,17 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Star } from 'lucide-react';
 import { HeroSlider, ProductCard } from '@/components';
 import { useCategories } from '@/hooks/useCategories';
+import { useProducts } from '@/hooks/useProducts';
 
 import { products } from '@/data/products';
 
 export default function Home() {
   const { t, language } = useLanguage();
   const { categories, loading, error } = useCategories();
+  const { products: p1, setFilters } = useProducts();
 
   console.log(categories);
+  console.log(p1);
 
   const testimonials = [
     {
@@ -52,11 +55,11 @@ export default function Home() {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 text-center text-foreground">
             Nuestros Bestsellers
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {products.slice(0, 3).map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
-          </div>
+          </div> */}
           <div className="text-center mt-8 sm:mt-12">
             <Button
               asChild

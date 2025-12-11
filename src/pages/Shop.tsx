@@ -1,161 +1,214 @@
 import { useState } from 'react';
+import { useProductsByCategory } from '@/hooks/useProducts';
 import { useLanguage } from '@/context/LanguageContext';
-import { products, type Product } from '@/data/products';
 import { ProductCard } from '@/components';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select';
+  Skeleton,
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Button,
+  Card
+} from '@/components/ui';
+import { RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Shop() {
   const { t } = useLanguage();
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<string>('newest');
-  const [filters, setFilters] = useState<string[]>([]);
 
-  const filteredProducts = products
-    .filter(product => {
-      if (selectedCategory !== 'all' && product.category !== selectedCategory) {
-        return false;
-      }
-      return true;
-    })
-    .sort((a, b) => {
-      switch (sortBy) {
-        case 'priceAsc':
-          return a.price - b.price;
-        case 'priceDesc':
-          return b.price - a.price;
-        default:
-          return 0;
-      }
-    });
+  const [localFilters, setLocalFilters] = useState({
+    glutenFree: false,
+    lactoseFree: false
+  });
 
-  const categories = [
-    { value: 'all', label: t.shop.categories.all },
-    { value: 'classic', label: t.shop.categories.classic },
-    { value: 'chocolate', label: t.shop.categories.chocolate },
-    { value: 'fruit', label: t.shop.categories.fruit },
-    { value: 'special', label: t.shop.categories.special }
-  ];
+  const {
+    products,
+    loading,
+    error,
+    pagination,
+    setFilters,
+    refetch,
+    nextPage,
+    prevPage,
+    hasNextPage,
+    hasPrevPage
+  } = useProductsByCategory(1, {
+    page: 1,
+    limit: 12
+  });
+
+  const handleFilterChange = (
+    filter: 'glutenFree' | 'lactoseFree' | 'cakeOfMonth',
+    checked: boolean
+  ) => {
+    const newFilters = { ...localFilters, [filter]: checked };
+    setLocalFilters(newFilters);
+
+    const apiFilters = {
+      glutenFree: newFilters.glutenFree,
+      lactoseFree: newFilters.lactoseFree
+    };
+
+    setFilters(apiFilters);
+  };
+
+  const displayedProducts = products;
+  console.log(displayedProducts);
+
+  if (loading && products.length === 0) {
+    return (
+      <div className="container mx-auto py-8 sm:py-10 animate-fade-in">
+        {/* Page Title Skeleton */}
+        <Skeleton className="h-8 sm:h-10 w-64 mx-auto mb-5 sm:mb-8" />
+
+        <div className="flex flex-col">
+          {/* Filters Skeleton */}
+          <div className="flex flex-wrap justify-center gap-3 mb-5 sm:mb-8">
+            <Skeleton className="h-10 w-24" />
+            <Skeleton className="h-10 w-32" />
+            <Skeleton className="h-10 w-32" />
+          </div>
+
+          {/* Products Grid Skeleton */}
+          <div className="flex-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3, 4, 5, 6].map(i => (
+                <Card key={i} className="overflow-hidden">
+                  <Skeleton className="aspect-square w-full" />
+                  <div className="p-4 space-y-2">
+                    <Skeleton className="h-6 w-3/4" />
+                    <Skeleton className="h-8 w-1/2" />
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-12">
+        <Alert variant="destructive" className="max-w-2xl mx-auto">
+          <AlertTitle className="mb-6 normal-case text-center">
+            {t.alert.smthWentWrong}
+          </AlertTitle>
+          <div className="flex justify-center">
+            <Button variant="outline" size="sm" onClick={refetch}>
+              <RefreshCw className="h-4 w-4 mr-2" />
+              {t.alert.tryOneMoreTime}
+            </Button>
+          </div>
+        </Alert>
+      </div>
+    );
+  }
 
   return (
-    <div className="container mx-auto px4 py-12 animate-fade-in">
-      <h1 className="font-serif text-5xl font-bold mb-12 text-center text-foreground">
+    <div className="container mx-auto py-8 sm:py-10 animate-fade-in">
+      {/* Page Title */}
+      <h1 className="text-2xl sm:text-4xl mb-5 sm:mb-8 text-center ">
         {t.shop.title}
       </h1>
 
-      <div className="flex flex-col lg:flex-row gap-8">
+      <div className="flex flex-col">
         {/* Filters Sidebar */}
-        <aside className="lg:w-64 flex-shrink-0">
-          <div className="bg-card p-6 rounded-lg shadow-sm sticky top-24">
-            <h3 className="font-semibold text-lg mb-4">{t.shop.filters}</h3>
+        <div className="flex flex-wrap justify-center gap-3 mb-5 sm:mb-8">
+          {/* All */}
+          <Button
+            variant={
+              !localFilters.glutenFree && !localFilters.lactoseFree
+                ? 'default'
+                : 'outline'
+            }
+            onClick={() => {
+              setLocalFilters({ glutenFree: false, lactoseFree: false });
+              setFilters({});
+            }}
+            className="px-6 "
+          >
+            {t.shop.filterOptions.all}
+          </Button>
 
-            {/* Categories */}
-            <div className="mb-6">
-              <h4 className="font-medium mb-3 text-sm text-muted-foreground">
-                Categorías
-              </h4>
-              <div className="space-y-2">
-                {categories.map(category => (
-                  <Button
-                    key={category.value}
-                    variant={
-                      selectedCategory === category.value ? 'default' : 'ghost'
-                    }
-                    className="w-full justify-start"
-                    onClick={() => setSelectedCategory(category.value)}
-                  >
-                    {category.label}
-                  </Button>
-                ))}
-              </div>
-            </div>
+          {/* Gluten Free */}
+          <Button
+            variant={localFilters.glutenFree ? 'default' : 'outline'}
+            onClick={() =>
+              handleFilterChange('glutenFree', !localFilters.glutenFree)
+            }
+            className="px-6"
+          >
+            {t.shop.filterOptions.glutenFree}
+          </Button>
 
-            {/* Additional Filters */}
-            <div>
-              <h4 className="font-medium mb-3 text-sm text-muted-foreground">
-                Opciones
-              </h4>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="glutenFree" />
-                  <label
-                    htmlFor="glutenFree"
-                    className="text-sm cursor-pointer"
-                  >
-                    {t.shop.filterOptions.glutenFree}
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="lactoseFree" />
-                  <label
-                    htmlFor="lactoseFree"
-                    className="text-sm cursor-pointer"
-                  >
-                    {t.shop.filterOptions.lactoseFree}
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="seasonal" />
-                  <label htmlFor="seasonal" className="text-sm cursor-pointer">
-                    {t.shop.filterOptions.seasonal}
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </aside>
+          {/* Lactose Free */}
+          <Button
+            variant={localFilters.lactoseFree ? 'default' : 'outline'}
+            onClick={() =>
+              handleFilterChange('lactoseFree', !localFilters.lactoseFree)
+            }
+            className="px-6"
+          >
+            {t.shop.filterOptions.lactoseFree}
+          </Button>
+        </div>
 
         {/* Products Grid */}
         <div className="flex-1">
-          {/* Sort */}
-          <div className="flex justify-between items-center mb-8">
-            <p className="text-muted-foreground">
-              {filteredProducts.length} productos encontrados
-            </p>
-            <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-48">
-                <SelectValue placeholder={t.shop.sort} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="newest">
-                  {t.shop.sortOptions.newest}
-                </SelectItem>
-                <SelectItem value="priceAsc">
-                  {t.shop.sortOptions.priceAsc}
-                </SelectItem>
-                <SelectItem value="priceDesc">
-                  {t.shop.sortOptions.priceDesc}
-                </SelectItem>
-                <SelectItem value="popular">
-                  {t.shop.sortOptions.popular}
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+          {/* Empty state */}
+          {displayedProducts.length === 0 && !loading && (
+            <Alert className=" border-none max-w-2xl">
+              <AlertTitle>{t.alert.notFindProducts}...</AlertTitle>
+              <AlertDescription>{t.alert.tryAdjustFilters}</AlertDescription>
+            </Alert>
+          )}
 
-          {/* Products */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {filteredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {/* Products Grid */}
+          {displayedProducts.length > 0 && (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {displayedProducts
+                  .sort(
+                    (a, b) =>
+                      (b.isCakeOfTheMonth ? 1 : 0) -
+                      (a.isCakeOfTheMonth ? 1 : 0)
+                  )
+                  .map(product => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+              </div>
 
-          {/* Pagination */}
-          {filteredProducts.length > 9 && (
-            <div className="flex justify-center mt-12 gap-2">
-              <Button variant="outline">Anterior</Button>
-              <Button variant="default">1</Button>
-              <Button variant="outline">2</Button>
-              <Button variant="outline">3</Button>
-              <Button variant="outline">Siguiente</Button>
-            </div>
+              {/* Pagination */}
+              {pagination.pages > 1 && (
+                <div className="flex justify-center items-center gap-4 mt-12">
+                  <Button
+                    variant="outline"
+                    onClick={prevPage}
+                    disabled={!hasPrevPage || loading}
+                    className="px-3 sm:px-3"
+                  >
+                    <ChevronLeft />
+                    {/* {t.pagination.previous} */}
+                  </Button>
+
+                  <div className="text-sm text-muted-foreground">
+                    {t.pagination.page} {pagination.page} {t.pagination.of}{' '}
+                    {pagination.pages}
+                  </div>
+
+                  <Button
+                    variant="outline"
+                    onClick={nextPage}
+                    disabled={!hasNextPage || loading}
+                    className="px-3 sm:px-3"
+                  >
+                    {/* {t.pagination.next} */}
+                    <ChevronRight />
+                  </Button>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

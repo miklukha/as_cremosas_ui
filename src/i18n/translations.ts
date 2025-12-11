@@ -1,3 +1,5 @@
+import { ca } from 'date-fns/locale';
+
 export type Language = 'es' | 'gl' | 'en';
 
 export const translations = {
@@ -24,13 +26,6 @@ export const translations = {
       title: 'Nuestra Tienda',
       filters: 'Filtros',
       sort: 'Ordenar por',
-      categories: {
-        all: 'Todos',
-        classic: 'Clásicos',
-        chocolate: 'Chocolate',
-        fruit: 'Frutas',
-        special: 'Especiales'
-      },
       sortOptions: {
         newest: 'Más recientes',
         priceAsc: 'Precio: Menor a Mayor',
@@ -40,7 +35,7 @@ export const translations = {
       filterOptions: {
         glutenFree: 'Sin gluten',
         lactoseFree: 'Sin lactosa',
-        seasonal: 'De temporada'
+        all: 'Todas'
       }
     },
     product: {
@@ -48,7 +43,9 @@ export const translations = {
       allergens: 'Alérgenos',
       pickupDate: 'Fecha de recogida',
       orderNow: 'Pedir Ahora',
-      recommended: 'Productos Recomendados'
+      recommended: 'Productos Recomendados',
+      cakeOfTheMonth: 'Tarta del Mes',
+      outOfStock: 'Agotado'
     },
     checkout: {
       title: 'Finalizar Pedido',
@@ -110,6 +107,20 @@ export const translations = {
         sunday: 'Domingo',
         closed: 'Cerrado'
       }
+    },
+    alert: {
+      notFindProducts: 'No se encontraron productos',
+      tryAdjustFilters: 'Intenta ajustar los filtros para ver más resultados.',
+      tryOneMoreTime: 'Intentar de nuevo',
+      errorProducts: 'Error al cargar productos',
+      smthWentWrong:
+        'Algo salió mal 😣. Por favor, inténtalo de nuevo más tarde.'
+    },
+    pagination: {
+      previous: 'Anterior',
+      next: 'Siguiente',
+      page: 'Página',
+      of: 'de'
     }
   },
   gl: {
@@ -136,13 +147,6 @@ export const translations = {
       title: 'A Nosa Tenda',
       filters: 'Filtros',
       sort: 'Ordenar por',
-      categories: {
-        all: 'Todos',
-        classic: 'Clásicos',
-        chocolate: 'Chocolate',
-        fruit: 'Froitas',
-        special: 'Especiais'
-      },
       sortOptions: {
         newest: 'Máis recentes',
         priceAsc: 'Prezo: Menor a Maior',
@@ -152,7 +156,7 @@ export const translations = {
       filterOptions: {
         glutenFree: 'Sen glute',
         lactoseFree: 'Sen lactosa',
-        seasonal: 'De tempada'
+        all: 'Todas'
       }
     },
     product: {
@@ -160,7 +164,9 @@ export const translations = {
       allergens: 'Alérxenos',
       pickupDate: 'Data de recollida',
       orderNow: 'Pedir Agora',
-      recommended: 'Produtos Recomendados'
+      recommended: 'Produtos Recomendados',
+      cakeOfTheMonth: 'Tarta do Mes',
+      outOfStock: 'Agotado'
     },
     checkout: {
       title: 'Finalizar Pedido',
@@ -222,6 +228,19 @@ export const translations = {
         sunday: 'Domingo',
         closed: 'Pechado'
       }
+    },
+    alert: {
+      notFindProducts: 'Non se atoparon produtos',
+      tryAdjustFilters: 'Tenta axustar os filtros para ver máis resultados.',
+      tryOneMoreTime: 'Tentar de novo',
+      errorProducts: 'Erro ao cargar produtos',
+      smthWentWrong: 'Algo saíu mal 😣. Por favor, inténtao de novo máis tarde.'
+    },
+    pagination: {
+      previous: 'Anterior',
+      next: 'Seguinte',
+      page: 'Páxina',
+      of: 'de'
     }
   },
   en: {
@@ -247,13 +266,6 @@ export const translations = {
       title: 'Our Shop',
       filters: 'Filters',
       sort: 'Sort by',
-      categories: {
-        all: 'All',
-        classic: 'Classic',
-        chocolate: 'Chocolate',
-        fruit: 'Fruit',
-        special: 'Special'
-      },
       sortOptions: {
         newest: 'Newest',
         priceAsc: 'Price: Low to High',
@@ -263,7 +275,7 @@ export const translations = {
       filterOptions: {
         glutenFree: 'Gluten-free',
         lactoseFree: 'Lactose-free',
-        seasonal: 'Seasonal'
+        all: 'All'
       }
     },
     product: {
@@ -271,7 +283,9 @@ export const translations = {
       allergens: 'Allergens',
       pickupDate: 'Pickup date',
       orderNow: 'Order Now',
-      recommended: 'Recommended Products'
+      recommended: 'Recommended Products',
+      cakeOfTheMonth: 'Cake of the Month',
+      outOfStock: 'Out of Stock'
     },
     checkout: {
       title: 'Checkout',
@@ -333,6 +347,19 @@ export const translations = {
         sunday: 'Sunday',
         closed: 'Closed'
       }
+    },
+    alert: {
+      notFindProducts: 'No products found',
+      tryAdjustFilters: 'Try adjusting the filters to see more results.',
+      tryOneMoreTime: 'Try again',
+      errorProducts: 'Error loading products',
+      smthWentWrong: 'Something went wrong 😣. Please try again later.'
+    },
+    pagination: {
+      previous: 'Previous',
+      next: 'Next',
+      page: 'Page',
+      of: 'of'
     }
   }
 };

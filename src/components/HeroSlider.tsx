@@ -70,14 +70,14 @@ export const HeroSlider = () => {
             <div className="absolute inset-0 bg-linear-to-br from-background/80 via-background/70 to-background/60 z-10" />
 
             {/* Content */}
-            <div className="relative z-20 text-center px-4 max-w-3xl mx-auto">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl mb-6 sm:mb-6 text-foreground leading-tight drop-shadow-lg">
+            <div className="relative z-20 text-center px-4 max-w-2xl mx-auto">
+              <h1 className="text-2xl sm:text-4xl mb-6 sm:mb-8 text-foreground leading-tight drop-shadow-lg">
                 {slide.title}
               </h1>
               <Button
                 variant="outline"
-                asChild
-                size="xl"
+                // asChild
+                size="lg"
                 className="text-semibold"
               >
                 <Link to="/shop">{slide.cta}</Link>

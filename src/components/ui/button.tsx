@@ -5,12 +5,12 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-95 lowercase',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 active:scale-95 lowercase rounded-full',
   {
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-xl hover:scale-105 border border-primary/20 duration-500',
+          'bg-primary text-secondary hover:bg-primary/90 shadow-md hover:shadow-xl hover:scale-105 border border-primary/20 duration-500',
 
         secondary:
           'bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-sm hover:shadow-md hover:scale-105 border border-secondary/30 duration-500',
@@ -30,7 +30,7 @@ const buttonVariants = cva(
         elegant:
           'bg-card text-foreground border-2 border-border hover:border-primary hover:text-primary hover:bg-accent/5 shadow-sm hover:shadow-md hover:scale-105 backdrop-blur-sm duration-500',
 
-        icon: 'hover:text-primary hover:bg-accent/10 hover:scale-110 transition-all duration-300 rounded-full duration-500',
+        icon: 'hover:text-primary hover:bg-accent/10 hover:scale-110 transition-all duration-300 duration-500',
 
         link: 'text-primary underline-offset-4 hover:underline hover:text-primary/80 p-0 h-auto font-normal duration-500',
 
@@ -39,11 +39,11 @@ const buttonVariants = cva(
       size: {
         default: 'h-9 px-4 py-2 text-xs sm:h-10 sm:px-6 sm:text-sm',
         sm: 'h-8 px-3 text-xs sm:h-9 sm:px-4',
-        lg: 'h-10 px-6 text-sm sm:h-12 sm:px-8 sm:text-base rounded-md sm:rounded-lg',
-        xl: 'h-10 px-6 text-sm sm:h-14 sm:px-10 sm:text-xl rounded-md sm:rounded-lg',
-        icon: 'h-9 w-9 sm:h-10 sm:w-10 rounded-full',
-        'icon-sm': 'h-7 w-7 sm:h-8 sm:w-8 rounded-full',
-        'icon-lg': 'h-10 w-10 sm:h-12 sm:w-12 rounded-full'
+        lg: 'h-10 px-6 text-sm sm:h-12 sm:px-8 sm:text-base ',
+        xl: 'h-10 px-6 text-sm sm:h-14 sm:px-10 sm:text-xl ',
+        icon: 'h-9 w-9 sm:h-10 sm:w-10 ',
+        'icon-sm': 'h-7 w-7 sm:h-8 sm:w-8 ',
+        'icon-lg': 'h-10 w-10 sm:h-12 sm:w-12 '
       }
     },
     defaultVariants: {

@@ -32,7 +32,10 @@ export const Navbar = () => {
                   hover:scale-105"
           >
             <img
-              src={logo}
+              src={
+                logo ||
+                'https://res.cloudinary.com/ddz81wl4h/image/upload/v1765558485/logo_dykhyh.png'
+              }
               alt="AS Cremosas"
               className="h-12 md:h-16 lg:h-20 w-auto py-2 md:py-3 lg:py-5"
             />

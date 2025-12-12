@@ -7,26 +7,25 @@ import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
 
 import 'swiper/swiper-bundle.css';
 
-import heroImage1 from '@/assets/hero-cheesecake.jpg';
-import heroImage2 from '@/assets/hero-cheesecake-2.jpg';
-import heroImage3 from '@/assets/hero-cheesecake-3.jpg';
-
 export const HeroSlider = () => {
   const { t } = useLanguage();
 
   const heroSlides = [
     {
-      image: heroImage1,
+      image:
+        'https://res.cloudinary.com/ddz81wl4h/image/upload/v1765558384/hero-cheesecake_nasjus.jpg',
       title: t.home.hero.title,
       cta: t.home.hero.cta
     },
     {
-      image: heroImage2,
+      image:
+        'https://res.cloudinary.com/ddz81wl4h/image/upload/v1765558384/hero-cheesecake_nasjus.jpg',
       title: t.home.hero.title2,
       cta: t.home.hero.cta
     },
     {
-      image: heroImage3,
+      image:
+        'https://res.cloudinary.com/ddz81wl4h/image/upload/v1765558384/hero-cheesecake_nasjus.jpg',
       title: t.home.hero.title3,
       cta: t.home.hero.cta
     }

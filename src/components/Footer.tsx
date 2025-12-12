@@ -256,7 +256,10 @@ export const Footer = () => {
               aria-label={t.footer.homeLabel || 'Ir a la página principal'}
             >
               <img
-                src={logo}
+                src={
+                  logo ||
+                  'https://res.cloudinary.com/ddz81wl4h/image/upload/v1765558484/logo-light_wpy1ol.png'
+                }
                 alt="AS Cremosas - Logo"
                 className="h-12 sm:h-14 w-auto hover:scale-105 transition-all duration-200"
               />

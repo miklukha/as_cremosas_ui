@@ -1,3 +1,4 @@
+import NotFound from '@/pages/NotFound';
 import { ca } from 'date-fns/locale';
 
 export type Language = 'es' | 'gl' | 'en';
@@ -44,8 +45,29 @@ export const translations = {
       pickupDate: 'Fecha de recogida',
       orderNow: 'Pedir Ahora',
       recommended: 'Productos Recomendados',
-      cakeOfTheMonth: 'Tarta del Mes',
-      outOfStock: 'Agotado'
+      cakeOfTheMonth: 'Tarta del mes',
+      outOfStock: 'Agotado',
+      error: 'Error al cargar el producto',
+      notFound: 'Producto no encontrado',
+      backToShop: 'Volver a la tienda',
+      selectSize: 'Selecciona un tamaño',
+      selectType: 'Selecciona un tipo',
+      typeNormal: 'Normal',
+      typeNormalDesc: 'Tradicional',
+      typeGlutenFree: 'Sin gluten',
+      notAvailable: 'No disponible',
+      typeLactoseFree: 'Sin lactosa',
+      quantity: 'Cantidad',
+      orderNotice: 'Los pedidos se aceptan con 2 días de antelación.',
+      loading: 'Cargando producto...',
+      addToCart: 'Añadir al carrito',
+      addedToCart: 'Añadido al carrito',
+      description: 'Descripción',
+      selectedType: 'Tipo seleccionado',
+      glutenFreeDesc: 'Elaborado con ingredientes sin gluten',
+      lactoseFreeDesc: 'Elaborado con ingredientes sin lactosa',
+      mediumSizeOnly:
+        'Las tartas sin gluten o sin lactosa solo están disponibles en tamaño mediano.'
     },
     checkout: {
       title: 'Finalizar Pedido',
@@ -165,8 +187,29 @@ export const translations = {
       pickupDate: 'Data de recollida',
       orderNow: 'Pedir Agora',
       recommended: 'Produtos Recomendados',
-      cakeOfTheMonth: 'Tarta do Mes',
-      outOfStock: 'Agotado'
+      cakeOfTheMonth: 'Tarta do mes',
+      outOfStock: 'Agotado',
+      error: 'Erro ao cargar o produto',
+      notFound: 'Produto non atopado',
+      backToShop: 'Volver á tenda',
+      selectSize: 'Selecciona un tamaño',
+      selectType: 'Selecciona un tipo',
+      typeNormal: 'Normal',
+      typeNormalDesc: 'Tradicional',
+      typeGlutenFree: 'Sen glute',
+      notAvailable: 'Non dispoñible',
+      typeLactoseFree: 'Sen lactosa',
+      quantity: 'Cantidade',
+      orderNotice: 'Os pedidos acéptanse con 2 días de antelación.',
+      loading: 'Cargando produto...',
+      addToCart: 'Engadir ao carriño',
+      addedToCart: 'Engadido ao carriño',
+      description: 'Descrición',
+      selectedType: 'Tipo seleccionado',
+      glutenFreeDesc: 'Elaborado con ingredientes sen glute',
+      lactoseFreeDesc: 'Elaborado con ingredientes sen lactosa',
+      mediumSizeOnly:
+        'As tartas sen glute ou sen lactosa só están dispoñibles en tamaño mediano.'
     },
     checkout: {
       title: 'Finalizar Pedido',
@@ -284,8 +327,29 @@ export const translations = {
       pickupDate: 'Pickup date',
       orderNow: 'Order Now',
       recommended: 'Recommended Products',
-      cakeOfTheMonth: 'Cake of the Month',
-      outOfStock: 'Out of Stock'
+      cakeOfTheMonth: 'Cake of the month',
+      outOfStock: 'Out of Stock',
+      error: 'Error loading product',
+      notFound: 'Product not found',
+      backToShop: 'Back to shop',
+      selectSize: 'Select a size',
+      selectType: 'Select a type',
+      typeNormal: 'Regular',
+      typeNormalDesc: 'Traditional',
+      typeGlutenFree: 'Gluten-free',
+      notAvailable: 'Not available',
+      typeLactoseFree: 'Lactose-free',
+      quantity: 'Quantity',
+      orderNotice: 'Orders are accepted with 2 days’ notice.',
+      loading: 'Loading product...',
+      addToCart: 'Add to cart',
+      addedToCart: 'Added to cart',
+      description: 'Description',
+      selectedType: 'Selected type',
+      glutenFreeDesc: 'Made with gluten-free ingredients',
+      lactoseFreeDesc: 'Made with lactose-free ingredients',
+      mediumSizeOnly:
+        'Gluten-free or lactose-free cakes are only available in medium size.'
     },
     checkout: {
       title: 'Checkout',

@@ -31,7 +31,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
     >
       <Card className="group h-full overflow-hidden transition-all duration-300 hover:shadow-xl border-none bg-transparent">
-        <div className="relative aspect-square overflow-hidden bg-muted">
+        <div className="relative aspect-square overflow-hidden bg-secondary/30">
           <div className="flex justify-center items-center w-full h-full ">
             <img
               src={imageUrl}

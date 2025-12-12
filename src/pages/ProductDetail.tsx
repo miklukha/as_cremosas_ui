@@ -1,28 +1,30 @@
-import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useProduct, useProducts } from '@/hooks/useProducts';
 import { useLanguage } from '@/context/LanguageContext';
-import { ProductImageSlider } from '@/components/ProductImageSlider';
-import { QuantitySelector } from '@/components/QuantitySelector';
-import { ProductCard } from '@/components/ProductCard';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertCircle, Info, ShoppingCart } from 'lucide-react';
+import {
+  ProductImageSlider,
+  QuantitySelector,
+  ProductCard
+} from '@/components';
+import {
+  Button,
+  Badge,
+  Skeleton,
+  Alert,
+  AlertDescription,
+  AlertTitle
+} from '@/components/ui';
+import { AlertCircle, Info, ShoppingCart, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-/**
- * Product type options
- */
-type ProductType = 'normal' | 'glutenFree' | 'lactoseFree';
+type DietaryOption = 'normal' | 'glutenFree' | 'lactoseFree';
 
 export default function ProductDetail() {
   const { id } = useParams();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
+  const navigate = useNavigate();
 
-  // Fetch product details
   const { product, loading, error } = useProduct(Number(id));
 
   // Fetch recommended products (same category)
@@ -34,38 +36,71 @@ export default function ProductDetail() {
   const [selectedVariantId, setSelectedVariantId] = useState<number | null>(
     null
   );
-  const [selectedType, setSelectedType] = useState<ProductType>('normal');
+  const [dietaryOption, setDietaryOption] = useState<DietaryOption>('normal');
   const [quantity, setQuantity] = useState(1);
 
-  // Set initial variant when product loads
-  if (product && !selectedVariantId && product.variants.length > 0) {
-    setSelectedVariantId(product.variants[0].id);
-  }
+  useEffect(() => {
+    if (product && product.variants.length > 0) {
+      if (dietaryOption !== 'normal') {
+        const mediumVariant = product.variants.find(
+          v =>
+            v.name.toLowerCase().includes('mediana') ||
+            v.name.toLowerCase().includes('medium')
+        );
+        if (mediumVariant) {
+          setSelectedVariantId(mediumVariant.id);
+        }
+      } else if (!selectedVariantId) {
+        setSelectedVariantId(product.variants[0].id);
+      }
+    }
+  }, [product, dietaryOption]);
 
-  // Get selected variant
   const selectedVariant = product?.variants.find(
     v => v.id === selectedVariantId
   );
 
-  /**
-   * Calculate final price based on type
-   */
+  const isMediumVariant = (variantName: string): boolean => {
+    const name = variantName.toLowerCase();
+    return name.includes('mediana') || name.includes('medium');
+  };
+
   const getFinalPrice = (): number => {
     if (!selectedVariant) return 0;
 
-    let basePrice = selectedVariant.price;
+    let finalPrice = selectedVariant.price;
 
-    // Add surcharges for special types (example: +10% for gluten/lactose free)
-    if (selectedType === 'glutenFree' || selectedType === 'lactoseFree') {
-      basePrice *= 1.1;
+    // Add 1€ for special dietary options
+    if (dietaryOption === 'glutenFree' || dietaryOption === 'lactoseFree') {
+      finalPrice += 1;
     }
 
-    return basePrice;
+    return finalPrice;
   };
 
-  /**
-   * Handle add to cart
-   */
+  const getProductTypeLabel = (): string => {
+    switch (dietaryOption) {
+      case 'glutenFree':
+        return t.product?.typeGlutenFree || 'Sin gluten';
+      case 'lactoseFree':
+        return t.product?.typeLactoseFree || 'Sin lactosa';
+      default:
+        return t.product?.typeNormal || 'Normal';
+    }
+  };
+
+  const handleDietaryOptionChange = (option: DietaryOption) => {
+    setDietaryOption(option);
+
+    // If selecting special option, switch to medium variant
+    if (option !== 'normal' && product) {
+      const mediumVariant = product.variants.find(v => isMediumVariant(v.name));
+      if (mediumVariant) {
+        setSelectedVariantId(mediumVariant.id);
+      }
+    }
+  };
+
   const handleAddToCart = () => {
     if (!product || !selectedVariant) return;
 
@@ -74,8 +109,10 @@ export default function ProductDetail() {
       productName: product.name,
       variantId: selectedVariant.id,
       variantName: selectedVariant.name,
-      type: selectedType,
+      dietaryOption,
+      typeLabel: getProductTypeLabel(),
       quantity,
+      basePrice: selectedVariant.price,
       price: getFinalPrice(),
       totalPrice: getFinalPrice() * quantity
     };
@@ -84,18 +121,17 @@ export default function ProductDetail() {
     // TODO: Implement cart functionality
   };
 
-  // Loading state
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-12">
-        <div className="max-w-6xl mx-auto space-y-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[40%_1fr] gap-8 lg:gap-12">
             <Skeleton className="aspect-square w-full rounded-lg" />
             <div className="space-y-4">
-              <Skeleton className="h-10 w-3/4" />
-              <Skeleton className="h-8 w-1/2" />
-              <Skeleton className="h-24 w-full" />
-              <Skeleton className="h-40 w-full" />
+              <Skeleton className="h-8 w-3/4" />
+              <Skeleton className="h-6 w-1/2" />
+              <Skeleton className="h-20 w-full" />
+              <Skeleton className="h-32 w-full" />
             </div>
           </div>
         </div>
@@ -103,35 +139,37 @@ export default function ProductDetail() {
     );
   }
 
-  // Error state
   if (error || !product) {
     return (
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-8">
         <Alert variant="destructive" className="max-w-2xl mx-auto">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>
-            {error?.message || 'Producto no encontrado'}
-            <Button asChild variant="outline" className="mt-4">
-              <Link to="/shop">Volver a la tienda</Link>
+          <AlertTitle className="mb-6 normal-case text-center">
+            {t.alert.smthWentWrong}
+          </AlertTitle>
+          <div className="flex justify-center">
+            <Button variant="outline">
+              <Link to="/shop">
+                {t.product?.backToShop || 'Volver a la tienda'}
+              </Link>
             </Button>
-          </AlertDescription>
+          </div>
         </Alert>
       </div>
     );
   }
 
-  // Filter recommended products (exclude current, max 3)
+  // Filter recommended products (exclude current, max 4)
   const filteredRecommended = recommendedProducts
     .filter(p => p.id !== product.id)
-    .slice(0, 3);
+    .slice(0, 4);
+
+  const isSpecialDiet = dietaryOption !== 'normal';
 
   return (
-    <div className="container mx-auto px-4 py-12 animate-fade-in">
-      <div className="max-w-6xl mx-auto space-y-12">
-        {/* Product Section */}
-        <div className="space-y-8">
-          {/* Image Slider */}
+    <div className="container mx-auto px-4 py-8 lg:py-10 animate-fade-in">
+      <div className="max-w-7xl mx-auto space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_1fr] gap-8 lg:gap-12">
+          {/* Left: Image Slider */}
           <div className="w-full">
             <ProductImageSlider
               images={product.images}
@@ -139,174 +177,266 @@ export default function ProductDetail() {
             />
           </div>
 
-          {/* Product Info */}
+          {/* Right: Product Details */}
           <div className="space-y-6">
-            {/* Title and Price */}
-            <div className="text-center space-y-3">
-              <div className="flex items-center justify-center gap-3">
-                <h1 className="font-serif text-3xl md:text-5xl font-bold text-foreground">
+            {/* Title, Badge, and Price */}
+            <div className="space-y-2">
+              <div className="flex items-start gap-3 flex-wrap mb-3">
+                <h1 className="text-xl md:text-2xl font-semibold flex-1">
                   {product.name}
                 </h1>
                 {product.isCakeOfTheMonth && (
-                  <Badge className="bg-accent text-accent-foreground">
-                    Tarta del mes
-                  </Badge>
+                  <Badge>{t.product?.cakeOfTheMonth || 'Tarta del mes'}</Badge>
                 )}
               </div>
 
-              <p className="text-4xl font-serif font-bold text-primary">
-                €{getFinalPrice().toFixed(2)}
-              </p>
+              <div className="flex items-baseline gap-2">
+                <p className="text-xl md:text-2xl">
+                  {getFinalPrice().toFixed(2)}€
+                </p>
+              </div>
 
               {!product.available && (
-                <Badge variant="destructive" className="text-sm">
-                  Agotado
+                <Badge variant="destructive" className="text-xs">
+                  {t.product?.outOfStock || 'Agotado'}
                 </Badge>
               )}
             </div>
 
-            {/* Description */}
-            {product.description && (
-              <div className="max-w-3xl mx-auto">
-                <p className="text-center text-lg text-muted-foreground leading-relaxed">
-                  {product.description}
-                </p>
+            {/* Dietary Options Selection */}
+            <div className="space-y-3">
+              <h3 className="normal-case font-normal text-sm text-muted-foreground">
+                {t.product?.selectType || 'Tipo de tarta'}
+              </h3>
+              <div
+                className="flex flex-wrap gap-2"
+                role="radiogroup"
+                aria-label={t.product?.selectType || 'Tipo de tarta'}
+              >
+                {/* Normal option */}
+                <Button
+                  variant={dietaryOption === 'normal' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => handleDietaryOptionChange('normal')}
+                  className={cn(
+                    'transition-all',
+                    dietaryOption === 'normal' && 'shadow-md'
+                  )}
+                  role="radio"
+                  aria-checked={dietaryOption === 'normal'}
+                  aria-label={t.product?.typeNormal || 'Normal'}
+                >
+                  {dietaryOption === 'normal' && (
+                    <Check className="h-3 w-3 mr-1" aria-hidden="true" />
+                  )}
+                  {t.product?.typeNormal || 'Normal'}
+                </Button>
+
+                {/* Gluten-free option */}
+                <Button
+                  variant={
+                    dietaryOption === 'glutenFree' ? 'default' : 'outline'
+                  }
+                  size="sm"
+                  onClick={() => {
+                    if (product.isPosibleGlutenFree) {
+                      handleDietaryOptionChange('glutenFree');
+                    }
+                  }}
+                  disabled={!product.isPosibleGlutenFree}
+                  className={cn(
+                    'transition-all',
+                    dietaryOption === 'glutenFree' && 'shadow-md'
+                  )}
+                  role="radio"
+                  aria-checked={dietaryOption === 'glutenFree'}
+                  aria-label={`${t.product?.typeGlutenFree || 'Sin gluten'} ${
+                    product.isPosibleGlutenFree
+                      ? '(+€1.00)'
+                      : `(${t.product?.notAvailable || 'No disponible'})`
+                  }`}
+                  aria-disabled={!product.isPosibleGlutenFree}
+                >
+                  {dietaryOption === 'glutenFree' && (
+                    <Check className="h-3 w-3 mr-1" aria-hidden="true" />
+                  )}
+                  {t.product?.typeGlutenFree || 'Sin gluten'}
+                  {product.isPosibleGlutenFree && (
+                    <span className="text-xs ml-1">(+€1)</span>
+                  )}
+                </Button>
+
+                {/* Lactose-free option */}
+                <Button
+                  variant={
+                    dietaryOption === 'lactoseFree' ? 'default' : 'outline'
+                  }
+                  size="sm"
+                  onClick={() => {
+                    if (product.isPosibleLactoseFree) {
+                      handleDietaryOptionChange('lactoseFree');
+                    }
+                  }}
+                  disabled={!product.isPosibleLactoseFree}
+                  className={cn(
+                    'transition-all',
+                    dietaryOption === 'lactoseFree' && 'shadow-md'
+                  )}
+                  role="radio"
+                  aria-checked={dietaryOption === 'lactoseFree'}
+                  aria-label={`${t.product?.typeLactoseFree || 'Sin lactosa'} ${
+                    product.isPosibleLactoseFree
+                      ? '(+€1.00)'
+                      : `(${t.product?.notAvailable || 'No disponible'})`
+                  }`}
+                  aria-disabled={!product.isPosibleLactoseFree}
+                >
+                  {dietaryOption === 'lactoseFree' && (
+                    <Check className="h-3 w-3 mr-1" aria-hidden="true" />
+                  )}
+                  {t.product?.typeLactoseFree || 'Sin lactosa'}
+                  {product.isPosibleLactoseFree && (
+                    <span className="text-xs ml-1">(+€1)</span>
+                  )}
+                </Button>
               </div>
-            )}
+            </div>
 
             {/* Variants Selection */}
             {product.variants.length > 0 && (
-              <div className="max-w-2xl mx-auto">
-                <h3 className="font-semibold text-lg mb-4 text-center">
-                  Elige tamaño
+              <div className="space-y-3">
+                <h3 className="normal-case font-normal text-sm text-muted-foreground">
+                  {t.product?.selectSize || 'Elige tamaño'}
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {product.variants.map(variant => (
-                    <Card
-                      key={variant.id}
-                      className={cn(
-                        'cursor-pointer transition-all hover:shadow-md',
-                        selectedVariantId === variant.id
-                          ? 'border-primary border-2 shadow-md'
-                          : 'border-border hover:border-primary/50'
-                      )}
-                      onClick={() => setSelectedVariantId(variant.id)}
-                    >
-                      <CardContent className="p-4 flex justify-between items-center">
-                        <div>
-                          <p className="font-medium">{variant.name}</p>
-                          <p className="text-sm text-muted-foreground">
-                            {variant.measures} • {variant.weightGrams}g
-                          </p>
-                        </div>
-                        <p className="font-semibold text-primary">
+
+                {/* Warning for special diets */}
+                {isSpecialDiet && (
+                  <Alert className="text-xs">
+                    <Info className="h-3 w-3" aria-hidden="true" />
+                    <AlertDescription className="text-xs">
+                      {t.product?.mediumSizeOnly ||
+                        'Las tartas sin gluten o sin lactosa solo están disponibles en tamaño mediano.'}
+                    </AlertDescription>
+                  </Alert>
+                )}
+
+                <div
+                  className="flex flex-wrap gap-2"
+                  role="radiogroup"
+                  aria-label={t.product?.selectSize || 'Elige tamaño'}
+                >
+                  {product.variants.map(variant => {
+                    const isDisabled =
+                      isSpecialDiet && !isMediumVariant(variant.name);
+                    const isSelected = selectedVariantId === variant.id;
+
+                    return (
+                      <Button
+                        key={variant.id}
+                        variant={isSelected ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => {
+                          if (!isDisabled) {
+                            setSelectedVariantId(variant.id);
+                          }
+                        }}
+                        disabled={isDisabled}
+                        className={cn(
+                          'transition-all flex-col h-auto py-2 px-3 min-w-[100px]',
+                          isSelected && !isDisabled && 'shadow-md'
+                        )}
+                        role="radio"
+                        aria-checked={isSelected}
+                        aria-label={`${variant.name}, ${variant.measures}, ${
+                          variant.weightGrams
+                        }g, €${variant.price.toFixed(2)}${
+                          isDisabled
+                            ? `, ${t.product?.notAvailable || 'No disponible'}`
+                            : ''
+                        }`}
+                        aria-disabled={isDisabled}
+                      >
+                        {isSelected && !isDisabled && (
+                          <Check className="h-3 w-3 mb-1" aria-hidden="true" />
+                        )}
+                        <span className="font-medium text-xs">
+                          {variant.name}
+                        </span>
+                        <span className="text-[10px] opacity-80 mt-0.5">
+                          {variant.measures}
+                        </span>
+                        <span className="font-semibold text-xs mt-1">
                           €{variant.price.toFixed(2)}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  ))}
+                        </span>
+                      </Button>
+                    );
+                  })}
                 </div>
               </div>
             )}
 
-            {/* Type Selection */}
-            <div className="max-w-2xl mx-auto">
-              <h3 className="font-semibold text-lg mb-4 text-center">
-                Tipo de tarta
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <Button
-                  variant={selectedType === 'normal' ? 'default' : 'outline'}
-                  onClick={() => setSelectedType('normal')}
-                  className="h-auto py-4"
-                >
-                  <div className="text-center">
-                    <div className="font-semibold">Normal</div>
-                    <div className="text-xs mt-1 opacity-80">
-                      Receta tradicional
-                    </div>
-                  </div>
-                </Button>
-
-                <Button
-                  variant={
-                    selectedType === 'glutenFree' ? 'default' : 'outline'
-                  }
-                  onClick={() => setSelectedType('glutenFree')}
-                  disabled={!product.isPosibleGlutenFree}
-                  className="h-auto py-4"
-                >
-                  <div className="text-center">
-                    <div className="font-semibold">Sin gluten</div>
-                    <div className="text-xs mt-1 opacity-80">
-                      {product.isPosibleGlutenFree ? '+10%' : 'No disponible'}
-                    </div>
-                  </div>
-                </Button>
-
-                <Button
-                  variant={
-                    selectedType === 'lactoseFree' ? 'default' : 'outline'
-                  }
-                  onClick={() => setSelectedType('lactoseFree')}
-                  disabled={!product.isPosibleLactoseFree}
-                  className="h-auto py-4"
-                >
-                  <div className="text-center">
-                    <div className="font-semibold">Sin lactosa</div>
-                    <div className="text-xs mt-1 opacity-80">
-                      {product.isPosibleLactoseFree ? '+10%' : 'No disponible'}
-                    </div>
-                  </div>
-                </Button>
-              </div>
-            </div>
-
             {/* Quantity Selector */}
-            <div className="max-w-2xl mx-auto">
-              <h3 className="font-semibold text-lg mb-4 text-center">
-                Cantidad
+            <div className="space-y-3">
+              <h3 className="normal-case font-normal text-sm text-muted-foreground">
+                {t.product?.quantity || 'Cantidad'}
               </h3>
-              <div className="flex justify-center">
-                <QuantitySelector
-                  quantity={quantity}
-                  onQuantityChange={setQuantity}
-                  min={1}
-                  max={10}
-                />
-              </div>
+              <QuantitySelector
+                quantity={quantity}
+                onQuantityChange={setQuantity}
+                min={1}
+                max={10}
+              />
             </div>
 
             {/* Order Notice */}
-            <Alert className="max-w-2xl mx-auto">
-              <Info className="h-4 w-4" />
-              <AlertDescription>
-                Los pedidos se aceptan con 2 días de antelación.
+            <Alert>
+              <Info className="h-4 w-4" aria-hidden="true" />
+              <AlertDescription className="text-sm">
+                {t.product?.orderNotice ||
+                  'Los pedidos se aceptan con 2 días de antelación.'}
               </AlertDescription>
             </Alert>
 
             {/* Add to Cart Button */}
-            <div className="max-w-2xl mx-auto">
-              <Button
-                size="lg"
-                onClick={handleAddToCart}
-                disabled={!product.available || !selectedVariant}
-                className="w-full text-lg py-6"
-              >
-                <ShoppingCart className="h-5 w-5 mr-2" />
-                Añadir al carrito • €{(getFinalPrice() * quantity).toFixed(2)}
-              </Button>
-            </div>
+            <Button
+              size="lg"
+              onClick={handleAddToCart}
+              disabled={!product.available || !selectedVariant}
+              className="w-full text-base py-6"
+              aria-label={`${
+                t.product?.addToCart || 'Añadir al carrito'
+              }, ${getProductTypeLabel()}, ${
+                selectedVariant?.name
+              }, cantidad ${quantity}, total €${(
+                getFinalPrice() * quantity
+              ).toFixed(2)}`}
+            >
+              <ShoppingCart className="h-5 w-5 mr-2" aria-hidden="true" />
+              {t.product?.addToCart || 'Añadir al carrito'} • €
+              {(getFinalPrice() * quantity).toFixed(2)}
+            </Button>
           </div>
         </div>
 
+        {/* Description Section - Below everything */}
+        {product.description && (
+          <div className="pt-8 border-t">
+            <h2 className="font-serif text-xl font-semibold mb-4 text-foreground">
+              {t.product?.description || 'Descripción'}
+            </h2>
+            <p className="text-base text-muted-foreground leading-relaxed max-w-4xl">
+              {product.description}
+            </p>
+          </div>
+        )}
+
         {/* Recommended Products */}
         {filteredRecommended.length > 0 && (
-          <section className="pt-12 border-t">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-8 text-center text-foreground">
-              También te puede gustar
+          <section className="pt-8 border-t">
+            <h2 className="font-serif text-2xl md:text-3xl font-bold mb-6 text-foreground">
+              {t.product?.recommended || 'También te puede gustar'}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {filteredRecommended.map(p => (
                 <ProductCard key={p.id} product={p} />
               ))}

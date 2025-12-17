@@ -15,7 +15,7 @@ import {
   AlertDescription,
   AlertTitle
 } from '@/components/ui';
-import { AlertCircle, Info, ShoppingCart, Check } from 'lucide-react';
+import { Info, ShoppingCart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type DietaryOption = 'normal' | 'glutenFree' | 'lactoseFree';
@@ -23,9 +23,10 @@ type DietaryOption = 'normal' | 'glutenFree' | 'lactoseFree';
 export default function ProductDetail() {
   const { id } = useParams();
   const { t } = useLanguage();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const { product, loading, error } = useProduct(Number(id));
+  console.log(product);
 
   // Fetch recommended products (same category)
   const { products: recommendedProducts } = useProducts({
@@ -50,7 +51,10 @@ export default function ProductDetail() {
         if (mediumVariant) {
           setSelectedVariantId(mediumVariant.id);
         }
-      } else if (!selectedVariantId) {
+        console.log(dietaryOption);
+      } else {
+        console.log(selectedVariantId);
+
         setSelectedVariantId(product.variants[0].id);
       }
     }
@@ -123,7 +127,11 @@ export default function ProductDetail() {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div
+        className="container mx-auto px-4 py-8"
+        aria-live="polite"
+        aria-label={t.product?.loading || 'Cargando producto'}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[40%_1fr] gap-8 lg:gap-12">
             <Skeleton className="aspect-square w-full rounded-lg" />
@@ -148,7 +156,10 @@ export default function ProductDetail() {
           </AlertTitle>
           <div className="flex justify-center">
             <Button variant="outline">
-              <Link to="/shop">
+              <Link
+                to="/shop"
+                aria-label={t.product?.backToShop || 'Volver a la tienda'}
+              >
                 {t.product?.backToShop || 'Volver a la tienda'}
               </Link>
             </Button>
@@ -191,13 +202,22 @@ export default function ProductDetail() {
               </div>
 
               <div className="flex items-baseline gap-2">
-                <p className="text-xl md:text-2xl">
+                <p
+                  className="text-xl md:text-2xl"
+                  aria-label={`${
+                    t.product?.price || 'Precio'
+                  }: ${getFinalPrice().toFixed(2)} euros`}
+                >
                   {getFinalPrice().toFixed(2)}€
                 </p>
               </div>
 
               {!product.available && (
-                <Badge variant="destructive" className="text-xs">
+                <Badge
+                  variant="destructive"
+                  className="text-xs"
+                  aria-label={t.product?.outOfStock || 'Agotado'}
+                >
                   {t.product?.outOfStock || 'Agotado'}
                 </Badge>
               )}
@@ -205,7 +225,7 @@ export default function ProductDetail() {
 
             {/* Dietary Options Selection */}
             <div className="space-y-3">
-              <h3 className="normal-case font-normal text-sm text-muted-foreground">
+              <h3 className="normal-case font-normal text-sm ">
                 {t.product?.selectType || 'Tipo de tarta'}
               </h3>
               <div
@@ -226,9 +246,6 @@ export default function ProductDetail() {
                   aria-checked={dietaryOption === 'normal'}
                   aria-label={t.product?.typeNormal || 'Normal'}
                 >
-                  {dietaryOption === 'normal' && (
-                    <Check className="h-3 w-3 mr-1" aria-hidden="true" />
-                  )}
                   {t.product?.typeNormal || 'Normal'}
                 </Button>
 
@@ -250,20 +267,10 @@ export default function ProductDetail() {
                   )}
                   role="radio"
                   aria-checked={dietaryOption === 'glutenFree'}
-                  aria-label={`${t.product?.typeGlutenFree || 'Sin gluten'} ${
-                    product.isPosibleGlutenFree
-                      ? '(+€1.00)'
-                      : `(${t.product?.notAvailable || 'No disponible'})`
-                  }`}
+                  aria-label={t.product?.typeGlutenFree || 'Sin gluten'}
                   aria-disabled={!product.isPosibleGlutenFree}
                 >
-                  {dietaryOption === 'glutenFree' && (
-                    <Check className="h-3 w-3 mr-1" aria-hidden="true" />
-                  )}
                   {t.product?.typeGlutenFree || 'Sin gluten'}
-                  {product.isPosibleGlutenFree && (
-                    <span className="text-xs ml-1">(+€1)</span>
-                  )}
                 </Button>
 
                 {/* Lactose-free option */}
@@ -284,20 +291,10 @@ export default function ProductDetail() {
                   )}
                   role="radio"
                   aria-checked={dietaryOption === 'lactoseFree'}
-                  aria-label={`${t.product?.typeLactoseFree || 'Sin lactosa'} ${
-                    product.isPosibleLactoseFree
-                      ? '(+€1.00)'
-                      : `(${t.product?.notAvailable || 'No disponible'})`
-                  }`}
+                  aria-label={t.product?.typeLactoseFree || 'Sin lactosa'}
                   aria-disabled={!product.isPosibleLactoseFree}
                 >
-                  {dietaryOption === 'lactoseFree' && (
-                    <Check className="h-3 w-3 mr-1" aria-hidden="true" />
-                  )}
                   {t.product?.typeLactoseFree || 'Sin lactosa'}
-                  {product.isPosibleLactoseFree && (
-                    <span className="text-xs ml-1">(+€1)</span>
-                  )}
                 </Button>
               </div>
             </div>
@@ -305,21 +302,9 @@ export default function ProductDetail() {
             {/* Variants Selection */}
             {product.variants.length > 0 && (
               <div className="space-y-3">
-                <h3 className="normal-case font-normal text-sm text-muted-foreground">
+                <h3 className="normal-case font-normal text-sm ">
                   {t.product?.selectSize || 'Elige tamaño'}
                 </h3>
-
-                {/* Warning for special diets */}
-                {isSpecialDiet && (
-                  <Alert className="text-xs">
-                    <Info className="h-3 w-3" aria-hidden="true" />
-                    <AlertDescription className="text-xs">
-                      {t.product?.mediumSizeOnly ||
-                        'Las tartas sin gluten o sin lactosa solo están disponibles en tamaño mediano.'}
-                    </AlertDescription>
-                  </Alert>
-                )}
-
                 <div
                   className="flex flex-wrap gap-2"
                   role="radiogroup"
@@ -342,101 +327,111 @@ export default function ProductDetail() {
                         }}
                         disabled={isDisabled}
                         className={cn(
-                          'transition-all flex-col h-auto py-2 px-3 min-w-[100px]',
+                          'transition-all',
                           isSelected && !isDisabled && 'shadow-md'
                         )}
                         role="radio"
                         aria-checked={isSelected}
-                        aria-label={`${variant.name}, ${variant.measures}, ${
-                          variant.weightGrams
-                        }g, €${variant.price.toFixed(2)}${
+                        aria-label={`${variant.name},${
                           isDisabled
                             ? `, ${t.product?.notAvailable || 'No disponible'}`
                             : ''
                         }`}
                         aria-disabled={isDisabled}
                       >
-                        {isSelected && !isDisabled && (
-                          <Check className="h-3 w-3 mb-1" aria-hidden="true" />
-                        )}
-                        <span className="font-medium text-xs">
-                          {variant.name}
-                        </span>
-                        <span className="text-[10px] opacity-80 mt-0.5">
-                          {variant.measures}
-                        </span>
-                        <span className="font-semibold text-xs mt-1">
-                          €{variant.price.toFixed(2)}
-                        </span>
+                        {variant.name}
                       </Button>
                     );
                   })}
                 </div>
+                {/* Warning for special diets */}
+                {isSpecialDiet && (
+                  <AlertDescription className="text-xs font-medium">
+                    {t.product?.mediumSizeOnly ||
+                      'Las tartas sin gluten o sin lactosa solo están disponibles en tamaño mediano.'}
+                  </AlertDescription>
+                )}
               </div>
             )}
 
-            {/* Quantity Selector */}
-            <div className="space-y-3">
-              <h3 className="normal-case font-normal text-sm text-muted-foreground">
-                {t.product?.quantity || 'Cantidad'}
-              </h3>
-              <QuantitySelector
-                quantity={quantity}
-                onQuantityChange={setQuantity}
-                min={1}
-                max={10}
-              />
+            {product.description && (
+              <div className="pt-4 border-t">
+                {/* <h2 className="font-serif text-xl font-semibold mb-4 text-foreground">
+                  {t.product?.description || 'Descripción'}
+                </h2> */}
+                <p
+                  className="text-base leading-relaxed"
+                  aria-label={`${t.product?.description || 'Descripción'}: ${
+                    product.description
+                  }`}
+                >
+                  {product.description}
+                </p>
+              </div>
+            )}
+
+            <div className="flex items-end gap-6 flex-wrap">
+              {/* Quantity Selector */}
+              <div className="space-y-3">
+                <h3 className="normal-case font-normal text-sm ">
+                  {t.product?.quantity || 'Cantidad'}
+                </h3>
+                <QuantitySelector
+                  quantity={quantity}
+                  onQuantityChange={setQuantity}
+                  min={1}
+                  max={10}
+                  aria-label={`${
+                    t.product?.quantity || 'Cantidad'
+                  }: ${quantity}`}
+                />
+              </div>
+
+              {/* Add to Cart Button */}
+              <Button
+                size="lg"
+                onClick={handleAddToCart}
+                disabled={!product.available || !selectedVariant}
+                className="text-base py-6"
+                aria-label={`${
+                  t.product?.addToCart || 'Añadir al carrito'
+                }, ${getProductTypeLabel()}, ${
+                  selectedVariant?.name
+                }, cantidad ${quantity}, total €${(
+                  getFinalPrice() * quantity
+                ).toFixed(2)}`}
+              >
+                <ShoppingCart className="h-5 w-5 mr-2" aria-hidden="true" />
+                {t.product?.addToCart || 'Añadir al carrito'} • €
+                {(getFinalPrice() * quantity).toFixed(2)}
+              </Button>
             </div>
-
-            {/* Order Notice */}
-            <Alert>
-              <Info className="h-4 w-4" aria-hidden="true" />
-              <AlertDescription className="text-sm">
-                {t.product?.orderNotice ||
-                  'Los pedidos se aceptan con 2 días de antelación.'}
-              </AlertDescription>
-            </Alert>
-
-            {/* Add to Cart Button */}
-            <Button
-              size="lg"
-              onClick={handleAddToCart}
-              disabled={!product.available || !selectedVariant}
-              className="w-full text-base py-6"
-              aria-label={`${
-                t.product?.addToCart || 'Añadir al carrito'
-              }, ${getProductTypeLabel()}, ${
-                selectedVariant?.name
-              }, cantidad ${quantity}, total €${(
-                getFinalPrice() * quantity
-              ).toFixed(2)}`}
-            >
-              <ShoppingCart className="h-5 w-5 mr-2" aria-hidden="true" />
-              {t.product?.addToCart || 'Añadir al carrito'} • €
-              {(getFinalPrice() * quantity).toFixed(2)}
-            </Button>
           </div>
         </div>
 
         {/* Description Section - Below everything */}
-        {product.description && (
+        {/* {product.description && (
           <div className="pt-8 border-t">
             <h2 className="font-serif text-xl font-semibold mb-4 text-foreground">
               {t.product?.description || 'Descripción'}
             </h2>
-            <p className="text-base text-muted-foreground leading-relaxed max-w-4xl">
-              {product.description}
-            </p>
+            <p className="text-base leading-relaxed ">{product.description}</p>
           </div>
-        )}
+        )} */}
 
         {/* Recommended Products */}
         {filteredRecommended.length > 0 && (
-          <section className="pt-8 border-t">
-            <h2 className="font-serif text-2xl md:text-3xl font-bold mb-6 text-foreground">
+          <section
+            className="pt-12 border-t"
+            aria-labelledby="recommended-heading"
+          >
+            <h2 className="text-2xl md:text-3xl mb-8 text-center text-foreground">
               {t.product?.recommended || 'También te puede gustar'}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              aria-label={t.product?.recommended || 'Productos recomendados'}
+            >
               {filteredRecommended.map(p => (
                 <ProductCard key={p.id} product={p} />
               ))}

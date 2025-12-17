@@ -18,7 +18,13 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     isCakeOfTheMonth = false
   } = product || {};
 
-  const pricesStr = prices?.map(e => `${e}€`).join(' | ');
+  // const pricesStr = prices
+  //   ?.map((e, index) => {
+  //     const price = index === prices.length - 1 ? e + 1 : e;
+  //     return `${price.toFixed(2)}€`;
+  //   })
+  //   .join(' - ');
+  const pricesStr = prices?.map(e => `${e.toFixed(2)}€`).join(' | ');
 
   const imageUrl =
     images?.length > 0
@@ -29,6 +35,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     <Link
       to={`/product/${id}`}
       className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      aria-label={`${name}, ${available ? pricesStr : t.product.outOfStock}`}
     >
       <Card className="group h-full overflow-hidden transition-all duration-300 hover:shadow-xl border-none bg-transparent">
         <div className="relative aspect-square overflow-hidden bg-secondary/30">
@@ -46,6 +53,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             <Badge
               variant={available ? 'default' : 'outline'}
               className="absolute top-3 left-3  shadow-lg font-medium tracking-wide"
+              aria-label={t.product.cakeOfTheMonth}
             >
               {t.product.cakeOfTheMonth}
             </Badge>
@@ -53,7 +61,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
           {/* Out of stock overlay */}
           {!available && (
-            <div className="absolute inset-0 bg-background/60 flex items-center justify-center">
+            <div
+              className="absolute inset-0 bg-background/60 flex items-center justify-center"
+              aria-hidden="true"
+            >
               <Badge className="text-sm font-normal px-4 py-1">
                 {t.product.outOfStock}
               </Badge>
@@ -62,10 +73,15 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         {/* Content - Name and Price */}
-        <CardContent className="p-4 space-y-2">
+        <CardContent className="p-4 space-y-2" aria-label={name}>
           <h3 className="font-semibold">{product.name}</h3>
 
-          <p className="">{pricesStr}</p>
+          <p
+            className=""
+            aria-label={`${t.product.price || 'Precio'}: ${pricesStr}`}
+          >
+            {pricesStr}
+          </p>
         </CardContent>
       </Card>
     </Link>

@@ -1,6 +1,3 @@
-import NotFound from '@/pages/NotFound';
-import { ca } from 'date-fns/locale';
-
 export type Language = 'es' | 'gl' | 'en';
 
 export const translations = {
@@ -21,7 +18,9 @@ export const translations = {
       },
       testimonials: {
         title: 'Lo Que Dicen Nuestros Clientes'
-      }
+      },
+      seeCollection: 'Ver toda la colección',
+      bestsellers: 'Nuestros Bestsellers'
     },
     shop: {
       title: 'Nuestra Tienda',
@@ -44,7 +43,7 @@ export const translations = {
       allergens: 'Alérgenos',
       pickupDate: 'Fecha de recogida',
       orderNow: 'Pedir Ahora',
-      recommended: 'Productos Recomendados',
+      recommended: 'Otros nuestros productos',
       cakeOfTheMonth: 'Tarta del mes',
       outOfStock: 'Agotado',
       error: 'Error al cargar el producto',
@@ -67,7 +66,9 @@ export const translations = {
       glutenFreeDesc: 'Elaborado con ingredientes sin gluten',
       lactoseFreeDesc: 'Elaborado con ingredientes sin lactosa',
       mediumSizeOnly:
-        'Las tartas sin gluten o sin lactosa solo están disponibles en tamaño mediano.'
+        'Las tartas sin gluten o sin lactosa solo están disponibles en tamaño mediano.',
+      fromPrice: 'de',
+      price: 'Precio'
     },
     checkout: {
       title: 'Finalizar Pedido',
@@ -163,7 +164,9 @@ export const translations = {
 
       testimonials: {
         title: 'O Que Din Os Nosos Clientes'
-      }
+      },
+      seeCollection: 'Ver toda a colección',
+      bestsellers: 'Os Nosos Bestsellers'
     },
     shop: {
       title: 'A Nosa Tenda',
@@ -186,7 +189,7 @@ export const translations = {
       allergens: 'Alérxenos',
       pickupDate: 'Data de recollida',
       orderNow: 'Pedir Agora',
-      recommended: 'Produtos Recomendados',
+      recommended: 'Noutros dos nosos produtos',
       cakeOfTheMonth: 'Tarta do mes',
       outOfStock: 'Agotado',
       error: 'Erro ao cargar o produto',
@@ -209,7 +212,9 @@ export const translations = {
       glutenFreeDesc: 'Elaborado con ingredientes sen glute',
       lactoseFreeDesc: 'Elaborado con ingredientes sen lactosa',
       mediumSizeOnly:
-        'As tartas sen glute ou sen lactosa só están dispoñibles en tamaño mediano.'
+        'As tartas sen glute ou sen lactosa só están dispoñibles en tamaño mediano.',
+      fromPrice: 'de',
+      price: 'Prezo'
     },
     checkout: {
       title: 'Finalizar Pedido',
@@ -303,7 +308,9 @@ export const translations = {
       },
       testimonials: {
         title: 'What Our Customers Say'
-      }
+      },
+      seeCollection: 'See the full collection',
+      bestsellers: 'Our Bestsellers'
     },
     shop: {
       title: 'Our Shop',
@@ -326,7 +333,7 @@ export const translations = {
       allergens: 'Allergens',
       pickupDate: 'Pickup date',
       orderNow: 'Order Now',
-      recommended: 'Recommended Products',
+      recommended: 'Other of our products',
       cakeOfTheMonth: 'Cake of the month',
       outOfStock: 'Out of Stock',
       error: 'Error loading product',
@@ -349,7 +356,9 @@ export const translations = {
       glutenFreeDesc: 'Made with gluten-free ingredients',
       lactoseFreeDesc: 'Made with lactose-free ingredients',
       mediumSizeOnly:
-        'Gluten-free or lactose-free cakes are only available in medium size.'
+        'Gluten-free or lactose-free cakes are only available in medium size.',
+      fromPrice: 'from',
+      price: 'Price'
     },
     checkout: {
       title: 'Checkout',

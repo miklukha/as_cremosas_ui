@@ -3,18 +3,15 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { Star } from 'lucide-react';
 import { HeroSlider, ProductCard } from '@/components';
-import { useCategories } from '@/hooks/useCategories';
 import { useProducts } from '@/hooks/useProducts';
-
-import { products } from '@/data/products';
 
 export default function Home() {
   const { t, language } = useLanguage();
-  const { categories, loading, error } = useCategories();
-  const { products: p1, setFilters } = useProducts();
+  const { products } = useProducts();
 
-  console.log(categories);
-  console.log(p1);
+  const displayedProducts = products.sort(
+    (a, b) => (b.isCakeOfTheMonth ? 1 : 0) - (a.isCakeOfTheMonth ? 1 : 0)
+  );
 
   const testimonials = [
     {
@@ -52,22 +49,18 @@ export default function Home() {
       {/* Featured Products */}
       <section className="py-16 sm:py-20 px-4 bg-secondary/20">
         <div className="container mx-auto">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 text-center text-foreground">
-            Nuestros Bestsellers
+          <h2 className="text-2xl sm:text-4xl mb-6 sm:mb-8 text-foreground text-center">
+            {t.home.bestsellers}
           </h2>
-          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {products.slice(0, 3).map(product => (
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {displayedProducts.slice(0, 3).map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
-          </div> */}
+          </div>
           <div className="text-center mt-8 sm:mt-12">
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-            >
-              <Link to="/shop">Ver toda la colección</Link>
+            <Button variant="outline" size="lg" className="text-semibold">
+              <Link to="/shop">{t.home.seeCollection}</Link>
             </Button>
           </div>
         </div>
@@ -76,7 +69,7 @@ export default function Home() {
       {/* Testimonials */}
       <section className="py-16 sm:py-20 px-4">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 text-center text-foreground">
+          <h2 className="text-2xl sm:text-4xl mb-6 sm:mb-8 text-foreground text-center">
             {t.home.testimonials.title}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">

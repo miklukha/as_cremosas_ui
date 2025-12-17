@@ -51,8 +51,9 @@ export default function Shop() {
     setFilters(apiFilters);
   };
 
-  const displayedProducts = products;
-  console.log(displayedProducts);
+  const displayedProducts = products.sort(
+    (a, b) => (b.isCakeOfTheMonth ? 1 : 0) - (a.isCakeOfTheMonth ? 1 : 0)
+  );
 
   if (loading && products.length === 0) {
     return (
@@ -168,15 +169,9 @@ export default function Shop() {
           {displayedProducts.length > 0 && (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {displayedProducts
-                  .sort(
-                    (a, b) =>
-                      (b.isCakeOfTheMonth ? 1 : 0) -
-                      (a.isCakeOfTheMonth ? 1 : 0)
-                  )
-                  .map(product => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
+                {displayedProducts.map(product => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
               </div>
 
               {/* Pagination */}

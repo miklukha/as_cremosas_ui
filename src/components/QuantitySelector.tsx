@@ -10,10 +10,6 @@ interface QuantitySelectorProps {
   className?: string;
 }
 
-/**
- * Quantity Selector Component
- * Elegant counter with - and + buttons
- */
 export function QuantitySelector({
   quantity,
   onQuantityChange,
@@ -40,14 +36,14 @@ export function QuantitySelector({
         size="icon"
         onClick={handleDecrease}
         disabled={quantity <= min}
-        className="h-10 w-10 rounded-full"
+        className="rounded-full py-6 px-6"
         aria-label="Disminuir cantidad"
       >
-        <Minus className="h-4 w-4" />
+        <Minus />
       </Button>
 
-      <div className="w-12 text-center">
-        <span className="text-2xl font-semibold tabular-nums">{quantity}</span>
+      <div className="w-4 text-center">
+        <span className="text-s font-semibold tabular-nums">{quantity}</span>
       </div>
 
       <Button
@@ -55,10 +51,10 @@ export function QuantitySelector({
         size="icon"
         onClick={handleIncrease}
         disabled={quantity >= max}
-        className="h-10 w-10 rounded-full"
+        className="rounded-full py-6 px-6"
         aria-label="Aumentar cantidad"
       >
-        <Plus className="h-4 w-4" />
+        <Plus />
       </Button>
     </div>
   );

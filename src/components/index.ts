@@ -6,3 +6,5 @@ export * from './NavLink';
 export * from './ProductCard';
 export * from './QuantitySelector';
 export * from './ProductImageSlider';
+export * from './ReviewCard';
+export * from './ReviewsSection';

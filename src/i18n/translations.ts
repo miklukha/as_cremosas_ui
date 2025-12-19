@@ -144,6 +144,15 @@ export const translations = {
       next: 'Siguiente',
       page: 'Página',
       of: 'de'
+    },
+    reviews: {
+      title: 'Reseñas de Nuestros Clientes',
+      loading: 'Cargando reseñas',
+      noReviews: 'No hay reseñas disponibles',
+      review: 'reseña',
+      reviews: 'reseñas',
+      listLabel: 'Lista de reseñas',
+      googleReviews: 'Reseñas de Google Maps para'
     }
   },
   gl: {
@@ -289,6 +298,15 @@ export const translations = {
       next: 'Seguinte',
       page: 'Páxina',
       of: 'de'
+    },
+    reviews: {
+      title: 'Recensións dos Nosos Clientes',
+      loading: 'Cargando recensións',
+      noReviews: 'Non hai recensións dispoñibles',
+      review: 'recensión',
+      reviews: 'recensións',
+      listLabel: 'Lista de recensións',
+      googleReviews: 'Recensións de Google Maps para'
     }
   },
   en: {
@@ -433,6 +451,15 @@ export const translations = {
       next: 'Next',
       page: 'Page',
       of: 'of'
+    },
+    reviews: {
+      title: 'Customer Reviews',
+      loading: 'Loading reviews',
+      noReviews: 'No reviews available',
+      review: 'review',
+      reviews: 'reviews',
+      listLabel: 'Reviews list',
+      googleReviews: 'Google Maps reviews for'
     }
   }
 };

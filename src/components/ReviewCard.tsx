@@ -1,5 +1,6 @@
-import { Star } from 'lucide-react';
+import { Star, ExternalLink } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useLanguage } from '@/context/LanguageContext';
 import type { Review } from '@/api/types/reviews.types';
 import { cn } from '@/lib/utils';
 
@@ -8,7 +9,11 @@ interface ReviewCardProps {
   className?: string;
 }
 
+const MAX_TEXT_LENGTH = 150;
+
 export function ReviewCard({ review, className }: ReviewCardProps) {
+  const { t } = useLanguage();
+
   const {
     author_name,
     author_url,
@@ -19,49 +24,33 @@ export function ReviewCard({ review, className }: ReviewCardProps) {
     translated
   } = review;
 
+  const isLongText = text.length > MAX_TEXT_LENGTH;
+  const displayText = isLongText
+    ? `${text.slice(0, MAX_TEXT_LENGTH)}...`
+    : text;
+
   return (
     <Card
-      className={cn(
-        'hover:shadow-lg transition-shadow duration-300',
-        className
-      )}
+      className={cn('max-h-[200px] flex flex-col', className)}
       role="article"
       aria-label={`Reseña de ${author_name}, ${rating} de 5 estrellas`}
     >
-      <CardContent className="p-4 sm:p-6">
+      <CardContent className="p-4 sm:p-5 flex flex-col max-h-50 ">
         {/* Header: Author info + Rating */}
-        <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
+        <div className="flex items-start gap-3 mb-3">
           {/* Author Avatar */}
-          <a
-            href={author_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 focus-visible:outline-none focus-visible:ring-2 
-                     focus-visible:ring-primary focus-visible:ring-offset-2 rounded-full"
-            aria-label={`Ver perfil de ${author_name} en Google Maps`}
-          >
-            <img
-              src={profile_photo_url}
-              alt={`${author_name} avatar`}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
-              loading="lazy"
-            />
-          </a>
+          <img
+            src={profile_photo_url}
+            alt={`${author_name} avatar`}
+            className="shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
+            loading="lazy"
+          />
 
           {/* Author Name + Time */}
           <div className="flex-1 min-w-0">
-            <a
-              href={author_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-sm sm:text-base text-foreground 
-                       hover:text-primary transition-colors truncate block
-                       focus-visible:outline-none focus-visible:ring-2 
-                       focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm"
-              aria-label={`${author_name}, perfil en Google`}
-            >
+            <p className="font-semibold text-xs sm:text-sm truncate leading-none">
               {author_name}
-            </a>
+            </p>
             <time
               className="text-xs sm:text-sm text-muted-foreground"
               dateTime={new Date(review.time * 1000).toISOString()}
@@ -80,7 +69,7 @@ export function ReviewCard({ review, className }: ReviewCardProps) {
               <Star
                 key={index}
                 className={cn(
-                  'h-4 w-4',
+                  'h-3 w-3',
                   index < rating
                     ? 'fill-accent text-accent'
                     : 'fill-muted text-muted'
@@ -91,20 +80,37 @@ export function ReviewCard({ review, className }: ReviewCardProps) {
           </div>
         </div>
 
-        {/* Review Text */}
-        <p className="text-sm sm:text-base text-foreground leading-relaxed mb-2">
-          {text}
-        </p>
+        <div className="flex-1 mb-2 ">
+          <p className="text-xs sm:text-sm leading-relaxed ">{displayText}</p>
+        </div>
 
-        {/* Translated Badge */}
-        {translated && (
-          <span
-            className="inline-block text-xs text-muted-foreground italic"
-            aria-label="Esta reseña ha sido traducida automáticamente"
-          >
-            Traducido automáticamente
-          </span>
-        )}
+        {/* Action Area */}
+        <div className="flex flex-col gap-2">
+          {/* Read More Link */}
+          {isLongText && (
+            <a
+              href="https://maps.app.goo.gl/EW7KHL3ZRuC1H3gL9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-primary 
+                       hover:underline transition-all duration-200
+                       focus-visible:outline-none focus-visible:ring-2 
+                       focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm
+                       w-fit"
+              aria-label={`${t.reviews.readOnGoogle} - ${author_name}`}
+            >
+              <span>{t.reviews.readOnGoogle}</span>
+              <ExternalLink className="h-3 w-3" aria-hidden="true" />
+            </a>
+          )}
+
+          {/* Translated Badge */}
+          {translated && (
+            <span className="inline-block text-xs text-muted-foreground ">
+              {t.reviews.translated}
+            </span>
+          )}
+        </div>
       </CardContent>
     </Card>
   );

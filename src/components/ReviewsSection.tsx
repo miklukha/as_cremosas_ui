@@ -1,23 +1,100 @@
+import { useRef } from 'react';
 import { useReviews } from '@/hooks/useReviews';
 import { useLanguage } from '@/context/LanguageContext';
 import { ReviewCard } from '@/components/ReviewCard';
-import {
-  Button,
-  Skeleton,
-  Alert,
-  AlertDescription,
-  Card
-} from '@/components/ui';
-import { Star } from 'lucide-react';
+import { Button, Skeleton, Card } from '@/components/ui';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
+
+import 'swiper/swiper-bundle.css';
 
 export function ReviewsSection() {
   const { t } = useLanguage();
   const { data, loading, error } = useReviews();
 
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  // const reviews = [
+  //   {
+  //     author_name: 'Sun',
+  //     author_url:
+  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+  //     language: 'es',
+  //     original_language: 'es',
+  //     profile_photo_url:
+  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+  //     rating: 5,
+  //     relative_time_description: 'en la última semana',
+  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+  //     time: 1766047104,
+  //     translated: false
+  //   },
+  //   {
+  //     author_name: 'Armas',
+  //     author_url:
+  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+  //     language: 'es',
+  //     original_language: 'es',
+  //     profile_photo_url:
+  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+  //     rating: 5,
+  //     relative_time_description: 'en la última semana',
+  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+  //     time: 1766047104,
+  //     translated: false
+  //   },
+  //   {
+  //     author_name: 'Armas',
+  //     author_url:
+  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+  //     language: 'es',
+  //     original_language: 'es',
+  //     profile_photo_url:
+  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+  //     rating: 5,
+  //     relative_time_description: 'en la última semana',
+  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+  //     time: 1766047104,
+  //     translated: false
+  //   },
+  //   {
+  //     author_name: 'Armas',
+  //     author_url:
+  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+  //     language: 'es',
+  //     original_language: 'es',
+  //     profile_photo_url:
+  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+  //     rating: 5,
+  //     relative_time_description: 'en la última semana',
+  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+  //     time: 1766047104,
+  //     translated: false
+  //   },
+  //   {
+  //     author_name: 'Armas',
+  //     author_url:
+  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+  //     language: 'es',
+  //     original_language: 'es',
+  //     profile_photo_url:
+  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+  //     rating: 5,
+  //     relative_time_description: 'en la última semana',
+  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+  //     time: 1766047104,
+  //     translated: true
+  //   }
+  // ];
+
+  // Loading State
   if (loading) {
     return (
       <section
-        className="py-16 sm:py-20 px-4 "
+        className="py-16 sm:py-20 px-4"
         aria-live="polite"
         aria-label={t.reviews?.loading || 'Cargando reseñas'}
       >
@@ -50,25 +127,17 @@ export function ReviewsSection() {
     );
   }
 
+  // Empty/Error State
   if (!data || data.reviews.length === 0 || error) {
-    // return (
-    //   <section className="py-12 px-4">
-    //     <div className="container mx-auto max-w-2xl text-center">
-    //       <p className="text-muted-foreground">
-    //         {t.reviews?.noReviews || 'No hay reseñas disponibles'}
-    //       </p>
-    //     </div>
-    //   </section>
-    // );
     return null;
   }
 
   return (
     <section
-      className="py-16 sm:py-20 px-4 animate-fade-in"
+      className="py-16 sm:py-20 pb-0 sm:pb-0 px-4 animate-fade-in"
       aria-labelledby="reviews-heading"
     >
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-7xl">
         {/* Section Title */}
         <h2
           id="reviews-heading"
@@ -79,7 +148,7 @@ export function ReviewsSection() {
 
         {/* Overall Rating Summary */}
         <div
-          className="flex items-center justify-center gap-3 mb-8"
+          className="flex items-center justify-center gap-3 mb-6"
           role="img"
           aria-label={`Calificación promedio: ${data.rating.toFixed(
             1
@@ -108,21 +177,71 @@ export function ReviewsSection() {
           </span>
         </div>
 
-        {/* Reviews Grid */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          role="list"
-          aria-label={t.reviews?.listLabel || 'Lista de reseñas'}
-        >
-          {data.reviews.map(review => (
-            <ReviewCard key={review.time} review={review} />
-          ))}
+        {/* Swiper Slider */}
+        <div className="relative">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={24}
+            slidesPerView={1}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 24
+              }
+            }}
+            onSwiper={swiper => {
+              swiperRef.current = swiper;
+            }}
+            role="list"
+            aria-label={t.reviews?.listLabel || 'Lista de reseñas'}
+          >
+            {data.reviews.map((review, index) => (
+              <SwiperSlide key={`${review.time}-${index}`} className="h-auto">
+                <ReviewCard review={review} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Custom Navigation Arrows */}
+
+          <button
+            className="absolute left-[-10%] sm:left-[-5%] top-1/2 -translate-y-1/2 z-10 hover:scale-110 text-foreground/80 duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            onClick={() => swiperRef.current?.slidePrev()}
+            aria-label={t.reviews?.previous || 'Reseña anterior'}
+          >
+            <ChevronLeft className="h-8 w-8 sm:h-10 sm:w-10 stroke-1" />
+          </button>
+
+          <button
+            className="absolute right-[-10%] sm:right-[-5%] top-1/2 -translate-y-1/2 z-10 hover:scale-110 text-foreground/80 duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            onClick={() => swiperRef.current?.slideNext()}
+            aria-label={t.reviews?.next || 'Siguiente reseña'}
+          >
+            <ChevronRight className="h-8 w-8 sm:h-10 sm:w-10 stroke-1" />
+          </button>
         </div>
 
-        {/* Business Name Footer */}
+        {/* Google Maps Link Footer */}
         <p className="text-center text-sm text-muted-foreground mt-8">
-          {t.reviews?.googleReviews || 'Reseñas de Google Maps para'}{' '}
-          <strong>{data.name}</strong>
+          <a
+            href="https://maps.app.goo.gl/LiYmogxjuJCUTSDQ8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-all duration-200 hover:font-semibold hover:scale-105
+                     focus-visible:outline-none focus-visible:ring-2 
+                     focus-visible:ring-primary focus-visible:ring-offset-2 rounded-sm
+                     inline-block"
+            aria-label={`${
+              t.reviews?.googleReviews || 'Reseñas de Google Maps para'
+            } ${data.name} - Se abre en una nueva ventana`}
+          >
+            {t.reviews?.googleReviews || 'Reseñas de Google Maps para'}{' '}
+            <span className="font-semibold">{data.name}</span>
+          </a>
         </p>
       </div>
     </section>

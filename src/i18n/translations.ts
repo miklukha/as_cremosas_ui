@@ -152,7 +152,13 @@ export const translations = {
       review: 'reseña',
       reviews: 'reseñas',
       listLabel: 'Lista de reseñas',
-      googleReviews: 'Reseñas de Google Maps para'
+      googleReviews: 'Reseñas de Google Maps para',
+      translated: 'Traducido automáticamente',
+      readMore: 'Leer más',
+      readLess: 'Leer menos',
+      readOnGoogle: 'Leer más en Google Maps',
+      previous: 'Reseña anterior',
+      next: 'Siguiente reseña'
     }
   },
   gl: {
@@ -306,7 +312,13 @@ export const translations = {
       review: 'recensión',
       reviews: 'recensións',
       listLabel: 'Lista de recensións',
-      googleReviews: 'Recensións de Google Maps para'
+      googleReviews: 'Recensións de Google Maps para',
+      translated: 'Traducido automaticamente',
+      readMore: 'Ler máis',
+      readLess: 'Ler menos',
+      readOnGoogle: 'Ler máis en Google Maps',
+      previous: 'Reseña anterior',
+      next: 'Seguinte reseña'
     }
   },
   en: {
@@ -459,7 +471,86 @@ export const translations = {
       review: 'review',
       reviews: 'reviews',
       listLabel: 'Reviews list',
-      googleReviews: 'Google Maps reviews for'
+      googleReviews: 'Google Maps reviews for',
+      translated: 'Automatically translated',
+      readMore: 'Read more',
+      readLess: 'Read less',
+      readOnGoogle: 'Read more on Google Maps',
+      previous: 'Previous review',
+      next: 'Next review'
     }
   }
 };
+
+const reviews = [
+  {
+    author_name: 'Sun',
+    author_url:
+      'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+    language: 'es',
+    original_language: 'es',
+    profile_photo_url:
+      'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+    rating: 5,
+    relative_time_description: 'en la última semana',
+    text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+    time: 1766047104,
+    translated: false
+  },
+  {
+    author_name: 'Armas',
+    author_url:
+      'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+    language: 'es',
+    original_language: 'es',
+    profile_photo_url:
+      'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+    rating: 5,
+    relative_time_description: 'en la última semana',
+    text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+    time: 1766047104,
+    translated: false
+  },
+  {
+    author_name: 'Armas',
+    author_url:
+      'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+    language: 'es',
+    original_language: 'es',
+    profile_photo_url:
+      'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+    rating: 5,
+    relative_time_description: 'en la última semana',
+    text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+    time: 1766047104,
+    translated: false
+  },
+  {
+    author_name: 'Armas',
+    author_url:
+      'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+    language: 'es',
+    original_language: 'es',
+    profile_photo_url:
+      'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+    rating: 5,
+    relative_time_description: 'en la última semana',
+    text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+    time: 1766047104,
+    translated: false
+  },
+  {
+    author_name: 'Armas',
+    author_url:
+      'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+    language: 'es',
+    original_language: 'es',
+    profile_photo_url:
+      'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+    rating: 5,
+    relative_time_description: 'en la última semana',
+    text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+    time: 1766047104,
+    translated: false
+  }
+];

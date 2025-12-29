@@ -17,78 +17,78 @@ export function ReviewsSection() {
 
   const swiperRef = useRef<SwiperType | null>(null);
 
-  // const reviews = [
-  //   {
-  //     author_name: 'Sun',
-  //     author_url:
-  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-  //     language: 'es',
-  //     original_language: 'es',
-  //     profile_photo_url:
-  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-  //     rating: 5,
-  //     relative_time_description: 'en la última semana',
-  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-  //     time: 1766047104,
-  //     translated: false
-  //   },
-  //   {
-  //     author_name: 'Armas',
-  //     author_url:
-  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-  //     language: 'es',
-  //     original_language: 'es',
-  //     profile_photo_url:
-  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-  //     rating: 5,
-  //     relative_time_description: 'en la última semana',
-  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-  //     time: 1766047104,
-  //     translated: false
-  //   },
-  //   {
-  //     author_name: 'Armas',
-  //     author_url:
-  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-  //     language: 'es',
-  //     original_language: 'es',
-  //     profile_photo_url:
-  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-  //     rating: 5,
-  //     relative_time_description: 'en la última semana',
-  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-  //     time: 1766047104,
-  //     translated: false
-  //   },
-  //   {
-  //     author_name: 'Armas',
-  //     author_url:
-  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-  //     language: 'es',
-  //     original_language: 'es',
-  //     profile_photo_url:
-  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-  //     rating: 5,
-  //     relative_time_description: 'en la última semana',
-  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-  //     time: 1766047104,
-  //     translated: false
-  //   },
-  //   {
-  //     author_name: 'Armas',
-  //     author_url:
-  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-  //     language: 'es',
-  //     original_language: 'es',
-  //     profile_photo_url:
-  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-  //     rating: 5,
-  //     relative_time_description: 'en la última semana',
-  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-  //     time: 1766047104,
-  //     translated: true
-  //   }
-  // ];
+  const reviews = [
+    {
+      author_name: 'Sun',
+      author_url:
+        'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+      language: 'es',
+      original_language: 'es',
+      profile_photo_url:
+        'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+      rating: 5,
+      relative_time_description: 'en la última semana',
+      text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+      time: 1766047104,
+      translated: false
+    },
+    {
+      author_name: 'Armas',
+      author_url:
+        'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+      language: 'es',
+      original_language: 'es',
+      profile_photo_url:
+        'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+      rating: 5,
+      relative_time_description: 'en la última semana',
+      text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+      time: 1766047104,
+      translated: false
+    },
+    {
+      author_name: 'Armas',
+      author_url:
+        'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+      language: 'es',
+      original_language: 'es',
+      profile_photo_url:
+        'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+      rating: 5,
+      relative_time_description: 'en la última semana',
+      text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+      time: 1766047104,
+      translated: false
+    },
+    {
+      author_name: 'Armas',
+      author_url:
+        'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+      language: 'es',
+      original_language: 'es',
+      profile_photo_url:
+        'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+      rating: 5,
+      relative_time_description: 'en la última semana',
+      text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+      time: 1766047104,
+      translated: false
+    },
+    {
+      author_name: 'Armas',
+      author_url:
+        'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+      language: 'es',
+      original_language: 'es',
+      profile_photo_url:
+        'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+      rating: 5,
+      relative_time_description: 'en la última semana',
+      text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+      time: 1766047104,
+      translated: true
+    }
+  ];
 
   // Loading State
   if (loading) {
@@ -131,6 +131,14 @@ export function ReviewsSection() {
   if (!data || data.reviews.length === 0 || error) {
     return null;
   }
+
+  const reviewCount = data?.reviews?.length || 0;
+
+  // Show arrows logic:
+  // Mobile (< 640px): Show if > 1 review
+  // Tablet (640px - 1023px): Show if > 2 reviews
+  // Desktop (>= 1024px): Show if > 3 reviews
+  const shouldShowArrows = reviewCount > 1;
 
   return (
     <section
@@ -199,7 +207,7 @@ export function ReviewsSection() {
             role="list"
             aria-label={t.reviews?.listLabel || 'Lista de reseñas'}
           >
-            {data.reviews.map((review, index) => (
+            {data?.reviews?.map((review, index) => (
               <SwiperSlide key={`${review.time}-${index}`} className="h-auto">
                 <ReviewCard review={review} />
               </SwiperSlide>
@@ -208,25 +216,29 @@ export function ReviewsSection() {
 
           {/* Custom Navigation Arrows */}
 
-          <button
-            className="absolute left-[-10%] sm:left-[-5%] top-1/2 -translate-y-1/2 z-10 hover:scale-110 text-foreground/80 duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-            onClick={() => swiperRef.current?.slidePrev()}
-            aria-label={t.reviews?.previous || 'Reseña anterior'}
-          >
-            <ChevronLeft className="h-8 w-8 sm:h-10 sm:w-10 stroke-1" />
-          </button>
+          {shouldShowArrows && (
+            <>
+              <button
+                className="absolute left-[-10%] sm:left-[-5%] top-1/2 -translate-y-1/2 z-10 hover:scale-110 text-foreground/80 duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                onClick={() => swiperRef.current?.slidePrev()}
+                aria-label={t.reviews?.previous || 'Reseña anterior'}
+              >
+                <ChevronLeft className="h-8 w-8 sm:h-10 sm:w-10 stroke-1" />
+              </button>
 
-          <button
-            className="absolute right-[-10%] sm:right-[-5%] top-1/2 -translate-y-1/2 z-10 hover:scale-110 text-foreground/80 duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-            onClick={() => swiperRef.current?.slideNext()}
-            aria-label={t.reviews?.next || 'Siguiente reseña'}
-          >
-            <ChevronRight className="h-8 w-8 sm:h-10 sm:w-10 stroke-1" />
-          </button>
+              <button
+                className="absolute right-[-10%] sm:right-[-5%] top-1/2 -translate-y-1/2 z-10 hover:scale-110 text-foreground/80 duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                onClick={() => swiperRef.current?.slideNext()}
+                aria-label={t.reviews?.next || 'Siguiente reseña'}
+              >
+                <ChevronRight className="h-8 w-8 sm:h-10 sm:w-10 stroke-1" />
+              </button>
+            </>
+          )}
         </div>
 
         {/* Google Maps Link Footer */}
-        <p className="text-center text-sm text-muted-foreground mt-8">
+        <p className="text-center text-sm text-muted-foreground mt-4 sm:mt-6">
           <a
             href="https://maps.app.goo.gl/LiYmogxjuJCUTSDQ8"
             target="_blank"

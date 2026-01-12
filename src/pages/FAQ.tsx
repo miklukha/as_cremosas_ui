@@ -21,7 +21,7 @@ export default function FAQ() {
           <AccordionItem
             key={index}
             value={`item-${index}`}
-            className="bg-secondary/20 rounded-lg px-6 transition-all duration-300 hover:shadow-xl"
+            className="bg-primary-foreground rounded-lg px-6 transition-all duration-300 hover:shadow-xl"
           >
             <AccordionTrigger className="text-left">
               <span

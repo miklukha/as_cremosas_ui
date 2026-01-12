@@ -119,10 +119,70 @@ export const translations = {
       title: 'Preguntas Frecuentes'
     },
     b2b: {
-      title: 'Pedidos Corporativos y Grandes Volúmenes',
-      description:
-        'Ofrecemos condiciones especiales para pedidos corporativos y grandes volúmenes.',
-      inquiry: 'Consulta de Pedido'
+      title: 'Pedidos Corporativos',
+      subtitle: 'Soluciones especiales para empresas y grandes volúmenes',
+      benefits: {
+        corporate: {
+          title: 'Eventos Corporativos',
+          description: 'Perfecto para celebraciones de empresa'
+        },
+        volume: {
+          title: 'Grandes Volúmenes',
+          description: 'Condiciones especiales para pedidos grandes'
+        },
+        partners: {
+          title: 'Socios Comerciales',
+          description: 'Colaboración con restaurantes y tiendas'
+        }
+      },
+      form: {
+        title: 'Solicitar Información',
+        companyName: 'Nombre de la empresa',
+        companyNamePlaceholder: 'Tu empresa',
+        contactPerson: 'Persona de contacto',
+        contactPersonPlaceholder: 'Tu nombre',
+        email: 'Email',
+        emailPlaceholder: 'empresa@example.com',
+        phone: 'Teléfono',
+        orderSize: 'Volumen estimado',
+        orderSizePlaceholder: 'Ej: 50 unidades mensuales',
+        message: 'Detalles adicionales',
+        messagePlaceholder: 'Cuéntanos más sobre tu proyecto...',
+        submit: 'Enviar consulta',
+        sending: 'Enviando...'
+      },
+      validation: {
+        companyNameRequired: 'El nombre de la empresa es obligatorio',
+        companyNameMinLength: 'El nombre debe tener al menos 2 caracteres',
+        contactPersonRequired: 'El nombre de contacto es obligatorio',
+        contactPersonMinLength: 'El nombre debe tener al menos 2 caracteres',
+        emailRequired: 'El email es obligatorio',
+        emailInvalid: 'Por favor, introduce un email válido',
+        phoneRequired: 'El teléfono es obligatorio',
+        phoneInvalid:
+          'Formato inválido. Usa solo + y números (ej: +34600000000 o 600000000)',
+        orderSizeRequired: 'El volumen estimado es obligatorio',
+        messageRequired: 'El mensaje es obligatorio',
+        messageMinLength: 'El mensaje debe tener al menos 10 caracteres'
+      },
+      success: {
+        title: '¡Consulta enviada!',
+        message: 'Gracias por tu interés. Te contactaremos pronto.'
+      },
+      error: {
+        title: 'Error al enviar',
+        message: 'Algo salió mal. Por favor, inténtalo de nuevo.'
+      },
+      ariaLabels: {
+        formLabel: 'Formulario de consulta B2B',
+        companyNameLabel: 'Introduce el nombre de tu empresa',
+        contactPersonLabel: 'Introduce el nombre de la persona de contacto',
+        emailLabel: 'Introduce tu dirección de email',
+        phoneLabel: 'Introduce tu número de teléfono',
+        orderSizeLabel: 'Introduce el volumen estimado del pedido',
+        messageLabel: 'Escribe detalles adicionales sobre tu proyecto',
+        submitLabel: 'Enviar consulta B2B'
+      }
     },
     footer: {
       about: 'Sobre Nosotros',
@@ -302,10 +362,70 @@ export const translations = {
       title: 'Preguntas Frecuentes'
     },
     b2b: {
-      title: 'Pedidos Corporativos e Grandes Volumes',
-      description:
-        'Ofrecemos condicións especiais para pedidos corporativos e grandes volumes.',
-      inquiry: 'Consulta de Pedido'
+      title: 'Pedidos Corporativos',
+      subtitle: 'Solucións especiais para empresas e grandes volumes',
+      benefits: {
+        corporate: {
+          title: 'Eventos Corporativos',
+          description: 'Perfecto para celebracións de empresa'
+        },
+        volume: {
+          title: 'Grandes Volumes',
+          description: 'Condicións especiais para pedidos grandes'
+        },
+        partners: {
+          title: 'Socios Comerciais',
+          description: 'Colaboración con restaurantes e tendas'
+        }
+      },
+      form: {
+        title: 'Solicitar Información',
+        companyName: 'Nome da empresa',
+        companyNamePlaceholder: 'A túa empresa',
+        contactPerson: 'Persoa de contacto',
+        contactPersonPlaceholder: 'O teu nome',
+        email: 'Email',
+        emailPlaceholder: 'empresa@example.com',
+        phone: 'Teléfono',
+        orderSize: 'Volume estimado',
+        orderSizePlaceholder: 'Ex: 50 unidades mensuais',
+        message: 'Detalles adicionais',
+        messagePlaceholder: 'Cóntanos máis sobre o teu proxecto...',
+        submit: 'Enviar consulta',
+        sending: 'Enviando...'
+      },
+      validation: {
+        companyNameRequired: 'O nome da empresa é obrigatorio',
+        companyNameMinLength: 'O nome debe ter polo menos 2 caracteres',
+        contactPersonRequired: 'O nome de contacto é obrigatorio',
+        contactPersonMinLength: 'O nome debe ter polo menos 2 caracteres',
+        emailRequired: 'O email é obrigatorio',
+        emailInvalid: 'Por favor, introduce un email válido',
+        phoneRequired: 'O teléfono é obrigatorio',
+        phoneInvalid:
+          'Formato inválido. Usa só + e números (ex: +34600000000 ou 600000000)',
+        orderSizeRequired: 'O volume estimado é obrigatorio',
+        messageRequired: 'A mensaxe é obrigatoria',
+        messageMinLength: 'A mensaxe debe ter polo menos 10 caracteres'
+      },
+      success: {
+        title: 'Consulta enviada!',
+        message: 'Grazas polo teu interese. Contactarémosche pronto.'
+      },
+      error: {
+        title: 'Erro ao enviar',
+        message: 'Algo saíu mal. Por favor, inténtao de novo.'
+      },
+      ariaLabels: {
+        formLabel: 'Formulario de consulta B2B',
+        companyNameLabel: 'Introduce o nome da túa empresa',
+        contactPersonLabel: 'Introduce o nome da persoa de contacto',
+        emailLabel: 'Introduce o teu enderezo de email',
+        phoneLabel: 'Introduce o teu número de teléfono',
+        orderSizeLabel: 'Introduce o volume estimado do pedido',
+        messageLabel: 'Escribe detalles adicionais sobre o teu proxecto',
+        submitLabel: 'Enviar consulta B2B'
+      }
     },
     footer: {
       about: 'Sobre Nós',
@@ -483,10 +603,70 @@ export const translations = {
       title: 'Frequently Asked Questions'
     },
     b2b: {
-      title: 'Corporate and Large Volume Orders',
-      description:
-        'We offer special conditions for corporate and large volume orders.',
-      inquiry: 'Order Inquiry'
+      title: 'Corporate Orders',
+      subtitle: 'Special solutions for businesses and large volumes',
+      benefits: {
+        corporate: {
+          title: 'Corporate Events',
+          description: 'Perfect for company celebrations'
+        },
+        volume: {
+          title: 'Large Volumes',
+          description: 'Special conditions for large orders'
+        },
+        partners: {
+          title: 'Business Partners',
+          description: 'Collaboration with restaurants and shops'
+        }
+      },
+      form: {
+        title: 'Request Information',
+        companyName: 'Company name',
+        companyNamePlaceholder: 'Your company',
+        contactPerson: 'Contact person',
+        contactPersonPlaceholder: 'Your name',
+        email: 'Email',
+        emailPlaceholder: 'company@example.com',
+        phone: 'Phone',
+        orderSize: 'Estimated volume',
+        orderSizePlaceholder: 'Ex: 50 units per month',
+        message: 'Additional details',
+        messagePlaceholder: 'Tell us more about your project...',
+        submit: 'Send inquiry',
+        sending: 'Sending...'
+      },
+      validation: {
+        companyNameRequired: 'Company name is required',
+        companyNameMinLength: 'Name must be at least 2 characters',
+        contactPersonRequired: 'Contact name is required',
+        contactPersonMinLength: 'Name must be at least 2 characters',
+        emailRequired: 'Email is required',
+        emailInvalid: 'Please enter a valid email',
+        phoneRequired: 'Phone is required',
+        phoneInvalid:
+          'Invalid format. Use only + and numbers (e.g., +34600000000 or 600000000)',
+        orderSizeRequired: 'Estimated volume is required',
+        messageRequired: 'Message is required',
+        messageMinLength: 'Message must be at least 10 characters'
+      },
+      success: {
+        title: 'Inquiry sent!',
+        message: 'Thank you for your interest. We will contact you soon.'
+      },
+      error: {
+        title: 'Error sending',
+        message: 'Something went wrong. Please try again.'
+      },
+      ariaLabels: {
+        formLabel: 'B2B inquiry form',
+        companyNameLabel: 'Enter your company name',
+        contactPersonLabel: 'Enter the contact person name',
+        emailLabel: 'Enter your email address',
+        phoneLabel: 'Enter your phone number',
+        orderSizeLabel: 'Enter the estimated order volume',
+        messageLabel: 'Write additional details about your project',
+        submitLabel: 'Send B2B inquiry'
+      }
     },
     footer: {
       about: 'About Us',

@@ -128,3 +128,52 @@
     margin: 0 3px !important;
   }
 }
+
+/* Toast container */
+[data-sonner-toaster] {
+  font-family: inherit !important;
+}
+
+/* Всі тости */
+[data-sonner-toast] {
+  border-radius: 0.75rem !important;
+  padding: 1rem !important;
+  font-size: 0.875rem !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Success toast */
+[data-sonner-toast][data-type='success'] {
+  background: hsl(var(--success-foreground)) !important;
+  border: 2px solid hsl(var(--success)) !important;
+  color: hsl(var(--success)) !important;
+  box-shadow: 0 4px 12px hsla(var(--success), 0.15) !important;
+}
+
+/* Info toast */
+[data-sonner-toast][data-type='info'] {
+  background: hsl(var(--accent-foreground)) !important;
+  border: 2px solid hsl(var(--accent)) !important;
+  color: hsl(var(--accent)) !important;
+  box-shadow: 0 4px 12px hsla(var(--accent), 0.15) !important;
+}
+
+/* Error toast */
+[data-sonner-toast][data-type='error'] {
+  background: hsl(var(--destructive-foreground)) !important;
+  border: 2px solid hsl(var(--destructive)) !important;
+  color: hsl(var(--destructive)) !important;
+  box-shadow: 0 4px 12px hsla(var(--destructive), 0.15) !important;
+}
+
+/* Toast description */
+[data-sonner-toast] [data-description] {
+  font-size: 0.8rem !important;
+  opacity: 0.9 !important;
+}
+
+/* Close button */
+[data-sonner-toast] [data-button] {
+  background: transparent !important;
+  border: none !important;
+}

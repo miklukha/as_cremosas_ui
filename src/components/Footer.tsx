@@ -241,7 +241,7 @@ export const Footer = () => {
 
   return (
     <footer
-      className="border-t border-border shadow-sm mt-20 bg-foreground"
+      className="border-t border-border shadow-sm mt-8 sm:mt-20 bg-foreground"
       role="contentinfo"
       aria-label={t.footer.mainLabel || 'Pie de página'}
     >

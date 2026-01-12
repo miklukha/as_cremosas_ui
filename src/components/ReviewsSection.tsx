@@ -142,7 +142,7 @@ export function ReviewsSection() {
 
   return (
     <section
-      className="py-16 sm:py-20 pb-0 sm:pb-0 px-4 animate-fade-in"
+      className="py-16 sm:py-20 pb-8 sm:pb-0 px-4 animate-fade-in"
       aria-labelledby="reviews-heading"
     >
       <div className="container mx-auto max-w-7xl">

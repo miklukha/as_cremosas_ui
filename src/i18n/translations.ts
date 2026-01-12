@@ -89,7 +89,31 @@ export const translations = {
       name: 'Nombre',
       email: 'Email',
       message: 'Mensaje',
-      send: 'Enviar'
+      send: 'Enviar',
+      sending: 'Enviando...',
+      namePlaceholder: 'Tu nombre completo',
+      emailPlaceholder: 'tu@email.com',
+      messagePlaceholder: 'Escribe tu mensaje aquí...',
+      successTitle: '¡Mensaje enviado!',
+      successMessage: 'Gracias por contactarnos. Te responderemos pronto.',
+      errorTitle: 'Error al enviar',
+      errorMessage: 'Algo salió mal. Por favor, inténtalo de nuevo.',
+      // Errores de validación
+      nameRequired: 'El nombre es obligatorio',
+      nameMinLength: 'El nombre debe tener al menos 2 caracteres',
+      emailRequired: 'El email es obligatorio',
+      emailInvalid: 'Por favor, introduce un email válido',
+      messageRequired: 'El mensaje es obligatorio',
+      messageMinLength: 'El mensaje debe tener al menos 10 caracteres',
+      // Aria labels
+      formLabel: 'Formulario de contacto',
+      nameLabel: 'Introduce tu nombre completo',
+      emailLabel: 'Introduce tu dirección de email',
+      messageLabel: 'Escribe tu mensaje',
+      submitLabel: 'Enviar mensaje de contacto',
+      mapLabel: 'Mapa de ubicación de AS Cremosas',
+      viewOnMaps: 'Ver en Google Maps',
+      phone: 'Teléfono'
     },
     faq: {
       title: 'Preguntas Frecuentes'
@@ -250,7 +274,29 @@ export const translations = {
       name: 'Nome',
       email: 'Email',
       message: 'Mensaxe',
-      send: 'Enviar'
+      send: 'Enviar',
+      sending: 'Enviando...',
+      namePlaceholder: 'O teu nome completo',
+      emailPlaceholder: 'teu@email.com',
+      messagePlaceholder: 'Escribe a túa mensaxe aquí...',
+      successTitle: 'Mensaxe enviada!',
+      successMessage: 'Grazas por contactarnos. Responderémosche pronto.',
+      errorTitle: 'Erro ao enviar',
+      errorMessage: 'Algo saíu mal. Por favor, inténtao de novo.',
+      nameRequired: 'O nome é obrigatorio',
+      nameMinLength: 'O nome debe ter polo menos 2 caracteres',
+      emailRequired: 'O email é obrigatorio',
+      emailInvalid: 'Por favor, introduce un email válido',
+      messageRequired: 'A mensaxe é obrigatoria',
+      messageMinLength: 'A mensaxe debe ter polo menos 10 caracteres',
+      formLabel: 'Formulario de contacto',
+      nameLabel: 'Introduce o teu nome completo',
+      emailLabel: 'Introduce o teu enderezo de email',
+      messageLabel: 'Escribe a túa mensaxe',
+      submitLabel: 'Enviar mensaxe de contacto',
+      mapLabel: 'Mapa de localización de AS Cremosas',
+      viewOnMaps: 'Ver en Google Maps',
+      phone: 'Teléfono'
     },
     faq: {
       title: 'Preguntas Frecuentes'
@@ -409,7 +455,29 @@ export const translations = {
       name: 'Name',
       email: 'Email',
       message: 'Message',
-      send: 'Send'
+      send: 'Send',
+      sending: 'Sending...',
+      namePlaceholder: 'Your full name',
+      emailPlaceholder: 'your@email.com',
+      messagePlaceholder: 'Write your message here...',
+      successTitle: 'Message sent!',
+      successMessage: 'Thank you for contacting us. We will reply soon.',
+      errorTitle: 'Error sending',
+      errorMessage: 'Something went wrong. Please try again.',
+      nameRequired: 'Name is required',
+      nameMinLength: 'Name must be at least 2 characters',
+      emailRequired: 'Email is required',
+      emailInvalid: 'Please enter a valid email',
+      messageRequired: 'Message is required',
+      messageMinLength: 'Message must be at least 10 characters',
+      formLabel: 'Contact form',
+      nameLabel: 'Enter your full name',
+      emailLabel: 'Enter your email address',
+      messageLabel: 'Write your message',
+      submitLabel: 'Send contact message',
+      mapLabel: 'AS Cremosas location map',
+      viewOnMaps: 'View on Google Maps',
+      phone: 'Phone'
     },
     faq: {
       title: 'Frequently Asked Questions'
@@ -481,76 +549,3 @@ export const translations = {
     }
   }
 };
-
-const reviews = [
-  {
-    author_name: 'Sun',
-    author_url:
-      'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-    language: 'es',
-    original_language: 'es',
-    profile_photo_url:
-      'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-    rating: 5,
-    relative_time_description: 'en la última semana',
-    text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-    time: 1766047104,
-    translated: false
-  },
-  {
-    author_name: 'Armas',
-    author_url:
-      'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-    language: 'es',
-    original_language: 'es',
-    profile_photo_url:
-      'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-    rating: 5,
-    relative_time_description: 'en la última semana',
-    text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-    time: 1766047104,
-    translated: false
-  },
-  {
-    author_name: 'Armas',
-    author_url:
-      'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-    language: 'es',
-    original_language: 'es',
-    profile_photo_url:
-      'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-    rating: 5,
-    relative_time_description: 'en la última semana',
-    text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-    time: 1766047104,
-    translated: false
-  },
-  {
-    author_name: 'Armas',
-    author_url:
-      'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-    language: 'es',
-    original_language: 'es',
-    profile_photo_url:
-      'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-    rating: 5,
-    relative_time_description: 'en la última semana',
-    text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-    time: 1766047104,
-    translated: false
-  },
-  {
-    author_name: 'Armas',
-    author_url:
-      'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-    language: 'es',
-    original_language: 'es',
-    profile_photo_url:
-      'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-    rating: 5,
-    relative_time_description: 'en la última semana',
-    text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-    time: 1766047104,
-    translated: false
-  }
-];

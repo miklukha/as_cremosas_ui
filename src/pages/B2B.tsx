@@ -1,18 +1,21 @@
 import { useLanguage } from '@/context/LanguageContext';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
+import {
+  Button,
+  Input,
+  Label,
+  Textarea,
+  Card,
+  CardContent
+} from '@/components/ui';
 import { Building2, Users, TrendingUp } from 'lucide-react';
 
 export default function B2B() {
   const { t } = useLanguage();
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-6xl animate-fade-in">
+    <div className="container mx-auto py-8 sm:py-10 animate-fade-in max-w-6xl">
       <div className="text-center mb-12">
-        <h1 className="font-serif text-5xl font-bold mb-4 text-foreground">
+        <h1 className="text-2xl sm:text-4xl mb-6 sm:mb-10 text-center ">
           {t.b2b.title}
         </h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

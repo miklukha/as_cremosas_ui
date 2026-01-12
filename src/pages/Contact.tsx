@@ -158,7 +158,7 @@ export default function Contact() {
             <div className="space-y-4">
               {/* Phone */}
               <div className="flex items-center space-x-3 sm:space-x-4 group">
-                <div className="bg-secondary/70 p-2 sm:p-3 rounded-xl shrink-0">
+                <div className="bg-secondary/30 p-2 sm:p-3 rounded-xl shrink-0">
                   <Phone
                     className="h-5 w-5 sm:h-6 sm:w-6 text-accent"
                     aria-hidden="true"
@@ -177,7 +177,7 @@ export default function Contact() {
 
               {/* Email */}
               <div className="flex items-center space-x-3 sm:space-x-4 group">
-                <div className="bg-secondary/70 p-2 sm:p-3 rounded-xl shrink-0">
+                <div className="bg-secondary/30 p-2 sm:p-3 rounded-xl shrink-0">
                   <Mail
                     className="h-5 w-5 sm:h-6 sm:w-6 text-accent"
                     aria-hidden="true"
@@ -196,7 +196,7 @@ export default function Contact() {
 
               {/* Address */}
               <div className="flex items-center space-x-3 sm:space-x-4 group">
-                <div className="bg-secondary/70 p-2 sm:p-3 rounded-xl shrink-0">
+                <div className="bg-secondary/30 p-2 sm:p-3 rounded-xl shrink-0">
                   <MapPin
                     className="h-5 w-5 sm:h-6 sm:w-6 text-accent"
                     aria-hidden="true"

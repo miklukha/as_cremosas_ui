@@ -27,7 +27,7 @@ export const LanguageSelector = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="start"
-        className="bg-card"
+        className="bg-primary-foreground"
         side="bottom"
         sideOffset={0}
       >

@@ -11,7 +11,7 @@ export default function FAQ() {
   const { t, language } = useLanguage();
 
   return (
-    <div className="container mx-auto py-8 sm:py-10 animate-fade-in max-w-4xl">
+    <div className="container mx-auto pt-8 sm:pt-10 animate-fade-in max-w-4xl ">
       <h1 className="text-2xl sm:text-4xl mb-6 sm:mb-10 text-center">
         {t.faq.title}
       </h1>

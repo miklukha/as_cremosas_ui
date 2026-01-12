@@ -156,7 +156,7 @@ const SocialMedia = () => {
         <a
           key={name}
           href={href}
-          className="text-secondary hover:scale-110 
+          className="text-secondary hover:scale-115 
                      transition-all duration-200 focus-visible:outline-none 
                      focus-visible:ring-2 focus-visible:ring-primary 
                      focus-visible:ring-offset-2 rounded-sm p-1"
@@ -223,7 +223,7 @@ const FooterLink = ({ to, children }: FooterLinkProps) => (
   <li className="text-left">
     <Link
       to={to}
-      className="text-sm text-secondary 
+      className="cursor-pointer text-sm text-secondary 
                  hover:scale-105 hover:font-semibold 
                  transition-all duration-200 inline-block 
                  focus-visible:outline-none focus-visible:ring-2 

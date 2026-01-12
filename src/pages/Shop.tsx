@@ -107,7 +107,7 @@ export default function Shop() {
   }
 
   return (
-    <div className="container mx-auto py-8 sm:py-10 animate-fade-in">
+    <div className="container mx-auto pt-8 sm:pt-10 animate-fade-in ">
       {/* Page Title */}
       <h1 className="text-2xl sm:text-4xl mb-5 sm:mb-8 text-center ">
         {t.shop.title}

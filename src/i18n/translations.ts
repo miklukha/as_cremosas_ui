@@ -148,7 +148,7 @@ export const translations = {
         orderSizePlaceholder: 'Ej: 50 unidades mensuales',
         message: 'Detalles adicionales',
         messagePlaceholder: 'Cuéntanos más sobre tu proyecto...',
-        submit: 'Enviar consulta',
+        submit: 'Enviar',
         sending: 'Enviando...'
       },
       validation: {
@@ -243,6 +243,10 @@ export const translations = {
       readOnGoogle: 'Leer más en Google Maps',
       previous: 'Reseña anterior',
       next: 'Siguiente reseña'
+    },
+    notFound: {
+      returnLabel: 'volver al inicio',
+      pageNotFound: '¡Oops! Página no encontrada'
     }
   },
   gl: {
@@ -391,7 +395,7 @@ export const translations = {
         orderSizePlaceholder: 'Ex: 50 unidades mensuais',
         message: 'Detalles adicionais',
         messagePlaceholder: 'Cóntanos máis sobre o teu proxecto...',
-        submit: 'Enviar consulta',
+        submit: 'Enviar',
         sending: 'Enviando...'
       },
       validation: {
@@ -485,6 +489,10 @@ export const translations = {
       readOnGoogle: 'Ler máis en Google Maps',
       previous: 'Reseña anterior',
       next: 'Seguinte reseña'
+    },
+    notFound: {
+      returnLabel: 'volver ao inicio',
+      pageNotFound: '¡Oops! Páxina non atopada'
     }
   },
   en: {
@@ -632,7 +640,7 @@ export const translations = {
         orderSizePlaceholder: 'Ex: 50 units per month',
         message: 'Additional details',
         messagePlaceholder: 'Tell us more about your project...',
-        submit: 'Send inquiry',
+        submit: 'Send',
         sending: 'Sending...'
       },
       validation: {
@@ -726,6 +734,10 @@ export const translations = {
       readOnGoogle: 'Read more on Google Maps',
       previous: 'Previous review',
       next: 'Next review'
+    },
+    notFound: {
+      returnLabel: 'return to homepage',
+      pageNotFound: 'Oops! Page not found'
     }
   }
 };

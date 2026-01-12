@@ -3,7 +3,6 @@ export interface B2BFormData {
   contactPerson: string;
   email: string;
   phone: string;
-  orderSize: string;
   message?: string;
   lang?: 'es' | 'en' | 'gl';
 }

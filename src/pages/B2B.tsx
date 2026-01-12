@@ -17,7 +17,6 @@ interface FormData {
   contactPerson: string;
   email: string;
   phone: string;
-  orderSize: string;
   message: string;
 }
 
@@ -26,7 +25,6 @@ interface FormErrors {
   contactPerson?: string;
   email?: string;
   phone?: string;
-  orderSize?: string;
   message?: string;
 }
 
@@ -39,7 +37,6 @@ export default function B2B() {
     contactPerson: '',
     email: '',
     phone: '',
-    orderSize: '',
     message: ''
   });
 
@@ -49,7 +46,6 @@ export default function B2B() {
     contactPerson: false,
     email: false,
     phone: false,
-    orderSize: false,
     message: false
   });
 
@@ -66,7 +62,6 @@ export default function B2B() {
         contactPerson: '',
         email: '',
         phone: '',
-        orderSize: '',
         message: ''
       });
       setTouched({
@@ -74,7 +69,6 @@ export default function B2B() {
         contactPerson: false,
         email: false,
         phone: false,
-        orderSize: false,
         message: false
       });
       setErrors({});
@@ -150,12 +144,6 @@ export default function B2B() {
           return t.b2b?.validation?.phoneInvalid;
         }
         break;
-
-      case 'orderSize':
-        if (!value.trim()) {
-          return t.b2b?.validation?.orderSizeRequired;
-        }
-        break;
     }
     return undefined;
   };
@@ -220,7 +208,6 @@ export default function B2B() {
       contactPerson: true,
       email: true,
       phone: true,
-      orderSize: true,
       message: true
     });
     return isValid;
@@ -239,7 +226,7 @@ export default function B2B() {
   const hasErrors = Object.values(errors).some(error => error !== undefined);
 
   return (
-    <div className="container mx-auto py-8 sm:py-10 animate-fade-in">
+    <div className="container mx-auto pt-8 sm:pt-10 animate-fade-in">
       {/* Page Header */}
       <div className="text-center mb-8 sm:mb-12 max-w-3xl mx-auto">
         <h1 className="text-2xl sm:text-4xl mb-3 sm:mb-4">{t.b2b?.title}</h1>
@@ -303,7 +290,7 @@ export default function B2B() {
       </div>
 
       {/* Inquiry Form */}
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-xl mx-auto">
         <Card className="border-b bg-primary-foreground">
           <CardContent className="p-6 sm:p-8 lg:p-10">
             <h2 className="text-xl sm:text-2xl md:text-3xl mb-6 sm:mb-8 text-center">
@@ -516,58 +503,6 @@ export default function B2B() {
                 </div>
               </div>
 
-              {/* Order Size */}
-              <div>
-                <Label
-                  htmlFor="orderSize"
-                  className={
-                    errors.orderSize && touched.orderSize
-                      ? 'text-destructive'
-                      : ''
-                  }
-                >
-                  {t.b2b?.form?.orderSize}
-                  <span
-                    className="text-destructive ml-1"
-                    aria-label="obligatorio"
-                  >
-                    *
-                  </span>
-                </Label>
-                <Input
-                  id="orderSize"
-                  name="orderSize"
-                  type="text"
-                  value={formData.orderSize}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder={t.b2b?.form?.orderSizePlaceholder}
-                  aria-label={t.b2b?.ariaLabels?.orderSizeLabel}
-                  aria-invalid={!!(errors.orderSize && touched.orderSize)}
-                  aria-describedby={
-                    errors.orderSize && touched.orderSize
-                      ? 'orderSize-error'
-                      : undefined
-                  }
-                  className={`mt-1.5 bg-secondary/30${
-                    errors.orderSize && touched.orderSize
-                      ? 'border-destructive'
-                      : ''
-                  }`}
-                  disabled={loading}
-                  required
-                />
-                {errors.orderSize && touched.orderSize && (
-                  <p
-                    id="orderSize-error"
-                    className="text-sm text-destructive mt-1.5"
-                    role="alert"
-                  >
-                    {errors.orderSize}
-                  </p>
-                )}
-              </div>
-
               {/* Message */}
               <div>
                 <Label
@@ -613,7 +548,7 @@ export default function B2B() {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full py-6 text-base mt-2"
+                className="w-full mt-2"
                 disabled={loading || hasErrors}
                 loading={loading}
                 aria-label={t.b2b?.ariaLabels?.submitLabel}

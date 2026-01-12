@@ -146,7 +146,7 @@ export default function Contact() {
   // const hasErrors = Object.values(errors).some(error => error !== undefined);
 
   return (
-    <div className="container mx-auto py-8 sm:py-10 animate-fade-in">
+    <div className="container mx-auto pt-8 sm:pt-10 animate-fade-in">
       <h1 className="text-2xl sm:text-4xl mb-6 sm:mb-10 text-center ">
         {t.contact.title}
       </h1>

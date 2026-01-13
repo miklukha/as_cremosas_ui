@@ -8,6 +8,9 @@ interface QuantitySelectorProps {
   min?: number;
   max?: number;
   className?: string;
+  btnClassName?: string;
+  iconClassName?: string;
+  numberClassName?: string;
 }
 
 export function QuantitySelector({
@@ -15,7 +18,10 @@ export function QuantitySelector({
   onQuantityChange,
   min = 1,
   max = 10,
-  className
+  className,
+  btnClassName,
+  iconClassName,
+  numberClassName
 }: QuantitySelectorProps) {
   const handleDecrease = () => {
     if (quantity > min) {
@@ -36,14 +42,18 @@ export function QuantitySelector({
         size="icon"
         onClick={handleDecrease}
         disabled={quantity <= min}
-        className="rounded-full py-6 px-6"
+        className={cn('rounded-full py-6 px-6', btnClassName)}
         aria-label="Disminuir cantidad"
       >
-        <Minus />
+        <Minus className={cn('h-4 w-4', iconClassName)} />
       </Button>
 
       <div className="w-4 text-center">
-        <span className="text-s font-semibold tabular-nums">{quantity}</span>
+        <span
+          className={cn('text-s font-semibold tabular-nums', numberClassName)}
+        >
+          {quantity}
+        </span>
       </div>
 
       <Button
@@ -51,10 +61,10 @@ export function QuantitySelector({
         size="icon"
         onClick={handleIncrease}
         disabled={quantity >= max}
-        className="rounded-full py-6 px-6"
+        className={cn('rounded-full py-6 px-6', btnClassName)}
         aria-label="Aumentar cantidad"
       >
-        <Plus />
+        <Plus className={cn('h-4 w-4', iconClassName)} />
       </Button>
     </div>
   );

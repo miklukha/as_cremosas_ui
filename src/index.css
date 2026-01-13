@@ -61,6 +61,9 @@
     --success: 142 76% 36%; /* Olive Green #22c55e */
     --success-foreground: 138 76% 97%;
     --success-border: 142 71% 45%;
+
+    /* --green: 108, 24.39%, 48.24%; */
+    --green: 154.47, 72.31%, 12.75%;
   }
 
   .dark {

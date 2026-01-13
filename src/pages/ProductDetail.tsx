@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useProduct, useProducts } from '@/hooks/useProducts';
 import { useLanguage } from '@/context/LanguageContext';
+import { useCart } from '@/context/CartContext';
 import {
   ProductImageSlider,
   QuantitySelector,
@@ -15,18 +16,19 @@ import {
   AlertDescription,
   AlertTitle
 } from '@/components/ui';
-import { Info, ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Check, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+// import { toast } from '@/components/ui/sonner';
 
 type DietaryOption = 'normal' | 'glutenFree' | 'lactoseFree';
 
 export default function ProductDetail() {
   const { id } = useParams();
   const { t } = useLanguage();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { addToCart, isInCart } = useCart();
 
   const { product, loading, error } = useProduct(Number(id));
-  console.log(product);
 
   // Fetch recommended products (same category)
   const { products: recommendedProducts } = useProducts({
@@ -51,14 +53,21 @@ export default function ProductDetail() {
         if (mediumVariant) {
           setSelectedVariantId(mediumVariant.id);
         }
-        console.log(dietaryOption);
       } else {
-        console.log(selectedVariantId);
-
         setSelectedVariantId(product.variants[0].id);
       }
     }
   }, [product, dietaryOption]);
+
+  // Check if current selection is already in cart (reactive to cart changes)
+  const isCurrentSelectionInCart =
+    product &&
+    selectedVariantId &&
+    isInCart(product.id, selectedVariantId, {
+      isGlutenFree: dietaryOption === 'glutenFree',
+      isLactoseFree: dietaryOption === 'lactoseFree',
+      isSugarFree: false
+    });
 
   const selectedVariant = product?.variants.find(
     v => v.id === selectedVariantId
@@ -110,19 +119,33 @@ export default function ProductDetail() {
 
     const cartItem = {
       productId: product.id,
-      productName: product.name,
-      variantId: selectedVariant.id,
+      productVariantId: selectedVariant.id,
+      name: product.name,
       variantName: selectedVariant.name,
-      dietaryOption,
-      typeLabel: getProductTypeLabel(),
+      size: selectedVariant.name,
+      image: product.images[0] || '',
       quantity,
-      basePrice: selectedVariant.price,
-      price: getFinalPrice(),
-      totalPrice: getFinalPrice() * quantity
+      unitPrice: getFinalPrice(),
+      isGlutenFree: dietaryOption === 'glutenFree',
+      isLactoseFree: dietaryOption === 'lactoseFree',
+      isSugarFree: false
     };
 
-    console.log('Add to cart:', cartItem);
-    // TODO: Implement cart functionality
+    addToCart(cartItem);
+
+    // toast.info(t.cart?.itemAdded || 'Añadido al carrito', {
+    //   description: `${product.name} - ${
+    //     selectedVariant.name
+    //   } (${getProductTypeLabel()})`,
+    //   action: {
+    //     label: t.cart?.goToCart || 'Ir al Carrito',
+    //     onClick: () => navigate('/cart')
+    //   }
+    // });
+  };
+
+  const handleGoToCart = () => {
+    navigate('/cart');
   };
 
   if (loading) {
@@ -370,7 +393,7 @@ export default function ProductDetail() {
               </div>
             )}
 
-            <div className="flex items-end gap-6 flex-wrap">
+            <div className="flex items-end gap-4 flex-wrap">
               {/* Quantity Selector */}
               <div className="space-y-3">
                 <h3 className="normal-case font-normal text-sm ">
@@ -387,24 +410,56 @@ export default function ProductDetail() {
                 />
               </div>
 
-              {/* Add to Cart Button */}
-              <Button
-                size="lg"
-                onClick={handleAddToCart}
-                disabled={!product.available || !selectedVariant}
-                className="text-base py-6"
-                aria-label={`${
-                  t.product?.addToCart || 'Añadir al carrito'
-                }, ${getProductTypeLabel()}, ${
-                  selectedVariant?.name
-                }, cantidad ${quantity}, total €${(
-                  getFinalPrice() * quantity
-                ).toFixed(2)}`}
-              >
-                <ShoppingCart className="h-5 w-5 mr-2" aria-hidden="true" />
-                {t.product?.addToCart || 'Añadir al carrito'} • €
-                {(getFinalPrice() * quantity).toFixed(2)}
-              </Button>
+              {/* Add to Cart / Go to Cart Buttons */}
+              <div className="flex gap-3 flex-wrap">
+                <Button
+                  size="lg"
+                  onClick={handleAddToCart}
+                  disabled={!product.available || !selectedVariant}
+                  className={cn(
+                    'text-base py-6 transition-all'
+                    // isCurrentSelectionInCart && 'bg-green hover:bg-green'
+                  )}
+                  aria-label={`${
+                    isCurrentSelectionInCart
+                      ? t.product?.addedToCart || 'Añadido al carrito'
+                      : t.product?.addToCart || 'Añadir al carrito'
+                  }, ${getProductTypeLabel()}, ${
+                    selectedVariant?.name
+                  }, cantidad ${quantity}, total €${(
+                    getFinalPrice() * quantity
+                  ).toFixed(2)}`}
+                >
+                  {isCurrentSelectionInCart ? (
+                    <>
+                      <Check className="h-5 w-5 mr-2" aria-hidden="true" />
+                      {t.product?.addedToCart || 'Añadido'}
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart
+                        className="h-5 w-5 mr-2"
+                        aria-hidden="true"
+                      />
+                      {t.product?.addToCart || 'Añadir al carrito'} • €
+                      {(getFinalPrice() * quantity).toFixed(2)}
+                    </>
+                  )}
+                </Button>
+
+                {isCurrentSelectionInCart && (
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={handleGoToCart}
+                    className="text-base py-6"
+                    aria-label={t.cart?.goToCart || 'Ir al Carrito'}
+                  >
+                    {t.cart?.goToCart || 'Ir al Carrito'}
+                    <ArrowRight className="h-5 w-5 ml-2" aria-hidden="true" />
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </div>

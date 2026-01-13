@@ -4,12 +4,14 @@ import { Menu, X, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { useLanguage } from '@/context/LanguageContext';
+import { useCart } from '@/context/CartContext';
 import logo from '@/assets/logo.png';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
   const location = useLocation();
+  const { cart } = useCart();
 
   const navLinks = [
     { href: '/', label: t.nav.home },
@@ -20,6 +22,30 @@ export const Navbar = () => {
   ];
 
   const isActive = (href: string) => location.pathname === href;
+
+  const CartButton = () => (
+    <Link
+      to="/cart"
+      className="relative"
+      aria-label={`${t.cart?.title || 'Carrito'} - ${cart.totalItems} ${
+        cart.totalItems === 1
+          ? t.cart?.item || 'artículo'
+          : t.cart?.items || 'artículos'
+      }`}
+    >
+      <Button variant="grow" size="icon" className="py-2">
+        <ShoppingCart className="h-5 w-5" />
+      </Button>
+      {cart.totalItems > 0 && (
+        <span
+          className="absolute -top-1 -right-1 bg-accent text-accent-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center animate-in zoom-in-50 duration-200"
+          aria-hidden="true"
+        >
+          {cart.totalItems > 99 ? '99+' : cart.totalItems}
+        </span>
+      )}
+    </Link>
+  );
 
   return (
     <nav className="sticky top-0 z-50 bg-background backdrop-blur-sm border-b border-border shadow-sm">
@@ -64,21 +90,13 @@ export const Navbar = () => {
           {/* Right Side Actions */}
           <div className="hidden md:flex items-center space-x-2">
             <LanguageSelector />
-            <Button variant="grow" size="icon" className="py-2">
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
+            <CartButton />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
             <LanguageSelector />
-            <Button
-              variant="grow"
-              size="icon"
-              className="hover:bg-accent/10 transition-colors"
-            >
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
+            <CartButton />
             <Button
               variant="ghost"
               size="icon"

@@ -29,7 +29,8 @@ import {
   ShoppingBag,
   AlertCircle,
   CheckCircle2,
-  Loader2
+  Loader2,
+  ChevronLeft
 } from 'lucide-react';
 import { format, addDays, isBefore, startOfDay } from 'date-fns';
 import { es, gl, enUS } from 'date-fns/locale';
@@ -311,22 +312,27 @@ export default function Checkout() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 lg:py-12 max-w-5xl animate-fade-in">
+    <div className="container mx-auto px-4 py-8 lg:py-12 pt-2 lg:pt-4 max-w-5xl animate-fade-in">
       <div className="mb-8">
-        <Button variant="ghost" asChild className="mb-4">
+        <Button
+          variant="grow"
+          size="lg"
+          asChild
+          className="mb-4 sm:mb-0 p-0 sm:p-0 gap-1"
+        >
           <Link to="/cart">
-            <ArrowLeft className="h-4 w-4 mr-2" />
+            <ChevronLeft className="h-6! w-6!" />
             {t.cart?.title || 'Carrito'}
           </Link>
         </Button>
-        <h1 className="text-2xl md:text-3xl font-semibold text-center">
+        <h1 className="text-2xl sm:text-4xl text-center mb-8 sm:mb-12">
           {t.checkout?.title || 'Finalizar Pedido'}
         </h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <Card>
+          <Card className="bg-primary-foreground">
             <CardHeader>
               <CardTitle className="text-xl">
                 {t.checkout?.customerDetails || 'Datos del Cliente'}
@@ -537,7 +543,7 @@ export default function Checkout() {
         </div>
 
         <div className="lg:col-span-1">
-          <Card className="sticky top-24">
+          <Card className="sticky top-24 bg-primary-foreground">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <ShoppingBag className="h-5 w-5" />

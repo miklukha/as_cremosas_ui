@@ -251,7 +251,7 @@ export default function Cart() {
               <Separator className="mb-3" />
 
               {/* Totals */}
-              {/* <div className="space-y-2">
+              <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">
                     {t.cart?.subtotal || 'Subtotal'} ({cart.totalItems}{' '}
@@ -262,9 +262,9 @@ export default function Cart() {
                   </span>
                   <span>{cart.totalPrice.toFixed(2)}€</span>
                 </div>
-              </div> */}
+              </div>
 
-              {/* <Separator /> */}
+              <Separator />
 
               <div className="flex justify-between text-base md:text-lg font-semibold ">
                 <span>{t.cart?.total || 'Total'}</span>

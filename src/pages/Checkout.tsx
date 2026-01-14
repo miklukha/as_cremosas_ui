@@ -8,22 +8,15 @@ import {
   Input,
   Label,
   Textarea,
-  Calendar,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
   RadioGroup,
   RadioGroupItem,
-  Separator,
-  Alert,
-  AlertDescription
+  Separator
 } from '@/components/ui';
 import {
-  CalendarIcon,
   ArrowLeft,
   CreditCard,
   ShoppingBag,
@@ -32,11 +25,9 @@ import {
   Loader2,
   ChevronLeft
 } from 'lucide-react';
-import { format, addDays, isBefore, startOfDay } from 'date-fns';
-import { es, gl, enUS } from 'date-fns/locale';
+import { format, addDays } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { toast } from '@/components/ui/sonner';
-import 'react-day-picker/dist/style.css';
 
 interface FormData {
   customerName: string;
@@ -209,6 +200,7 @@ export default function Checkout() {
     try {
       const orderRequest = {
         orderSource: 'site' as const,
+        shopId: 1,
         customerName: formData.customerName.trim(),
         customerEmail: formData.customerEmail.trim(),
         customerPhone: formData.customerPhone.trim(),
@@ -223,7 +215,8 @@ export default function Checkout() {
           isLactoseFree: item.isLactoseFree,
           isSugarFree: item.isSugarFree
         })),
-        notes: formData.notes.trim() || undefined
+        notes: formData.notes.trim() || undefined,
+        totalPrice: cart.totalPrice
       };
 
       const response = await cartService.createOrder(orderRequest);
@@ -437,6 +430,8 @@ export default function Checkout() {
                 <Input
                   id="customerEmail"
                   type="email"
+                  name="email"
+                  autoComplete="email"
                   value={formData.customerEmail}
                   onChange={e =>
                     handleInputChange('customerEmail', e.target.value)
@@ -464,6 +459,8 @@ export default function Checkout() {
                 <Input
                   id="customerPhone"
                   type="tel"
+                  name="tel"
+                  autoComplete="tel"
                   value={formData.customerPhone}
                   onChange={e =>
                     handleInputChange('customerPhone', e.target.value)
@@ -483,14 +480,7 @@ export default function Checkout() {
                 )}
               </div>
               <div className="space-y-2">
-                <Label
-                  className={
-                    errors.pickupDate && touched.pickupDate
-                      ? 'text-destructive'
-                      : ''
-                  }
-                  htmlFor="pickupDate"
-                >
+                <Label htmlFor="pickupDate">
                   {t.checkout?.pickupDate || 'Fecha de Recogida'}{' '}
                   <span className="text-destructive">*</span>
                 </Label>

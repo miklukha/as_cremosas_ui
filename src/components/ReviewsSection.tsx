@@ -17,78 +17,78 @@ export function ReviewsSection() {
 
   const swiperRef = useRef<SwiperType | null>(null);
 
-  const reviews = [
-    {
-      author_name: 'Sun',
-      author_url:
-        'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-      language: 'es',
-      original_language: 'es',
-      profile_photo_url:
-        'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-      rating: 5,
-      relative_time_description: 'en la última semana',
-      text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-      time: 1766047104,
-      translated: false
-    },
-    {
-      author_name: 'Armas',
-      author_url:
-        'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-      language: 'es',
-      original_language: 'es',
-      profile_photo_url:
-        'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-      rating: 5,
-      relative_time_description: 'en la última semana',
-      text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-      time: 1766047104,
-      translated: false
-    },
-    {
-      author_name: 'Armas',
-      author_url:
-        'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-      language: 'es',
-      original_language: 'es',
-      profile_photo_url:
-        'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-      rating: 5,
-      relative_time_description: 'en la última semana',
-      text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-      time: 1766047104,
-      translated: false
-    },
-    {
-      author_name: 'Armas',
-      author_url:
-        'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-      language: 'es',
-      original_language: 'es',
-      profile_photo_url:
-        'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-      rating: 5,
-      relative_time_description: 'en la última semana',
-      text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-      time: 1766047104,
-      translated: false
-    },
-    {
-      author_name: 'Armas',
-      author_url:
-        'https://www.google.com/maps/contrib/118145184833567114991/reviews',
-      language: 'es',
-      original_language: 'es',
-      profile_photo_url:
-        'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
-      rating: 5,
-      relative_time_description: 'en la última semana',
-      text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
-      time: 1766047104,
-      translated: true
-    }
-  ];
+  // const reviews = [
+  //   {
+  //     author_name: 'Sun',
+  //     author_url:
+  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+  //     language: 'es',
+  //     original_language: 'es',
+  //     profile_photo_url:
+  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+  //     rating: 5,
+  //     relative_time_description: 'en la última semana',
+  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼 En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+  //     time: 1766047104,
+  //     translated: false
+  //   },
+  //   {
+  //     author_name: 'Armas',
+  //     author_url:
+  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+  //     language: 'es',
+  //     original_language: 'es',
+  //     profile_photo_url:
+  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+  //     rating: 5,
+  //     relative_time_description: 'en la última semana',
+  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+  //     time: 1766047104,
+  //     translated: false
+  //   },
+  //   {
+  //     author_name: 'Armas',
+  //     author_url:
+  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+  //     language: 'es',
+  //     original_language: 'es',
+  //     profile_photo_url:
+  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+  //     rating: 5,
+  //     relative_time_description: 'en la última semana',
+  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+  //     time: 1766047104,
+  //     translated: false
+  //   },
+  //   {
+  //     author_name: 'Armas',
+  //     author_url:
+  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+  //     language: 'es',
+  //     original_language: 'es',
+  //     profile_photo_url:
+  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+  //     rating: 5,
+  //     relative_time_description: 'en la última semana',
+  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+  //     time: 1766047104,
+  //     translated: false
+  //   },
+  //   {
+  //     author_name: 'Armas',
+  //     author_url:
+  //       'https://www.google.com/maps/contrib/118145184833567114991/reviews',
+  //     language: 'es',
+  //     original_language: 'es',
+  //     profile_photo_url:
+  //       'https://lh3.googleusercontent.com/a/ACg8ocLDOvjqe7BuvIVaBFbhy1DVnWwi6qXWorHzS5fwPSu7ruzxucM7=s128-c0x00000000-cc-rp-mo',
+  //     rating: 5,
+  //     relative_time_description: 'en la última semana',
+  //     text: 'En Instagram tiene una pinta increíble, tengo muchas ganas de la apertura 🤩👏🏼',
+  //     time: 1766047104,
+  //     translated: true
+  //   }
+  // ];
 
   // Loading State
   if (loading) {
@@ -108,7 +108,7 @@ export function ReviewsSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map(i => (
-              <Card key={i} className="overflow-hidden">
+              <Card key={i} className="overflow-hidden bg-primary-foreground">
                 <div className="p-6 space-y-4">
                   <div className="flex items-start gap-3">
                     <Skeleton className="h-12 w-12 rounded-full" />

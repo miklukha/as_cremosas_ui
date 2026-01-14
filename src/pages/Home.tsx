@@ -19,7 +19,7 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 sm:py-20 px-4 bg-secondary/20">
+      <section className="py-16 sm:py-20 px-4 bg-secondary/15">
         <div className="container mx-auto">
           <h2 className="text-2xl sm:text-4xl mb-6 sm:mb-8 text-foreground text-center">
             {t.home.bestsellers}

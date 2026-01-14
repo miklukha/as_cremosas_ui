@@ -75,14 +75,14 @@ export default function Cart() {
   }
 
   return (
-    <div className="container mx-auto pt-8 sm:pt-10 max-w-6xl animate-fade-in">
+    <div className="container mx-auto pt-8 sm:pt-10 max-w-5xl animate-fade-in">
       <h1 className="text-2xl sm:text-4xl text-center mb-8 sm:mb-12">
         {t.cart?.title || 'Tu Carrito'}
       </h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Cart Items */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-3">
           {cart.items.map(item => (
             <Card
               key={item.id}
@@ -229,7 +229,8 @@ export default function Cart() {
         <div className="lg:col-span-1">
           <Card className="sticky top-24 bg-primary-foreground">
             <CardHeader className="p-4 md:p-5 pb-3 md:pb-4">
-              <CardTitle className="text-base md:text-lg ">
+              <CardTitle className="text-base md:text-lg flex items-center gap-2">
+                <ShoppingBag className="h-5 w-5" />
                 {t.cart?.orderSummary || 'Resumen del Pedido'}
               </CardTitle>
             </CardHeader>

@@ -75,14 +75,14 @@ export const translations = {
       customerDetails: 'Datos del Cliente',
       orderSummary: 'Resumen del Pedido',
       pickupDate: 'Fecha de Recogida',
-      name: 'Nombre completo',
+      name: 'Nombre',
       email: 'Correo electrónico',
       phone: 'Teléfono',
       notes: 'Notas adicionales',
       placeOrder: 'Realizar Pedido',
       total: 'Total',
       pickupTime: 'Hora de Recogida',
-      morning: 'Mañana (10:00 - 14:00)',
+      morning: 'Mañana (11:00 - 14:00)',
       evening: 'Tarde (16:00 - 20:00)',
       selectDate: 'Selecciona una fecha',
       selectTime: 'Selecciona una hora',
@@ -104,8 +104,12 @@ export const translations = {
         phoneRequired: 'El teléfono es obligatorio',
         phoneInvalid: 'Formato de teléfono inválido',
         dateRequired: 'La fecha de recogida es obligatoria',
-        timeRequired: 'La hora de recogida es obligatoria'
-      }
+        timeRequired: 'La hora de recogida es obligatoria',
+        invalidDay: 'No disponible para recogida los domingos'
+      },
+      notePlaceholder: 'Por favor, incluye cualquier instrucción especial...',
+      nonRefundableNotice:
+        'Los pedidos no son reembolsables debido a la naturaleza perecedera del producto.'
     },
     cart: {
       title: 'Tu Carrito',
@@ -380,14 +384,14 @@ export const translations = {
       customerDetails: 'Datos do Cliente',
       orderSummary: 'Resumo do Pedido',
       pickupDate: 'Data de Recollida',
-      name: 'Nome completo',
+      name: 'Nome',
       email: 'Correo electrónico',
       phone: 'Teléfono',
       notes: 'Notas adicionais',
       placeOrder: 'Realizar Pedido',
       total: 'Total',
       pickupTime: 'Hora de Recollida',
-      morning: 'Mañá (10:00 - 14:00)',
+      morning: 'Mañá (11:00 - 14:00)',
       evening: 'Tarde (16:00 - 20:00)',
       selectDate: 'Selecciona unha data',
       selectTime: 'Selecciona unha hora',
@@ -409,8 +413,12 @@ export const translations = {
         phoneRequired: 'O teléfono é obrigatorio',
         phoneInvalid: 'Formato de teléfono inválido',
         dateRequired: 'A data de recollida é obrigatoria',
-        timeRequired: 'A hora de recollida é obrigatoria'
-      }
+        timeRequired: 'A hora de recollida é obrigatoria',
+        invalidDay: 'Non dispoñible para recollida os domingos'
+      },
+      notePlaceholder: 'Por favor, inclúe calquera instrución especial...',
+      nonRefundableNotice:
+        'Os pedidos non son reembolsables debido á natureza perecedoeira do produto.'
     },
     cart: {
       title: 'O Teu Carriño',
@@ -681,14 +689,14 @@ export const translations = {
       customerDetails: 'Customer Details',
       orderSummary: 'Order Summary',
       pickupDate: 'Pickup Date',
-      name: 'Full name',
+      name: 'Name',
       email: 'Email',
       phone: 'Phone',
       notes: 'Additional notes',
       placeOrder: 'Place Order',
       total: 'Total',
       pickupTime: 'Pickup Time',
-      morning: 'Morning (10:00 - 14:00)',
+      morning: 'Morning (11:00 - 14:00)',
       evening: 'Afternoon (16:00 - 20:00)',
       selectDate: 'Select a date',
       selectTime: 'Select a time',
@@ -710,8 +718,12 @@ export const translations = {
         phoneRequired: 'Phone is required',
         phoneInvalid: 'Invalid phone format',
         dateRequired: 'Pickup date is required',
-        timeRequired: 'Pickup time is required'
-      }
+        timeRequired: 'Pickup time is required',
+        invalidDay: 'Not available for pickup on Sundays'
+      },
+      notePlaceholder: 'Please include any special instructions...',
+      nonRefundableNotice:
+        'Orders are non-refundable due to the perishable nature of the product.'
     },
     cart: {
       title: 'Your Cart',

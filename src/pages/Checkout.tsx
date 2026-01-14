@@ -35,7 +35,8 @@ import {
 import { format, addDays, isBefore, startOfDay } from 'date-fns';
 import { es, gl, enUS } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
-import { toast } from 'sonner';
+import { toast } from '@/components/ui/sonner';
+import 'react-day-picker/dist/style.css';
 
 interface FormData {
   customerName: string;
@@ -57,10 +58,9 @@ interface FormErrors {
 type CheckoutStep = 'details' | 'payment' | 'success';
 
 export default function Checkout() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const { cart, clearCart } = useCart();
   const navigate = useNavigate();
-  const locales = { es, gl, en: enUS };
 
   const [step, setStep] = useState<CheckoutStep>('details');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,8 +74,13 @@ export default function Checkout() {
     notes: ''
   });
   const [errors, setErrors] = useState<FormErrors>({});
-
-  const minPickupDate = addDays(startOfDay(new Date()), 2);
+  const [touched, setTouched] = useState<Record<keyof FormErrors, boolean>>({
+    customerName: false,
+    customerEmail: false,
+    customerPhone: false,
+    pickupDate: false,
+    pickupTime: false
+  });
 
   useEffect(() => {
     if (cart.items.length === 0 && step !== 'success') {
@@ -85,54 +90,115 @@ export default function Checkout() {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    const validation = t.checkout?.validation;
+    let isValid = true;
 
-    if (!formData.customerName.trim()) {
-      newErrors.customerName =
-        validation?.nameRequired || 'El nombre es obligatorio';
-    } else if (formData.customerName.trim().length < 2) {
-      newErrors.customerName =
-        validation?.nameMinLength ||
-        'El nombre debe tener al menos 2 caracteres';
-    }
+    const fields: Array<keyof FormErrors> = [
+      'customerName',
+      'customerEmail',
+      'customerPhone',
+      'pickupDate',
+      'pickupTime'
+    ];
 
-    if (!formData.customerEmail.trim()) {
-      newErrors.customerEmail =
-        validation?.emailRequired || 'El email es obligatorio';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.customerEmail)) {
-      newErrors.customerEmail =
-        validation?.emailInvalid || 'Por favor, introduce un email válido';
-    }
-
-    if (!formData.customerPhone.trim()) {
-      newErrors.customerPhone =
-        validation?.phoneRequired || 'El teléfono es obligatorio';
-    } else if (
-      !/^[+]?[\d\s()-]{9,}$/.test(formData.customerPhone.replace(/\s/g, ''))
-    ) {
-      newErrors.customerPhone =
-        validation?.phoneInvalid || 'Formato de teléfono inválido';
-    }
-
-    if (!formData.pickupDate) {
-      newErrors.pickupDate =
-        validation?.dateRequired || 'La fecha de recogida es obligatoria';
-    }
-
-    if (!formData.pickupTime) {
-      newErrors.pickupTime =
-        validation?.timeRequired || 'La hora de recogida es obligatoria';
-    }
+    fields.forEach(field => {
+      const value = formData[field];
+      const error = validateField(field, value);
+      if (error) {
+        newErrors[field] = error;
+        isValid = false;
+      }
+    });
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    setTouched({
+      customerName: true,
+      customerEmail: true,
+      customerPhone: true,
+      pickupDate: true,
+      pickupTime: true
+    });
+
+    return isValid;
+  };
+
+  const validateField = (
+    field: keyof FormErrors,
+    value: string | Date | undefined
+  ): string | undefined => {
+    const validation = t.checkout?.validation;
+
+    switch (field) {
+      case 'customerName':
+        if (!value || !(value as string).trim()) {
+          return validation?.nameRequired || 'El nombre es obligatorio';
+        }
+        if ((value as string).trim().length < 2) {
+          return (
+            validation?.nameMinLength ||
+            'El nombre debe tener al menos 2 caracteres'
+          );
+        }
+        break;
+      case 'customerEmail':
+        if (!value || !(value as string).trim()) {
+          return validation?.emailRequired || 'El email es obligatorio';
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value as string)) {
+          return (
+            validation?.emailInvalid || 'Por favor, introduce un email válido'
+          );
+        }
+        break;
+      case 'customerPhone':
+        if (typeof value !== 'string' || !value.trim()) {
+          return validation?.phoneRequired;
+        }
+
+        const cleanPhone = value.trim();
+
+        const phoneRegex = /^\+?\d+$/;
+
+        if (!phoneRegex.test(cleanPhone)) {
+          return validation?.phoneInvalid;
+        }
+
+        const digitsOnly = cleanPhone.replace(/\D/g, '');
+
+        // Must have at least 8 digits (without +) and at most 15 digits (international standard E.164)
+        if (digitsOnly.length < 8 || digitsOnly.length > 15) {
+          return validation?.phoneInvalid;
+        }
+
+        break;
+      case 'pickupDate':
+        if (!value) {
+          return (
+            validation?.dateRequired || 'La fecha de recogida es obligatoria'
+          );
+        }
+        if ((value as Date).getDay() === 0) {
+          return (
+            validation?.invalidDay || 'No disponible para recogida los domingos'
+          );
+        }
+        break;
+      case 'pickupTime':
+        if (!value) {
+          return (
+            validation?.timeRequired || 'La hora de recogida es obligatoria'
+          );
+        }
+        break;
+    }
+    return undefined;
   };
 
   const handleInputChange = (field: keyof FormData, value: string | Date) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field as keyof FormErrors]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
-    }
+    setTouched(prev => ({ ...prev, [field]: true }));
+
+    const error = validateField(field as keyof FormErrors, value);
+    setErrors(prev => ({ ...prev, [field]: error }));
   };
 
   const handleSubmitOrder = async () => {
@@ -312,36 +378,34 @@ export default function Checkout() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 lg:py-12 pt-2 lg:pt-4 max-w-5xl animate-fade-in">
-      <div className="mb-8">
-        <Button
-          variant="grow"
-          size="lg"
-          asChild
-          className="mb-4 sm:mb-0 p-0 sm:p-0 gap-1"
-        >
-          <Link to="/cart">
-            <ChevronLeft className="h-6! w-6!" />
-            {t.cart?.title || 'Carrito'}
-          </Link>
-        </Button>
-        <h1 className="text-2xl sm:text-4xl text-center mb-8 sm:mb-12">
-          {t.checkout?.title || 'Finalizar Pedido'}
-        </h1>
-      </div>
+    <div className="container mx-auto pt-8 sm:pt-10 max-w-5xl animate-fade-in">
+      <Button
+        variant="grow"
+        size="lg"
+        asChild
+        className="mb-4 sm:mb-0 p-0 sm:p-0 gap-1"
+      >
+        <Link to="/cart">
+          <ChevronLeft className="h-6! w-6!" />
+          {t.cart?.title || 'Carrito'}
+        </Link>
+      </Button>
+      <h1 className="text-2xl sm:text-4xl text-center mb-8 sm:mb-12">
+        {t.checkout?.title || 'Finalizar Pedido'}
+      </h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <Card className="bg-primary-foreground">
-            <CardHeader>
-              <CardTitle className="text-xl">
+            <CardHeader className="p-4 md:p-5 pb-3 md:pb-4">
+              <CardTitle className="text-base md:text-lg">
                 {t.checkout?.customerDetails || 'Datos del Cliente'}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-2">
+            <CardContent className="space-y-2 p-4 md:p-5 pt-0 md:pt-0">
+              <div>
                 <Label htmlFor="customerName">
-                  {t.checkout?.name || 'Nombre completo'}{' '}
+                  {t.checkout?.name || 'Nombre'}{' '}
                   <span className="text-destructive">*</span>
                 </Label>
                 <Input
@@ -351,7 +415,10 @@ export default function Checkout() {
                     handleInputChange('customerName', e.target.value)
                   }
                   placeholder="Juan Pérez"
-                  className={cn(errors.customerName && 'border-destructive')}
+                  className={cn(
+                    errors.customerName && 'border-destructive',
+                    'text-sm'
+                  )}
                   aria-invalid={!!errors.customerName}
                 />
                 {errors.customerName && (
@@ -375,7 +442,10 @@ export default function Checkout() {
                     handleInputChange('customerEmail', e.target.value)
                   }
                   placeholder="juan@example.com"
-                  className={cn(errors.customerEmail && 'border-destructive')}
+                  className={cn(
+                    errors.customerEmail && 'border-destructive',
+                    'text-sm'
+                  )}
                   aria-invalid={!!errors.customerEmail}
                 />
                 {errors.customerEmail && (
@@ -398,8 +468,11 @@ export default function Checkout() {
                   onChange={e =>
                     handleInputChange('customerPhone', e.target.value)
                   }
-                  placeholder="+34 600 000 000"
-                  className={cn(errors.customerPhone && 'border-destructive')}
+                  placeholder="+34600000000"
+                  className={cn(
+                    errors.customerPhone && 'border-destructive',
+                    'text-sm'
+                  )}
                   aria-invalid={!!errors.customerPhone}
                 />
                 {errors.customerPhone && (
@@ -409,53 +482,45 @@ export default function Checkout() {
                   </p>
                 )}
               </div>
-
               <div className="space-y-2">
-                <Label>
+                <Label
+                  className={
+                    errors.pickupDate && touched.pickupDate
+                      ? 'text-destructive'
+                      : ''
+                  }
+                  htmlFor="pickupDate"
+                >
                   {t.checkout?.pickupDate || 'Fecha de Recogida'}{' '}
                   <span className="text-destructive">*</span>
                 </Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className={cn(
-                        'w-full justify-start text-left font-normal',
-                        !formData.pickupDate && 'text-muted-foreground',
-                        errors.pickupDate && 'border-destructive'
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {formData.pickupDate ? (
-                        format(formData.pickupDate, 'PPP', {
-                          locale: locales[language]
-                        })
-                      ) : (
-                        <span>
-                          {t.checkout?.selectDate || 'Selecciona una fecha'}
-                        </span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={formData.pickupDate}
-                      onSelect={date =>
-                        date && handleInputChange('pickupDate', date)
-                      }
-                      disabled={date =>
-                        isBefore(date, minPickupDate) ||
-                        date.getDay() === 0 ||
-                        date.getDay() === 1
-                      }
-                      initialFocus
-                      className="pointer-events-auto"
-                      locale={locales[language]}
-                    />
-                  </PopoverContent>
-                </Popover>
-                {errors.pickupDate && (
+                <Input
+                  id="pickupDate"
+                  type="date"
+                  value={
+                    formData.pickupDate
+                      ? format(formData.pickupDate, 'yyyy-MM-dd')
+                      : ''
+                  }
+                  onChange={e => {
+                    const date = e.target.value
+                      ? new Date(e.target.value)
+                      : undefined;
+                    if (date) {
+                      handleInputChange('pickupDate', date);
+                    }
+                  }}
+                  min={format(addDays(new Date(), 2), 'yyyy-MM-dd')}
+                  className={cn(
+                    'w-full',
+                    errors.pickupDate &&
+                      touched.pickupDate &&
+                      'border-destructive',
+                    'text-sm'
+                  )}
+                  aria-invalid={!!(errors.pickupDate && touched.pickupDate)}
+                />
+                {errors.pickupDate && touched.pickupDate && (
                   <p className="text-sm text-destructive flex items-center gap-1">
                     <AlertCircle className="h-3 w-3" />
                     {errors.pickupDate}
@@ -463,12 +528,12 @@ export default function Checkout() {
                 )}
                 <p className="text-xs text-muted-foreground">
                   {t.checkout?.minDaysNotice ||
-                    'Los pedidos se aceptan con mínimo 2 días de antelación.'}
+                    'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrado.'}
                 </p>
               </div>
 
               <div className="space-y-2">
-                <Label>
+                <Label htmlFor="pickupTime">
                   {t.checkout?.pickupTime || 'Hora de Recogida'}{' '}
                   <span className="text-destructive">*</span>
                 </Label>
@@ -477,15 +542,16 @@ export default function Checkout() {
                   onValueChange={value =>
                     handleInputChange('pickupTime', value)
                   }
-                  className="flex flex-col sm:flex-row gap-4"
+                  className="flex flex-col sm:flex-row gap-2"
                 >
                   <div
                     className={cn(
-                      'flex items-center space-x-2 rounded-lg border p-4 cursor-pointer transition-colors',
+                      'flex items-center space-x-2 rounded-lg border p-3 cursor-pointer transition-all duration-300',
                       formData.pickupTime === 'morning'
-                        ? 'border-primary bg-primary/5'
+                        ? 'border-accent bg-accent/5'
                         : 'hover:bg-muted/50',
-                      errors.pickupTime && 'border-destructive'
+                      errors.pickupTime && 'border-destructive',
+                      'text-sm'
                     )}
                   >
                     <RadioGroupItem value="morning" id="morning" />
@@ -493,14 +559,14 @@ export default function Checkout() {
                       htmlFor="morning"
                       className="cursor-pointer flex-1 normal-case"
                     >
-                      {t.checkout?.morning || 'Mañana (10:00 - 14:00)'}
+                      {t.checkout?.morning || 'Mañana (11:00 - 14:00)'}
                     </Label>
                   </div>
                   <div
                     className={cn(
-                      'flex items-center space-x-2 rounded-lg border p-4 cursor-pointer transition-colors',
+                      'flex items-center space-x-2 rounded-lg border p-3 cursor-pointer transition-all duration-300',
                       formData.pickupTime === 'evening'
-                        ? 'border-primary bg-primary/5'
+                        ? 'border-accent bg-accent/5'
                         : 'hover:bg-muted/50',
                       errors.pickupTime && 'border-destructive'
                     )}
@@ -531,11 +597,10 @@ export default function Checkout() {
                   value={formData.notes}
                   onChange={e => handleInputChange('notes', e.target.value)}
                   placeholder={
-                    language === 'en'
-                      ? 'Special instructions...'
-                      : 'Instrucciones especiales...'
+                    t.checkout?.notePlaceholder ||
+                    'Por favor, incluye cualquier instrucción especial...'
                   }
-                  className="min-h-[100px]"
+                  className="min-h-[100px] text-sm"
                 />
               </div>
             </CardContent>
@@ -544,8 +609,8 @@ export default function Checkout() {
 
         <div className="lg:col-span-1">
           <Card className="sticky top-24 bg-primary-foreground">
-            <CardHeader>
-              <CardTitle className="text-xl flex items-center gap-2">
+            <CardHeader className="p-4 md:p-5 pb-3 md:pb-4">
+              <CardTitle className="text-base md:text-lg flex items-center gap-2">
                 <ShoppingBag className="h-5 w-5" />
                 {t.checkout?.orderSummary || 'Resumen del Pedido'}
               </CardTitle>
@@ -600,7 +665,7 @@ export default function Checkout() {
 
               <Separator />
 
-              <div className="flex justify-between text-lg font-semibold">
+              <div className="flex justify-between text-base md:text-lg font-semibold">
                 <span>{t.checkout?.total || 'Total'}</span>
                 <span className="text-accent">
                   {cart.totalPrice.toFixed(2)}€
@@ -608,7 +673,7 @@ export default function Checkout() {
               </div>
 
               <Button
-                className="w-full mt-4"
+                className="w-full mt-2"
                 size="lg"
                 onClick={handleSubmitOrder}
                 disabled={isSubmitting}
@@ -623,16 +688,10 @@ export default function Checkout() {
                 )}
               </Button>
 
-              <Alert className="mt-4">
-                <AlertCircle className="h-4 w-4" />
-                <AlertDescription className="text-xs">
-                  {language === 'en'
-                    ? 'Orders are non-refundable due to the perishable nature of the product.'
-                    : language === 'gl'
-                    ? 'Os pedidos non son reembolsables debido á natureza perecedeira do produto.'
-                    : 'Los pedidos no son reembolsables debido a la naturaleza perecedera del producto.'}
-                </AlertDescription>
-              </Alert>
+              <p className="text-xs text-center text-muted-foreground mt-1">
+                {t.checkout?.nonRefundableNotice ||
+                  'Los pedidos no son reembolsables debido a la naturaleza perecedera del producto.'}
+              </p>
             </CardContent>
           </Card>
         </div>

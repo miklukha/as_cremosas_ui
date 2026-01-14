@@ -31,7 +31,10 @@ export function ReviewCard({ review, className }: ReviewCardProps) {
 
   return (
     <Card
-      className={cn('max-h-[200px] flex flex-col', className)}
+      className={cn(
+        'max-h-[200px] flex flex-col bg-primary-foreground',
+        className
+      )}
       role="article"
       aria-label={`Reseña de ${author_name}, ${rating} de 5 estrellas`}
     >

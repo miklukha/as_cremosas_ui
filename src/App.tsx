@@ -19,6 +19,8 @@ import Cookies from './pages/Cookies';
 import Terms from './pages/Terms';
 import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';
+import CheckoutSuccess from './pages/CheckoutSuccess';
+import CheckoutCancel from './pages/CheckoutCancel';
 
 const queryClient = new QueryClient();
 
@@ -37,6 +39,8 @@ const App = () => (
                 <Route path="/product/:id" element={<ProductDetail />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/checkout/success" element={<CheckoutSuccess />} />
+                <Route path="/checkout/cancel" element={<CheckoutCancel />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/b2b" element={<B2B />} />

@@ -166,11 +166,11 @@ export default function Contact() {
                 </div>
                 <div className="flex-1 pt-1">
                   <a
-                    href="tel:+34123456789"
+                    href="tel:881068091"
                     className="text-sm sm:text-base text-muted-foreground hover:scale-105 transition-all duration-300 inline-block"
-                    aria-label="Llamar al +34 123 456 789"
+                    aria-label="Llamar al 881068091"
                   >
-                    +34 123 456 789
+                    881068091
                   </a>
                 </div>
               </div>

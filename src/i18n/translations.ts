@@ -254,7 +254,7 @@ export const translations = {
       rights: 'Todos los derechos reservados',
       contact: 'Contactos',
       social: 'Redes sociales',
-      phoneLabel: 'Llamar al +34 123 456 789',
+      phoneLabel: 'Llamar al 881068091',
       emailLabel: 'Enviar correo a ascremosas.co@gmail.com',
       instagramLabel: 'Visitar nuestro Instagram',
       facebookLabel: 'Visitar nuestro Facebook',
@@ -268,7 +268,7 @@ export const translations = {
       followUs: 'Síguenos',
       hours: {
         title: 'Horario',
-        laborales: 'Martes - Viernes',
+        laborales: 'Lunes - Viernes',
         monday: 'Lunes',
         saturday: 'Sábado',
         sunday: 'Domingo',
@@ -307,6 +307,37 @@ export const translations = {
     notFound: {
       returnLabel: 'volver al inicio',
       pageNotFound: '¡Oops! Página no encontrada'
+    },
+    checkoutSuccess: {
+      loading: 'Verificando pago...',
+      title: '¡Pago completado!',
+      message: 'Gracias por tu pedido. Hemos recibido tu pago correctamente.',
+      orderDetails: 'Detalles del pedido',
+      orderId: 'Número de pedido',
+      emailNotice:
+        'Te enviaremos un email de confirmación con todos los detalles de tu pedido.',
+      questions: '¿Tienes alguna pregunta?',
+      contactUs: 'Contáctanos',
+      navigation: 'Opciones de navegación'
+    },
+    checkoutCancel: {
+      loading: 'Cargando...',
+      title: '¡Pago cancelado!',
+      message:
+        'El proceso de pago ha sido cancelado. Tu carrito sigue intacto y puedes intentarlo de nuevo cuando quieras.',
+      orderReference: 'Referencia del pedido',
+      noChargeTitle: 'No se ha realizado ningún cargo',
+      noChargeMessage:
+        'Tu tarjeta no ha sido cobrada. Los productos siguen en tu carrito.',
+      possibleReasons: '¿Por qué se canceló el pago?',
+      reasonsList: 'Posibles razones',
+      reason1: 'Cancelaste el proceso manualmente',
+      reason2: 'La sesión de pago expiró',
+      reason3: 'Hubo un problema con la conexión',
+      retryPayment: 'Intentar de nuevo',
+      backToCart: 'Al carrito',
+      needHelp: '¿Necesitas ayuda?',
+      contactSupport: 'Contacta con nosotros'
     }
   },
   gl: {
@@ -561,7 +592,7 @@ export const translations = {
       rights: 'Todos os dereitos reservados',
       contact: 'Contactos',
       social: 'Redes sociales',
-      phoneLabel: 'Chamar ao +34 123 456 789',
+      phoneLabel: 'Chamar ao  881068091',
       emailLabel: 'Enviar correo a ascremosas.co@gmail.com',
       instagramLabel: 'Visitar o noso Instagram',
       facebookLabel: 'Visitar o noso Facebook',
@@ -575,7 +606,7 @@ export const translations = {
       followUs: 'Síguenos',
       hours: {
         title: 'Horario',
-        laborales: 'Martes - Venres',
+        laborales: 'Luns - Venres',
         monday: 'Luns',
         saturday: 'Sábado',
         sunday: 'Domingo',
@@ -613,6 +644,37 @@ export const translations = {
     notFound: {
       returnLabel: 'volver ao inicio',
       pageNotFound: '¡Oops! Páxina non atopada'
+    },
+    checkoutSuccess: {
+      loading: 'Verificando pago...',
+      title: '¡Pago completado!',
+      message: 'Grazas polo teu pedido. Recibimos o teu pago correctamente.',
+      orderDetails: 'Detalles do pedido',
+      orderId: 'Número de pedido',
+      emailNotice:
+        'Enviarémosche un email de confirmación con todos os detalles do teu pedido.',
+      questions: '¿Tes algunha pregunta?',
+      contactUs: 'Contacta connosco',
+      navigation: 'Opcións de navegación'
+    },
+    checkoutCancel: {
+      loading: 'Cargando...',
+      title: '¡Pago cancelado!',
+      message:
+        'O proceso de pago foi cancelado. O teu carriño segue intacto e podes intentalo de novo cando queiras.',
+      orderReference: 'Referencia do pedido',
+      noChargeTitle: 'Non se realizou ningún cargo',
+      noChargeMessage:
+        'A túa tarxeta non foi cobrada. Os produtos seguen no teu carriño.',
+      possibleReasons: '¿Por que se cancelou o pago?',
+      reasonsList: 'Posibles razóns',
+      reason1: 'Cancelaches o proceso manualmente',
+      reason2: 'A sesión de pago expirou',
+      reason3: 'Houbo un problema coa conexión',
+      retryPayment: 'Intentar de novo',
+      backToCart: 'Ao carriño',
+      needHelp: '¿Necesitas axuda?',
+      contactSupport: 'Contacta connosco'
     }
   },
   en: {
@@ -866,7 +928,7 @@ export const translations = {
       rights: 'All rights reserved',
       contact: 'Contacts',
       social: 'Social media',
-      phoneLabel: 'Call +34 123 456 789',
+      phoneLabel: 'Call +34881068091',
       emailLabel: 'Send email to ascremosas.co@gmail.com',
       instagramLabel: 'Visit our Instagram',
       facebookLabel: 'Visit our Facebook',
@@ -880,7 +942,7 @@ export const translations = {
       followUs: 'Follow Us',
       hours: {
         title: 'Hours',
-        laborales: 'Tuesday - Friday',
+        laborales: 'Monday - Friday',
         monday: 'Monday',
         saturday: 'Saturday',
         sunday: 'Sunday',
@@ -918,6 +980,38 @@ export const translations = {
     notFound: {
       returnLabel: 'return to homepage',
       pageNotFound: 'Oops! Page not found'
+    },
+    checkoutSuccess: {
+      loading: 'Verifying payment...',
+      title: 'Payment completed!',
+      message:
+        'Thank you for your order. We have received your payment successfully.',
+      orderDetails: 'Order details',
+      orderId: 'Order number',
+      emailNotice:
+        'We will send you a confirmation email with all the details of your order.',
+      questions: 'Do you have any questions?',
+      contactUs: 'Contact us',
+      navigation: 'Navigation options'
+    },
+    checkoutCancel: {
+      loading: 'Loading...',
+      title: 'Payment cancelled!',
+      message:
+        'The payment process has been cancelled. Your cart is still intact and you can try again whenever you want.',
+      orderReference: 'Order reference',
+      noChargeTitle: 'No charge has been made',
+      noChargeMessage:
+        'Your card has not been charged. The products are still in your cart.',
+      possibleReasons: 'Why was the payment cancelled?',
+      reasonsList: 'Possible reasons',
+      reason1: 'You cancelled the process manually',
+      reason2: 'The payment session expired',
+      reason3: 'There was a connection problem',
+      retryPayment: 'Try again',
+      backToCart: 'To cart',
+      needHelp: 'Need help?',
+      contactSupport: 'Contact us'
     }
   }
 };

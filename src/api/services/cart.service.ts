@@ -1,7 +1,8 @@
 import axiosClient from '../config/axiosClient';
 import {
   type CreateOrderRequest,
-  type CreateOrderResponse
+  type CreateOrderResponse,
+  type VerifySessionResponse
 } from '../types/cart.types';
 
 class CartService {
@@ -12,16 +13,22 @@ class CartService {
       this.basePath,
       data
     );
+
     return response.data;
   }
 
-  async confirmPayment(
-    orderId: string,
-    paymentIntentId: string
-  ): Promise<void> {
-    await axiosClient.post(`/orders/${orderId}/confirm-payment`, {
-      paymentIntentId
-    });
+  async verifySession(
+    sessionId: string | null
+  ): Promise<VerifySessionResponse> {
+    const response = await axiosClient.post<VerifySessionResponse>(
+      `${this.basePath}/verify/session`,
+      { sessionId }
+    );
+    return response.data;
+  }
+
+  async cancelOrder(orderId: string): Promise<void> {
+    await axiosClient.post(`${this.basePath}/cancel`, { orderId });
   }
 }
 

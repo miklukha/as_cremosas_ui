@@ -30,6 +30,7 @@ export interface CheckoutFormData {
 
 export interface CreateOrderRequest {
   orderSource: 'site';
+  shopId: number;
   customerName: string;
   customerEmail: string;
   customerPhone: string;
@@ -45,10 +46,24 @@ export interface CreateOrderRequest {
     isSugarFree: boolean;
   }>;
   notes?: string;
+  totalPrice: number;
+  lang: 'es' | 'gl' | 'en';
 }
 
 export interface CreateOrderResponse {
-  orderId: string;
-  stripeClientSecret: string;
-  totalPrice: number;
+  status: 'success' | 'error';
+  message: string | null;
+  data: { checkoutUrl: string } | null;
+}
+
+export interface VerifySessionResponse {
+  status: 'success' | 'error';
+  message: string | null;
+  data: {
+    orderId: string;
+    email?: string;
+    pickupDate?: string;
+    pickupTime?: string;
+    totalPrice?: string;
+  } | null;
 }

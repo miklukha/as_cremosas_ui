@@ -32,16 +32,16 @@ const ContactInfo = () => {
     <ul className="space-y-3" role="list">
       <li>
         <a
-          href="tel:+34123456789"
+          href="tel:881068091"
           className="flex items-center gap-3 text-sm text-secondary 
                       hover:font-semibold hover:scale-105 
                      transition-all duration-200 focus-visible:outline-none 
                      focus-visible:ring-2 focus-visible:ring-primary 
                      focus-visible:ring-offset-2 rounded-sm"
-          aria-label={t.footer.phoneLabel || 'Llamar al +34123456789'}
+          aria-label={t.footer.phoneLabel || 'Llamar al 881068091'}
         >
           <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
-          <span>+34 123 456 789</span>
+          <span>881068091</span>
         </a>
       </li>
       <li>
@@ -94,15 +94,29 @@ const BusinessHours = () => {
   const { t } = useLanguage();
   const hours = [
     {
-      day: t.footer.hours?.monday || 'Lunes',
-      time: t.footer.hours?.closed || 'Cerrado'
+      day: t.footer.hours?.laborales || 'Lunes - Viernes',
+      time: (
+        <>
+          11:00 - 14:00
+          <br />
+          16:30 - 20:30
+        </>
+      )
     },
     {
-      day: t.footer.hours?.laborales || 'Martes - Viernes',
-      time: '9:00 - 20:00'
+      day: t.footer.hours?.saturday || 'Sábado',
+      time: (
+        <>
+          11:00 - 14:00
+          <br />
+          17:00 - 21:00
+        </>
+      )
     },
-    { day: t.footer.hours?.saturday || 'Sábado', time: '10:00 - 21:00' },
-    { day: t.footer.hours?.sunday || 'Domingo', time: '10:00 - 18:00' }
+    {
+      day: t.footer.hours?.sunday || 'Domingo',
+      time: t.footer.hours?.closed || 'Cerrado'
+    }
   ];
 
   return (
@@ -114,7 +128,7 @@ const BusinessHours = () => {
             className="flex justify-between text-sm text-secondary"
           >
             <span>{schedule.day}</span>
-            <span className="font-medium">{schedule.time}</span>
+            <span className="font-medium text-right">{schedule.time}</span>
           </li>
         ))}
       </ul>
@@ -273,7 +287,7 @@ export const Footer = () => {
           {/* Contact, Hours & Legal - Collapsible on Mobile */}
           <div className="flex flex-col lg:flex-row lg:flex-nowrap gap-0 lg:gap-12 flex-1 lg:justify-end">
             {/* Business Hours */}
-            <div className="flex flex-col items-start flex-1 lg:max-w-[300px]">
+            <div className="flex flex-col items-start flex-1 lg:max-w-[250px]">
               <CollapsibleFooterSection
                 title={t.footer.hours?.title || 'Horario'}
               >

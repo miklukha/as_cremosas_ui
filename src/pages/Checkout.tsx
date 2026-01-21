@@ -16,15 +16,7 @@ import {
   RadioGroupItem,
   Separator
 } from '@/components/ui';
-import {
-  ArrowLeft,
-  CreditCard,
-  ShoppingBag,
-  AlertCircle,
-  CheckCircle2,
-  Loader2,
-  ChevronLeft
-} from 'lucide-react';
+import { ShoppingBag, AlertCircle, Loader2, ChevronLeft } from 'lucide-react';
 import { format, addDays } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { toast } from '@/components/ui/sonner';
@@ -46,16 +38,12 @@ interface FormErrors {
   pickupTime?: string;
 }
 
-type CheckoutStep = 'details' | 'payment' | 'success';
-
 export default function Checkout() {
-  const { t } = useLanguage();
-  const { cart, clearCart } = useCart();
+  const { t, language } = useLanguage();
+  const { cart } = useCart();
   const navigate = useNavigate();
 
-  const [step, setStep] = useState<CheckoutStep>('details');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [orderId, setOrderId] = useState<string | null>(null);
   const [formData, setFormData] = useState<FormData>({
     customerName: '',
     customerEmail: '',
@@ -74,10 +62,10 @@ export default function Checkout() {
   });
 
   useEffect(() => {
-    if (cart.items.length === 0 && step !== 'success') {
+    if (cart.items.length === 0) {
       navigate('/cart');
     }
-  }, [cart.items.length, navigate, step]);
+  }, [cart.items.length, navigate]);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -216,42 +204,23 @@ export default function Checkout() {
           isSugarFree: item.isSugarFree
         })),
         notes: formData.notes.trim() || undefined,
-        totalPrice: cart.totalPrice
+        totalPrice: cart.totalPrice,
+        lang: language
       };
 
       const response = await cartService.createOrder(orderRequest);
-      setOrderId(response.orderId);
-      setStep('payment');
+      console.log(response);
+      const checkoutUrl = response.data?.checkoutUrl;
+
+      if (!!checkoutUrl) {
+        window.location.href = checkoutUrl;
+      }
     } catch (error) {
       console.error('Error creating order:', error);
       toast.error(t.checkout?.orderError || 'Error al procesar el pedido', {
         description:
           t.checkout?.orderErrorMessage ||
           'Ha ocurrido un error. Por favor, inténtalo de nuevo.'
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handlePaymentSuccess = async () => {
-    setIsSubmitting(true);
-
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      clearCart();
-      setStep('success');
-      toast.success(t.checkout?.orderSuccess || '¡Pedido realizado!', {
-        description:
-          t.checkout?.orderSuccessMessage ||
-          'Gracias por tu pedido. Te enviaremos un email de confirmación.'
-      });
-    } catch (error) {
-      console.error('Payment confirmation error:', error);
-      toast.error(t.checkout?.paymentError || 'Error en el pago', {
-        description:
-          t.checkout?.paymentErrorMessage ||
-          'No se pudo procesar el pago. Inténtalo de nuevo.'
       });
     } finally {
       setIsSubmitting(false);
@@ -268,107 +237,6 @@ export default function Checkout() {
     if (item.isSugarFree) return t.cart?.sugarFree || 'Sin azúcar';
     return t.cart?.normal || 'Normal';
   };
-
-  if (step === 'success') {
-    return (
-      <div className="container mx-auto px-4 py-12 max-w-2xl animate-fade-in">
-        <Card className="text-center py-12">
-          <CardContent className="space-y-6">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 text-green-600 mb-4">
-              <CheckCircle2 className="h-10 w-10" />
-            </div>
-            <h1 className="text-2xl md:text-3xl font-semibold">
-              {t.checkout?.orderSuccess || '¡Pedido realizado!'}
-            </h1>
-            <p className="text-muted-foreground max-w-md mx-auto">
-              {t.checkout?.orderSuccessMessage ||
-                'Gracias por tu pedido. Te enviaremos un email de confirmación.'}
-            </p>
-            {orderId && (
-              <p className="text-sm text-muted-foreground">
-                ID del pedido:{' '}
-                <span className="font-mono font-semibold">{orderId}</span>
-              </p>
-            )}
-            <div className="pt-4">
-              <Button asChild>
-                <Link to="/shop">
-                  {t.cart?.continueShopping || 'Continuar Comprando'}
-                </Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  if (step === 'payment') {
-    return (
-      <div className="container mx-auto px-4 py-12 max-w-2xl animate-fade-in">
-        <h1 className="text-2xl md:text-3xl font-semibold mb-8 text-center">
-          {t.checkout?.payWithCard || 'Pagar con Tarjeta'}
-        </h1>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-xl flex items-center gap-2">
-              <CreditCard className="h-5 w-5" />
-              {t.checkout?.payWithCard || 'Pago con Tarjeta'}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="bg-muted/50 rounded-lg p-6 text-center">
-              <p className="text-muted-foreground mb-4">
-                Stripe Payment Form Placeholder
-              </p>
-              <p className="text-sm text-muted-foreground">
-                En producción, aquí se mostraría el formulario de pago de
-                Stripe.
-              </p>
-            </div>
-
-            <Separator />
-
-            <div className="flex justify-between items-center text-lg font-semibold">
-              <span>{t.checkout?.total || 'Total'}</span>
-              <span className="text-accent">{cart.totalPrice.toFixed(2)}€</span>
-            </div>
-
-            <div className="flex gap-4">
-              <Button
-                variant="outline"
-                onClick={() => setStep('details')}
-                disabled={isSubmitting}
-                className="flex-1"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                {t.pagination?.previous || 'Anterior'}
-              </Button>
-              <Button
-                onClick={handlePaymentSuccess}
-                disabled={isSubmitting}
-                className="flex-1"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    {t.checkout?.processing || 'Procesando...'}
-                  </>
-                ) : (
-                  <>
-                    <CreditCard className="h-4 w-4 mr-2" />
-                    {t.checkout?.payWithCard || 'Pagar'} •{' '}
-                    {cart.totalPrice.toFixed(2)}€
-                  </>
-                )}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <div className="container mx-auto pt-8 sm:pt-10 max-w-5xl animate-fade-in">

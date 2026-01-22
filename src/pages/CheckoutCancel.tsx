@@ -72,13 +72,13 @@ export default function CheckoutCancel() {
       role="main"
       aria-labelledby="checkout-cancel-title"
     >
-      <Card className="bg-primary-foreground overflow-hidden">
+      <Card className="bg-primary-foreground overflow-hidden ">
         <CardContent className="p-4 sm:p-6 lg:p-8">
           {/* Cancel Message */}
           <header className="text-center space-y-2 mb-5">
             <h1
               id="checkout-cancel-title"
-              className="text-xl sm:text-2xl md:text-3xl font-semibold"
+              className="text-xl sm:text-2xl md:text-3xl font-semibold text-destructive"
             >
               {t.checkoutCancel?.title || 'Pago cancelado'}
             </h1>

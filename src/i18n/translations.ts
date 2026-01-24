@@ -11,7 +11,7 @@ export const translations = {
     },
     home: {
       hero: {
-        title: 'Las tartas de queso de lujo',
+        title: 'Tartas de queso de lujo',
         title2: 'Creadas con los mejores ingredientes',
         title3: 'Calidad Artesanal en cada detalle',
         cta: 'Comprar ahora'
@@ -20,7 +20,8 @@ export const translations = {
         title: 'Lo Que Dicen Nuestros Clientes'
       },
       seeCollection: 'Ver toda la colección',
-      bestsellers: 'Nuestros Bestsellers'
+      bestsellers: 'Nuestros Bestsellers',
+      cakes: 'Nuestras Tartas'
     },
     shop: {
       title: 'Nuestra Tienda',
@@ -105,7 +106,11 @@ export const translations = {
         phoneInvalid: 'Formato de teléfono inválido',
         dateRequired: 'La fecha de recogida es obligatoria',
         timeRequired: 'La hora de recogida es obligatoria',
-        invalidDay: 'No disponible para recogida los domingos'
+        invalidDay: 'No disponible para recogida los domingos',
+        minDaysNoticeSaturday:
+          'Pedidos realizados en sábado después de las 12:00: recogida desde el martes siguiente',
+        minDaysNotice:
+          'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrado.'
       },
       notePlaceholder: 'Por favor, incluye cualquier instrucción especial...',
       nonRefundableNotice:
@@ -360,7 +365,8 @@ export const translations = {
         title: 'O Que Din Os Nosos Clientes'
       },
       seeCollection: 'Ver toda a colección',
-      bestsellers: 'Os Nosos Bestsellers'
+      bestsellers: 'Os Nosos Bestsellers',
+      cakes: 'As Nosas Tartas'
     },
     shop: {
       title: 'A Nosa Tenda',
@@ -445,7 +451,11 @@ export const translations = {
         phoneInvalid: 'Formato de teléfono inválido',
         dateRequired: 'A data de recollida é obrigatoria',
         timeRequired: 'A hora de recollida é obrigatoria',
-        invalidDay: 'Non dispoñible para recollida os domingos'
+        invalidDay: 'Non dispoñible para recollida os domingos',
+        minDaysNoticeSaturday:
+          'Pedidos realizados en sábado despois das 12:00: recollida desde o martes seguinte',
+        minDaysNotice:
+          'Os pedidos acéptanse con mínimo 2 días de antelación. Domingos pechado.'
       },
       notePlaceholder: 'Por favor, inclúe calquera instrución especial...',
       nonRefundableNotice:
@@ -696,7 +706,8 @@ export const translations = {
         title: 'What Our Customers Say'
       },
       seeCollection: 'See the full collection',
-      bestsellers: 'Our Bestsellers'
+      bestsellers: 'Our Bestsellers',
+      cakes: 'Our Cakes'
     },
     shop: {
       title: 'Our Shop',
@@ -781,7 +792,11 @@ export const translations = {
         phoneInvalid: 'Invalid phone format',
         dateRequired: 'Pickup date is required',
         timeRequired: 'Pickup time is required',
-        invalidDay: 'Not available for pickup on Sundays'
+        invalidDay: 'Not available for pickup on Sundays',
+        minDaysNoticeSaturday:
+          'Orders placed on Saturday after 12:00: pickup from the following Tuesday',
+        minDaysNotice:
+          'Orders are accepted with a minimum of 2 days notice. Sundays closed.'
       },
       notePlaceholder: 'Please include any special instructions...',
       nonRefundableNotice:

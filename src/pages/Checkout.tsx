@@ -16,8 +16,8 @@ import {
   RadioGroupItem,
   Separator
 } from '@/components/ui';
-import { ShoppingBag, AlertCircle, Loader2, ChevronLeft } from 'lucide-react';
-import { format, addDays } from 'date-fns';
+import { ShoppingBag, Loader2, ChevronLeft } from 'lucide-react';
+import { format, addDays, startOfDay } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { toast } from '@/components/ui/sonner';
 
@@ -155,9 +155,28 @@ export default function Checkout() {
             validation?.dateRequired || 'La fecha de recogida es obligatoria'
           );
         }
-        if ((value as Date).getDay() === 0) {
+        const selectedDate = value as Date;
+        if (selectedDate.getDay() === 0) {
           return (
             validation?.invalidDay || 'No disponible para recogida los domingos'
+          );
+        }
+
+        const minDate = getMinOrderDate();
+        if (startOfDay(selectedDate) < startOfDay(minDate)) {
+          const now = new Date();
+          const currentHour = now.getHours();
+          const currentDay = now.getDay();
+
+          if (currentDay === 6 && currentHour >= 12) {
+            return (
+              validation?.minDaysNoticeSaturday ||
+              'Los pedidos realizados en sábado después de las 12:00 requieren mínimo 3 días de antelación'
+            );
+          }
+          return (
+            validation?.minDaysNotice ||
+            'Los pedidos requieren mínimo 2 días de antelación'
           );
         }
         break;
@@ -238,6 +257,28 @@ export default function Checkout() {
     return t.cart?.normal || 'Normal';
   };
 
+  const getMinOrderDate = (): Date => {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentDay = now.getDay(); // 0 = Sunday, 6 = Saturday
+
+    let minDays = 2;
+
+    // Якщо сьогодні субота ДО 12:00, потрібно 3 дні
+    if (currentDay === 6 && currentHour >= 12) {
+      minDays = 3;
+    }
+
+    let minDate = addDays(now, minDays);
+
+    // Пропускаємо неділі
+    if (minDate.getDay() === 0) {
+      minDate = addDays(minDate, 1);
+    }
+
+    return minDate;
+  };
+
   return (
     <div className="container mx-auto pt-8 sm:pt-10 max-w-5xl animate-fade-in">
       <Button
@@ -284,7 +325,7 @@ export default function Checkout() {
                 />
                 {errors.customerName && (
                   <p className="text-sm text-destructive flex items-center gap-1">
-                    <AlertCircle className="h-3 w-3" />
+                    {/* <AlertCircle className="h-3 w-3" /> */}
                     {errors.customerName}
                   </p>
                 )}
@@ -313,7 +354,7 @@ export default function Checkout() {
                 />
                 {errors.customerEmail && (
                   <p className="text-sm text-destructive flex items-center gap-1">
-                    <AlertCircle className="h-3 w-3" />
+                    {/* <AlertCircle className="h-3 w-3" /> */}
                     {errors.customerEmail}
                   </p>
                 )}
@@ -342,7 +383,7 @@ export default function Checkout() {
                 />
                 {errors.customerPhone && (
                   <p className="text-sm text-destructive flex items-center gap-1">
-                    <AlertCircle className="h-3 w-3" />
+                    {/* <AlertCircle className="h-3 w-3" /> */}
                     {errors.customerPhone}
                   </p>
                 )}
@@ -368,7 +409,7 @@ export default function Checkout() {
                       handleInputChange('pickupDate', date);
                     }
                   }}
-                  min={format(addDays(new Date(), 2), 'yyyy-MM-dd')}
+                  min={format(getMinOrderDate(), 'yyyy-MM-dd')}
                   className={cn(
                     'w-full',
                     errors.pickupDate &&
@@ -378,15 +419,30 @@ export default function Checkout() {
                   )}
                   aria-invalid={!!(errors.pickupDate && touched.pickupDate)}
                 />
+
                 {errors.pickupDate && touched.pickupDate && (
                   <p className="text-sm text-destructive flex items-center gap-1">
-                    <AlertCircle className="h-3 w-3" />
+                    {/* <AlertCircle className="h-3 w-3" /> */}
                     {errors.pickupDate}
                   </p>
                 )}
                 <p className="text-xs text-muted-foreground">
-                  {t.checkout?.minDaysNotice ||
-                    'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrado.'}
+                  {(() => {
+                    const now = new Date();
+                    const currentHour = now.getHours();
+                    const currentDay = now.getDay();
+
+                    if (currentDay === 6 && currentHour >= 12) {
+                      return (
+                        t.checkout?.validation?.minDaysNoticeSaturday ||
+                        'Pedidos en sábado después de las 12:00: mínimo 3 días de antelación. Domingos cerrado.'
+                      );
+                    }
+                    return (
+                      t.checkout?.validation?.minDaysNotice ||
+                      'Pedidos realizados en sábado después de las 12:00: recogida desde el martes siguiente'
+                    );
+                  })()}
                 </p>
               </div>
 
@@ -440,7 +496,7 @@ export default function Checkout() {
                 </RadioGroup>
                 {errors.pickupTime && (
                   <p className="text-sm text-destructive flex items-center gap-1">
-                    <AlertCircle className="h-3 w-3" />
+                    {/* <AlertCircle className="h-3 w-3" /> */}
                     {errors.pickupTime}
                   </p>
                 )}

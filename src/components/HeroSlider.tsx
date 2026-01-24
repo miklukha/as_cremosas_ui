@@ -13,20 +13,14 @@ export const HeroSlider = () => {
   const heroSlides = [
     {
       image:
-        'https://res.cloudinary.com/ddz81wl4h/image/upload/v1765558384/hero-cheesecake_nasjus.jpg',
+        'https://res.cloudinary.com/ddz81wl4h/image/upload/v1769275530/muchas_cajas2_i13sdt.webp',
       title: t.home.hero.title,
       cta: t.home.hero.cta
     },
     {
       image:
-        'https://res.cloudinary.com/ddz81wl4h/image/upload/v1765558384/hero-cheesecake_nasjus.jpg',
+        'https://res.cloudinary.com/ddz81wl4h/image/upload/v1769275531/tartas_tzmfos.webp',
       title: t.home.hero.title2,
-      cta: t.home.hero.cta
-    },
-    {
-      image:
-        'https://res.cloudinary.com/ddz81wl4h/image/upload/v1765558384/hero-cheesecake_nasjus.jpg',
-      title: t.home.hero.title3,
       cta: t.home.hero.cta
     }
   ];
@@ -34,7 +28,7 @@ export const HeroSlider = () => {
   return (
     <Swiper
       modules={[Autoplay, Pagination, EffectFade]}
-      effect="fade"
+      // effect="fade"
       fadeEffect={{ crossFade: true }}
       spaceBetween={0}
       slidesPerView={1}
@@ -66,7 +60,7 @@ export const HeroSlider = () => {
             />
 
             {/* Background Overlay */}
-            <div className="absolute inset-0 bg-linear-to-br from-background/80 via-background/70 to-background/60 z-10" />
+            <div className="absolute inset-0 bg-linear-to-br from-background/85 via-background/85 to-background/85 z-10" />
 
             {/* Content */}
             <div className="relative z-20 text-center px-4 max-w-2xl mx-auto">

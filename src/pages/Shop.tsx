@@ -51,9 +51,11 @@ export default function Shop() {
     setFilters(apiFilters);
   };
 
-  const displayedProducts = products.sort(
-    (a, b) => (b.isCakeOfTheMonth ? 1 : 0) - (a.isCakeOfTheMonth ? 1 : 0)
-  );
+  const displayedProducts = products.sort((a, b) => {
+    return (
+      (b.isCakeOfTheMonth ? 1 : 0) - (a.isCakeOfTheMonth ? 1 : 0) || a.id - b.id
+    );
+  });
 
   if (loading && products.length === 0) {
     return (
@@ -115,7 +117,7 @@ export default function Shop() {
 
       <div className="flex flex-col">
         {/* Filters Sidebar */}
-        <div className="flex flex-wrap justify-center gap-3 mb-5 sm:mb-8">
+        <div className="flex flex-wrap justify-center gap-3 mb-4 sm:mb-7">
           {/* All */}
           <Button
             variant={

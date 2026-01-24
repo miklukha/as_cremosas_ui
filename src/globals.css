@@ -177,3 +177,24 @@
   background: transparent !important;
   border: none !important;
 }
+
+/* For date input на iOS Safari */
+input[type='date'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  min-height: 40px;
+  max-height: 40px;
+}
+
+input[type='date']::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+input[type='date']::-webkit-datetime-edit {
+  padding: 0;
+}
+
+input[type='date']::-webkit-inner-spin-button {
+  display: none;
+}

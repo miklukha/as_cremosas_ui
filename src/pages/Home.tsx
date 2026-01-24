@@ -7,10 +7,13 @@ import { useProducts } from '@/hooks/useProducts';
 export default function Home() {
   const { t } = useLanguage();
   const { products } = useProducts();
+  console.log(products);
 
-  const displayedProducts = products.sort(
-    (a, b) => (b.isCakeOfTheMonth ? 1 : 0) - (a.isCakeOfTheMonth ? 1 : 0)
-  );
+  const displayedProducts = products.sort((a, b) => {
+    return (
+      (b.isCakeOfTheMonth ? 1 : 0) - (a.isCakeOfTheMonth ? 1 : 0) || a.id - b.id
+    );
+  });
 
   return (
     <div className="animate-fade-in">
@@ -22,11 +25,11 @@ export default function Home() {
       <section className="py-16 sm:py-20 px-4 bg-secondary/15">
         <div className="container mx-auto">
           <h2 className="text-2xl sm:text-4xl mb-6 sm:mb-8 text-foreground text-center">
-            {t.home.bestsellers}
+            {t.home.cakes}
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {displayedProducts.slice(0, 3).map(product => (
+            {displayedProducts.slice(0, 4).map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

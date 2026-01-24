@@ -6,9 +6,9 @@ export const faqs = [
       en: 'How do I place an order?'
     },
     answer: {
-      es: 'Puedes hacer tu pedido directamente en nuestra tienda online. Selecciona tu cheesecake favorito, elige la fecha de recogida y completa el formulario de pedido.',
-      gl: 'Podes facer o teu pedido directamente na nosa tenda online. Selecciona o teu cheesecake favorito, elixe a data de recollida e completa o formulario de pedido.',
-      en: 'You can place your order directly in our online shop. Select your favorite cheesecake, choose the pickup date, and complete the order form.'
+      es: 'Puedes hacer tu pedido online a través de nuestra tienda, llamándonos por teléfono o visitándonos personalmente en nuestra tienda física. Elige tu cheesecake favorito, selecciona la fecha de recogida y completa tu pedido fácilmente.',
+      gl: 'Podes facer o teu pedido online a través da nosa tenda, chamándonos por teléfono ou visitándonos persoalmente na nosa tenda física. Escolle o teu cheesecake favorito, selecciona a data de recollida e completa o teu pedido de maneira sinxela.',
+      en: 'You can place your order online through our shop, by phone, or by visiting us in person at our physical store. Choose your favorite cheesecake, select the pickup date, and complete your order easily.'
     }
   },
   {
@@ -18,33 +18,9 @@ export const faqs = [
       en: 'How much advance notice do I need to place an order?'
     },
     answer: {
-      es: 'Recomendamos hacer los pedidos con al menos 48 horas de antelación para garantizar la disponibilidad.',
-      gl: 'Recomendamos facer os pedidos con polo menos 48 horas de antelación para garantir a disponibilidade.',
-      en: 'We recommend placing orders at least 48 hours in advance to ensure availability.'
-    }
-  },
-  {
-    question: {
-      es: '¿Tienen opciones sin gluten o sin lactosa?',
-      gl: 'Teñen opcións sen glute ou sen lactosa?',
-      en: 'Do you have gluten-free or lactose-free options?'
-    },
-    answer: {
-      es: 'Sí, ofrecemos opciones sin gluten y sin lactosa bajo pedido. Por favor, especifícalo en las notas de tu pedido.',
-      gl: 'Si, ofrecemos opcións sen glute e sen lactosa baixo pedido. Por favor, especifícao nas notas do teu pedido.',
-      en: 'Yes, we offer gluten-free and lactose-free options upon request. Please specify in your order notes.'
-    }
-  },
-  {
-    question: {
-      es: '¿Cuál es la política de cancelación?',
-      gl: 'Cal é a política de cancelación?',
-      en: 'What is the cancellation policy?'
-    },
-    answer: {
-      es: 'Puedes cancelar tu pedido hasta 24 horas antes de la fecha de recogida. Los pedidos no son reembolsables debido a la naturaleza perecedera del producto.',
-      gl: 'Podes cancelar o teu pedido ata 24 horas antes da data de recollida. Os pedidos non son reembolsables debido á natureza perecedera do producto.',
-      en: 'You can cancel your order up to 24 hours before the pickup date. Orders are non-refundable due to the perishable nature of the product.'
+      es: 'Los pedidos deben realizarse con un mínimo de 48 horas de antelación para poder ser aceptados. Los pedidos realizados los sábados después de las 12:00 tendrán como fecha mínima de recogida el martes siguiente. Si se realizan antes de las 12:00, la fecha mínima será el lunes.',
+      gl: 'Os pedidos deben realizarse cun mínimo de 48 horas de antelación para poder seren aceptados. Os pedidos realizados os sábados despois das 12:00 terán como data mínima de recollida o martes seguinte. Se se realizan antes das 12:00, a data mínima será o luns.',
+      en: 'Orders must be placed with a minimum of 48 hours’ notice in order to be accepted. Orders placed on Saturdays after 12:00 will have the following Tuesday as the earliest pickup date. If placed before 12:00, the earliest pickup date will be Monday.'
     }
   },
   {
@@ -55,8 +31,80 @@ export const faqs = [
     },
     answer: {
       es: 'Actualmente solo ofrecemos recogida en tienda para garantizar la calidad óptima de nuestros productos.',
-      gl: 'Actualmente só ofrecemos recollida en tenda para garantir a calidade óptima dos nosos productos.',
-      en: 'Currently we only offer in-store pickup to ensure optimal product quality.'
+      gl: 'Actualmente só ofrecemos recollida en tenda para garantir a calidade óptima dos nosos produtos.',
+      en: 'Currently, we only offer in-store pickup to ensure optimal product quality.'
+    }
+  },
+  {
+    question: {
+      es: '¿Tienen opciones sin gluten o sin lactosa?',
+      gl: 'Teñen opcións sen glute ou sen lactosa?',
+      en: 'Do you have gluten-free or lactose-free options?'
+    },
+    answer: {
+      es: 'Sí, normalmente disponemos de tartas sin gluten en tienda. Las opciones sin lactosa se elaboran únicamente bajo pedido. Ambas están disponibles exclusivamente en formato mediano.',
+      gl: 'Si, normalmente dispoñemos de tartas sen glute na tenda. As opcións sen lactosa elabóranse unicamente baixo pedido. Ambas están dispoñibles exclusivamente en formato mediano.',
+      en: 'Yes, we usually have gluten-free cheesecakes available in store. Lactose-free options are made exclusively upon request. Both are available only in the medium size.'
+    }
+  },
+  {
+    question: {
+      es: '¿Qué alérgenos contienen vuestros productos?',
+      gl: 'Que alérxenos conteñen os vosos produtos?',
+      en: 'What allergens are present in your products?'
+    },
+    answer: {
+      es: 'Nuestros productos pueden contener frutos secos, lácteos y huevos. Recomendamos consultar los alérgenos específicos de cada producto antes de realizar el pedido.',
+      gl: 'Os nosos produtos poden conter froitos secos, lácteos e ovos. Recomendamos consultar os alérxenos específicos de cada produto antes de facer o pedido.',
+      en: 'Our products may contain nuts, dairy, and eggs. We recommend checking the specific allergens for each product before placing an order.'
+    }
+  },
+  {
+    question: {
+      es: '¿Es posible modificar un pedido?',
+      gl: 'É posible modificar un pedido?',
+      en: 'Is it possible to modify an order?'
+    },
+    answer: {
+      es: 'No podemos aceptar modificaciones durante las 24 horas previas a la fecha de recogida. Para cualquier modificación de tu pedido, deberás contactarnos por teléfono 881068091.',
+      gl: 'Non podemos aceptar modificacións durante as 24 horas previas á data de recollida. Para calquera modificación do teu pedido, deberás contactar connosco por teléfono 881068091.',
+      en: 'We cannot accept order modifications within 24 hours prior to the pickup date. For any changes to your order, please contact us by phone +34 881 06 80 91.'
+    }
+  },
+  {
+    question: {
+      es: '¿Cuál es la política de cancelación?',
+      gl: 'Cal é a política de cancelación?',
+      en: 'What is the cancellation policy?'
+    },
+    answer: {
+      es: 'Puedes cancelar tu pedido hasta 24 horas antes de la fecha de recogida. Los pedidos no son reembolsables debido a la naturaleza perecedera del producto.',
+      gl: 'Podes cancelar o teu pedido ata 24 horas antes da data de recollida. Os pedidos non son reembolsables debido á natureza perecedera do produto.',
+      en: 'You can cancel your order up to 24 hours before the pickup date. Orders are non-refundable due to the perishable nature of the product.'
+    }
+  },
+  {
+    question: {
+      es: '¿Cuál es la fecha de caducidad de las tartas de queso?',
+      gl: 'Cal é o prazo de consumo das tartas de queixo?',
+      en: 'What is the shelf life of the cheesecakes?'
+    },
+    answer: {
+      es: 'Nuestros cheesecakes se conservan en perfectas condiciones hasta 3 días en el frigorífico.',
+      gl: 'Os nosos cheesecakes consérvanse en perfectas condicións ata 3 días no frigorífico.',
+      en: 'Our cheesecakes can be stored in the refrigerator for up to 3 days.'
+    }
+  },
+  {
+    question: {
+      es: '¿Qué hago si hay un problema con mi pedido?',
+      gl: 'Que fago se hai un problema co meu pedido?',
+      en: 'What should I do if there is an issue with my order?'
+    },
+    answer: {
+      es: 'Si ha ocurrido algún problema con tu pedido, por favor contáctanos por teléfono 881068091 o escríbenos a nuestro correo electrónico ascremosas.co@gmail.com.',
+      gl: 'Se ocorreu algún problema co teu pedido, por favor contáctanos por teléfono 881068091 ou escríbenos ao noso correo electrónico ascremosas.co@gmail.com.',
+      en: 'If there is any issue with your order, please contact us by phone +34 881 06 80 91 or email ascremosas.co@gmail.com.'
     }
   }
 ];

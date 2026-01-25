@@ -18,6 +18,7 @@ import {
 } from '@/components/ui';
 import { ShoppingCart, Check, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { logAddToCart } from '@/lib/analytics';
 // import { toast } from '@/components/ui/sonner';
 
 type DietaryOption = 'normal' | 'glutenFree' | 'lactoseFree';
@@ -132,6 +133,18 @@ export default function ProductDetail() {
     };
 
     addToCart(cartItem);
+    logAddToCart({
+      id: product.id.toString(),
+      productVariantId: selectedVariant.id.toString(),
+      name: product.name,
+      variantName: selectedVariant.name,
+      size: selectedVariant.name,
+      price: getFinalPrice(),
+      quantity,
+      isGlutenFree: dietaryOption === 'glutenFree',
+      isLactoseFree: dietaryOption === 'lactoseFree',
+      isSugarFree: false
+    });
 
     // toast.info(t.cart?.itemAdded || 'Añadido al carrito', {
     //   description: `${product.name} - ${

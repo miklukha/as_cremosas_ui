@@ -14,7 +14,8 @@ import {
   CardTitle,
   RadioGroup,
   RadioGroupItem,
-  Separator
+  Separator,
+  Checkbox
 } from '@/components/ui';
 import { ShoppingBag, Loader2, ChevronLeft } from 'lucide-react';
 import { format, addDays, startOfDay } from 'date-fns';
@@ -28,6 +29,7 @@ interface FormData {
   pickupDate: Date | undefined;
   pickupTime: 'morning' | 'evening' | '';
   notes: string;
+  acceptTerms: boolean;
 }
 
 interface FormErrors {
@@ -36,6 +38,7 @@ interface FormErrors {
   customerPhone?: string;
   pickupDate?: string;
   pickupTime?: string;
+  acceptTerms?: string;
 }
 
 export default function Checkout() {
@@ -50,7 +53,8 @@ export default function Checkout() {
     customerPhone: '',
     pickupDate: undefined,
     pickupTime: '',
-    notes: ''
+    notes: '',
+    acceptTerms: false
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<Record<keyof FormErrors, boolean>>({
@@ -58,7 +62,8 @@ export default function Checkout() {
     customerEmail: false,
     customerPhone: false,
     pickupDate: false,
-    pickupTime: false
+    pickupTime: false,
+    acceptTerms: false
   });
 
   useEffect(() => {
@@ -76,7 +81,8 @@ export default function Checkout() {
       'customerEmail',
       'customerPhone',
       'pickupDate',
-      'pickupTime'
+      'pickupTime',
+      'acceptTerms'
     ];
 
     fields.forEach(field => {
@@ -94,7 +100,8 @@ export default function Checkout() {
       customerEmail: true,
       customerPhone: true,
       pickupDate: true,
-      pickupTime: true
+      pickupTime: true,
+      acceptTerms: true
     });
 
     return isValid;
@@ -102,7 +109,7 @@ export default function Checkout() {
 
   const validateField = (
     field: keyof FormErrors,
-    value: string | Date | undefined
+    value: string | Date | undefined | boolean
   ): string | undefined => {
     const validation = t.checkout?.validation;
 
@@ -187,16 +194,32 @@ export default function Checkout() {
           );
         }
         break;
+      case 'acceptTerms':
+        if (!value) {
+          return (
+            validation?.termsRequired ||
+            'Debes aceptar la política de privacidad'
+          );
+        }
+        break;
     }
     return undefined;
   };
 
-  const handleInputChange = (field: keyof FormData, value: string | Date) => {
+  const handleInputChange = (
+    field: keyof FormData,
+    value: string | Date | boolean
+  ) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     setTouched(prev => ({ ...prev, [field]: true }));
 
-    const error = validateField(field as keyof FormErrors, value);
-    setErrors(prev => ({ ...prev, [field]: error }));
+    if (field in errors) {
+      const error = validateField(
+        field as keyof FormErrors,
+        value as string | Date | undefined
+      );
+      setErrors(prev => ({ ...prev, [field]: error }));
+    }
   };
 
   const handleSubmitOrder = async () => {
@@ -502,7 +525,7 @@ export default function Checkout() {
                 )}
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-2 mb-4">
                 <Label htmlFor="notes">
                   {t.checkout?.notes || 'Notas adicionales'}
                 </Label>
@@ -516,6 +539,43 @@ export default function Checkout() {
                   }
                   className="min-h-[100px] text-sm"
                 />
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2 sm:space-x-1.5">
+                  <Checkbox
+                    id="acceptTerms"
+                    checked={formData.acceptTerms}
+                    onCheckedChange={checked =>
+                      handleInputChange('acceptTerms', checked as boolean)
+                    }
+                    className={cn(
+                      errors.acceptTerms &&
+                        touched.acceptTerms &&
+                        'border-destructive'
+                    )}
+                    aria-invalid={!!(errors.acceptTerms && touched.acceptTerms)}
+                  />
+                  <Label
+                    htmlFor="acceptTerms"
+                    className="font-normal cursor-pointer normal-case leading-tight"
+                  >
+                    {t.checkout?.privacyConsent || 'He leído y acepto la'}{' '}
+                    <Link
+                      to="/terms"
+                      className="text-accent underline underline-offset-2 hover:text-accent/80"
+                      target="_blank"
+                    >
+                      {t.checkout?.terms || 'Términos y Condiciones de Compra'}
+                    </Link>{' '}
+                    <span className="text-destructive">*</span>
+                  </Label>
+                </div>
+                {errors.acceptTerms && touched.acceptTerms && (
+                  <p className="text-sm text-destructive flex items-center gap-1">
+                    {errors.acceptTerms}
+                  </p>
+                )}
               </div>
             </CardContent>
           </Card>

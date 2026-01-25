@@ -7,13 +7,13 @@ export default function Legal() {
 
   return (
     <div className="container mx-auto pt-8 sm:pt-10 animate-fade-in max-w-4xl">
-      <h1 className="text-2xl sm:text-4xl mb-6 sm:mb-10 text-center">
+      <h1 className="text-2xl sm:text-4xl mb-6 sm:mb-8 text-center">
         {content.title}
       </h1>
 
       <div className="prose prose-lg max-w-none space-y-6 text-muted-foreground">
         {/* Última actualización */}
-        {/* <p className="text-sm italic">{content.lastUpdated}</p> */}
+        <p className="text-sm italic">{content.lastUpdated}</p>
 
         {/* Introducción */}
         <section>
@@ -154,9 +154,7 @@ export default function Legal() {
 
         {/* 7. Cookies */}
         <section>
-          <h2 className="font-serif text-2xl font-semibold text-foreground mb-4">
-            {content.sections.cookies.title}
-          </h2>
+          <h2 className="text-2xl mb-3">{content.sections.cookies.title}</h2>
           <p className="leading-relaxed">
             {content.sections.cookies.paragraph}{' '}
             <a href="/cookies" className="text-accent hover:underline">
@@ -168,7 +166,7 @@ export default function Legal() {
 
         {/* 8. Modificaciones */}
         <section>
-          <h2 className="font-serif text-2xl font-semibold text-foreground mb-4">
+          <h2 className="text-2xl mb-3">
             {content.sections.modifications.title}
           </h2>
           <p className="leading-relaxed">
@@ -178,10 +176,10 @@ export default function Legal() {
 
         {/* 9. Legislación Aplicable */}
         <section>
-          <h2 className="font-serif text-2xl font-semibold text-foreground mb-4">
+          <h2 className="text-2xl mb-3">
             {content.sections.legislation.title}
           </h2>
-          <p className="leading-relaxed mb-4">
+          <p className="leading-relaxed mb-2">
             {content.sections.legislation.paragraph1}
           </p>
           <p className="leading-relaxed">
@@ -190,16 +188,16 @@ export default function Legal() {
         </section>
 
         {/* 10. Contacto */}
-        <section className="bg-muted/30 p-6 rounded-lg">
-          <h2 className="font-serif text-2xl font-semibold text-foreground mb-4">
-            {content.sections.contact.title}
-          </h2>
-          <p className="leading-relaxed mb-3">
+        <section>
+          <h2 className="text-2xl mb-3">{content.sections.contact.title}</h2>
+          <p className="leading-relaxed mb-2">
             {content.sections.contact.intro}
           </p>
           <div className="space-y-1">
             <p>
-              <strong>{content.sections.contact.email}:</strong>{' '}
+              <span className="font-medium">
+                {content.sections.contact.email}:
+              </span>{' '}
               <a
                 href="mailto:ascremosas.co@gmail.com"
                 className="text-accent hover:underline"
@@ -208,7 +206,9 @@ export default function Legal() {
               </a>
             </p>
             <p>
-              <strong>{content.sections.contact.phone}:</strong>{' '}
+              <span className="font-medium">
+                {content.sections.contact.phone}:
+              </span>{' '}
               <a
                 href="tel:+34881068091"
                 className="text-accent hover:underline"
@@ -217,8 +217,10 @@ export default function Legal() {
               </a>
             </p>
             <p>
-              <strong>{content.sections.contact.address}:</strong> Calle San
-              Nicolás 5, 15001 A Coruña, España
+              <span className="font-medium">
+                {content.sections.contact.address}:
+              </span>{' '}
+              Calle San Nicolás 5, 15001 A Coruña, España
             </p>
           </div>
         </section>

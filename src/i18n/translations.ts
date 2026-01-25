@@ -110,11 +110,15 @@ export const translations = {
         minDaysNoticeSaturday:
           'Pedidos realizados en sábado después de las 12:00: recogida desde el martes siguiente',
         minDaysNotice:
-          'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrado.'
+          'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrado.',
+        termsRequired: 'Debes aceptar los términos y condiciones para continuar'
       },
       notePlaceholder: 'Por favor, incluye cualquier instrucción especial...',
       nonRefundableNotice:
-        'Los pedidos no son reembolsables debido a la naturaleza perecedera del producto.'
+        'Los pedidos no son reembolsables debido a la naturaleza perecedera del producto.',
+      privacyConsent: 'He leído y acepto los',
+      privacyPolicy: 'Política de Privacidad',
+      terms: 'Términos y Condiciones de Compra'
     },
     cart: {
       title: 'Tu Carrito',
@@ -455,11 +459,15 @@ export const translations = {
         minDaysNoticeSaturday:
           'Pedidos realizados en sábado despois das 12:00: recollida desde o martes seguinte',
         minDaysNotice:
-          'Os pedidos acéptanse con mínimo 2 días de antelación. Domingos pechado.'
+          'Os pedidos acéptanse con mínimo 2 días de antelación. Domingos pechado.',
+        termsRequired: 'Debes aceptar os términos e condicións para continuar'
       },
       notePlaceholder: 'Por favor, inclúe calquera instrución especial...',
       nonRefundableNotice:
-        'Os pedidos non son reembolsables debido á natureza perecedoeira do produto.'
+        'Os pedidos non son reembolsables debido á natureza perecedoeira do produto.',
+      privacyConsent: 'Lin e acepto os',
+      privacyPolicy: 'Política de Privacidade',
+      terms: 'Termos e Condicións de Compra'
     },
     cart: {
       title: 'O Teu Carriño',
@@ -796,11 +804,15 @@ export const translations = {
         minDaysNoticeSaturday:
           'Orders placed on Saturday after 12:00: pickup from the following Tuesday',
         minDaysNotice:
-          'Orders are accepted with a minimum of 2 days notice. Sundays closed.'
+          'Orders are accepted with a minimum of 2 days notice. Sundays closed.',
+        termsRequired: 'You must accept the terms and conditions to continue'
       },
       notePlaceholder: 'Please include any special instructions...',
       nonRefundableNotice:
-        'Orders are non-refundable due to the perishable nature of the product.'
+        'Orders are non-refundable due to the perishable nature of the product.',
+      privacyConsent: 'I have read and accept the',
+      privacyPolicy: 'Privacy Policy',
+      terms: 'Terms and Conditions of Purchase'
     },
     cart: {
       title: 'Your Cart',

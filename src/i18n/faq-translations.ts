@@ -61,26 +61,14 @@ export const faqs = [
   },
   {
     question: {
-      es: '¿Es posible modificar un pedido?',
-      gl: 'É posible modificar un pedido?',
-      en: 'Is it possible to modify an order?'
+      es: '¿Es posible modificar o cancelar un pedido?',
+      gl: 'É posible modificar ou cancelar un pedido?',
+      en: 'Is it possible to modify or cancel an order?'
     },
     answer: {
-      es: 'No podemos aceptar modificaciones durante las 24 horas previas a la fecha de recogida. Para cualquier modificación de tu pedido, deberás contactarnos por teléfono 881068091.',
-      gl: 'Non podemos aceptar modificacións durante as 24 horas previas á data de recollida. Para calquera modificación do teu pedido, deberás contactar connosco por teléfono 881068091.',
-      en: 'We cannot accept order modifications within 24 hours prior to the pickup date. For any changes to your order, please contact us by phone +34 881 06 80 91.'
-    }
-  },
-  {
-    question: {
-      es: '¿Cuál es la política de cancelación?',
-      gl: 'Cal é a política de cancelación?',
-      en: 'What is the cancellation policy?'
-    },
-    answer: {
-      es: 'Puedes cancelar tu pedido hasta 24 horas antes de la fecha de recogida. Los pedidos no son reembolsables debido a la naturaleza perecedera del producto.',
-      gl: 'Podes cancelar o teu pedido ata 24 horas antes da data de recollida. Os pedidos non son reembolsables debido á natureza perecedera do produto.',
-      en: 'You can cancel your order up to 24 hours before the pickup date. Orders are non-refundable due to the perishable nature of the product.'
+      es: 'No se aceptan modificaciones ni cancelaciones una vez confirmado el pago, debido a la naturaleza perecedera del producto y el proceso de elaboración artesanal. En caso de circunstancias excepcionales, contacta con nosotros por teléfono 881068091 o email ascremosas.co@gmail.com.',
+      gl: 'Non se aceptan modificacións nin cancelacións unha vez confirmado o pago, debido á natureza perecedera do produto e o proceso de elaboración artesanal. En caso de circunstancias excepcionais, contacta connosco por teléfono 881068091 ou email ascremosas.co@gmail.com.',
+      en: 'Modifications and cancellations are not accepted once payment has been confirmed, due to the perishable nature of the product and the artisanal production process. In case of exceptional circumstances, please contact us by phone +34 881 06 80 91 or email ascremosas.co@gmail.com.'
     }
   },
   {

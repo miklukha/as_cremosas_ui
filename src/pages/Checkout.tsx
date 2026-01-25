@@ -21,6 +21,7 @@ import { ShoppingBag, Loader2, ChevronLeft } from 'lucide-react';
 import { format, addDays, startOfDay } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { toast } from '@/components/ui/sonner';
+import { logBeginCheckout } from '@/lib/analytics';
 
 interface FormData {
   customerName: string;
@@ -65,6 +66,13 @@ export default function Checkout() {
     pickupTime: false,
     acceptTerms: false
   });
+
+  useEffect(() => {
+    const consent = localStorage.getItem('cookie-consent');
+    if (consent && JSON.parse(consent).analytics) {
+      logBeginCheckout(cart.totalPrice, cart.items);
+    }
+  }, []);
 
   useEffect(() => {
     if (cart.items.length === 0) {
@@ -496,7 +504,7 @@ export default function Checkout() {
                       htmlFor="morning"
                       className="cursor-pointer flex-1 normal-case"
                     >
-                      {t.checkout?.morning || 'Mañana (11:00 - 14:00)'}
+                      {t.checkout?.morning || 'Mañana '}
                     </Label>
                   </div>
                   <div
@@ -513,7 +521,7 @@ export default function Checkout() {
                       htmlFor="evening"
                       className="cursor-pointer flex-1 normal-case"
                     >
-                      {t.checkout?.evening || 'Tarde (16:00 - 20:00)'}
+                      {t.checkout?.evening || 'Tarde'}
                     </Label>
                   </div>
                 </RadioGroup>

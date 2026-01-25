@@ -18,7 +18,7 @@ import {
 } from '@/components/ui';
 import { ShoppingCart, Check, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { logAddToCart } from '@/lib/analytics';
+import { logAddToCart, logViewItem } from '@/lib/analytics';
 // import { toast } from '@/components/ui/sonner';
 
 type DietaryOption = 'normal' | 'glutenFree' | 'lactoseFree';
@@ -42,6 +42,24 @@ export default function ProductDetail() {
   );
   const [dietaryOption, setDietaryOption] = useState<DietaryOption>('normal');
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    if (!product) return;
+
+    const consent = localStorage.getItem('cookie-consent');
+    const isAnalyticsEnabled = consent ? JSON.parse(consent).analytics : false;
+
+    if (isAnalyticsEnabled) {
+      const basePrice =
+        product.variants.length > 0 ? product.variants[0]?.price : 0;
+
+      logViewItem({
+        id: product.id.toString(),
+        name: product.name,
+        price: basePrice
+      });
+    }
+  }, [product]);
 
   useEffect(() => {
     if (product && product.variants.length > 0) {
@@ -133,18 +151,24 @@ export default function ProductDetail() {
     };
 
     addToCart(cartItem);
-    logAddToCart({
-      id: product.id.toString(),
-      productVariantId: selectedVariant.id.toString(),
-      name: product.name,
-      variantName: selectedVariant.name,
-      size: selectedVariant.name,
-      price: getFinalPrice(),
-      quantity,
-      isGlutenFree: dietaryOption === 'glutenFree',
-      isLactoseFree: dietaryOption === 'lactoseFree',
-      isSugarFree: false
-    });
+
+    const consent = localStorage.getItem('cookie-consent');
+    const isAnalyticsEnabled = consent ? JSON.parse(consent).analytics : false;
+
+    if (isAnalyticsEnabled) {
+      logAddToCart({
+        id: product.id.toString(),
+        productVariantId: selectedVariant.id.toString(),
+        name: product.name,
+        variantName: selectedVariant.name,
+        size: selectedVariant.name,
+        price: getFinalPrice(),
+        quantity,
+        isGlutenFree: dietaryOption === 'glutenFree',
+        isLactoseFree: dietaryOption === 'lactoseFree',
+        isSugarFree: false
+      });
+    }
 
     // toast.info(t.cart?.itemAdded || 'Añadido al carrito', {
     //   description: `${product.name} - ${

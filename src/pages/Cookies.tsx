@@ -1,66 +1,175 @@
+import { useLanguage } from '@/context/LanguageContext';
+import { cookiesContent } from '@/i18n/cookies-translations-page';
+
 export default function Cookies() {
+  const { language } = useLanguage();
+  const content = cookiesContent[language];
+
   return (
-    <div className="container mx-auto py-12 max-w-4xl animate-fade-in">
-      <h1 className="font-serif text-5xl font-bold mb-8 text-foreground">
-        Política de Cookies
+    <div className="container mx-auto pt-8 sm:pt-10 pb-16 animate-fade-in max-w-4xl">
+      <h1 className="text-2xl sm:text-4xl mb-6 sm:mb-8 text-center">
+        {content.title}
       </h1>
 
       <div className="prose prose-lg max-w-none space-y-6 text-muted-foreground">
+        {/* Introducción */}
         <section>
-          <h2 className="font-serif text-2xl font-semibold text-foreground mb-4">
-            ¿Qué son las cookies?
+          <p className="leading-relaxed">{content.introduction}</p>
+        </section>
+
+        {/* 1. ¿Qué son las cookies? */}
+        <section>
+          <h2 className="text-2xl mb-3">
+            {content.sections.whatAreCookies.title}
           </h2>
-          <p>
-            Las cookies son pequeños archivos de texto que se almacenan en su
-            dispositivo cuando visita nuestro sitio web. Se utilizan para
-            mejorar la experiencia del usuario y el rendimiento del sitio.
+          <p className="leading-relaxed">
+            {content.sections.whatAreCookies.paragraph}
           </p>
         </section>
 
+        {/* 3. Base legal */}
         <section>
-          <h2 className="font-serif text-2xl font-semibold text-foreground mb-4">
-            Tipos de cookies que utilizamos
+          <h2 className="text-2xl mb-3">{content.sections.legalBasis.title}</h2>
+          <p className="leading-relaxed mb-2">
+            {content.sections.legalBasis.intro}
+          </p>
+          <ul className="list-disc list-inside space-y-2 ml-4">
+            {content.sections.legalBasis.items.map((item, index) => (
+              <li key={index} className="leading-relaxed">
+                <span className="font-medium">{item.title}:</span>{' '}
+                {item.description}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* 4. Cómo gestionar cookies */}
+        <section>
+          <h2 className="text-2xl mb-3">
+            {content.sections.manageCookies.title}
           </h2>
-
-          <h3 className="font-semibold text-lg text-foreground mt-4">
-            Cookies técnicas
-          </h3>
-          <p>
-            Son esenciales para el funcionamiento del sitio web. Permiten
-            funciones básicas como la navegación por las páginas y el acceso a
-            áreas seguras.
+          <p className="leading-relaxed mb-3">
+            {content.sections.manageCookies.intro}
           </p>
 
-          <h3 className="font-semibold text-lg text-foreground mt-4">
-            Cookies de preferencias
+          <h3 className="text-xl mb-2 mt-4">
+            {content.sections.manageCookies.panel.title}
           </h3>
-          <p>
-            Permiten que el sitio web recuerde información que cambia la forma
-            en que se comporta o se ve el sitio, como su idioma preferido.
+          <p className="leading-relaxed">
+            {content.sections.manageCookies.panel.description}
           </p>
 
-          <h3 className="font-semibold text-lg text-foreground mt-4">
-            Cookies analíticas
+          <h3 className="text-xl mb-2 mt-4">
+            {content.sections.manageCookies.browser.title}
           </h3>
-          <p>
-            Nos ayudan a entender cómo los visitantes interactúan con el sitio
-            web mediante la recopilación y el informe de información de forma
-            anónima.
+          <p className="leading-relaxed mb-3">
+            {content.sections.manageCookies.browser.intro}
+          </p>
+          <ul className="list-disc list-inside space-y-2 ml-4">
+            {content.sections.manageCookies.browser.browsers.map(
+              (browser, index) => (
+                <li key={index} className="leading-relaxed">
+                  <span className="font-medium">{browser.name}:</span>{' '}
+                  {browser.instructions}
+                </li>
+              )
+            )}
+          </ul>
+          <p className="leading-relaxed mt-3 font-medium">
+            {content.sections.manageCookies.browser.important}
           </p>
         </section>
 
+        {/* 5. Cookies de terceros */}
         <section>
-          <h2 className="font-serif text-2xl font-semibold text-foreground mb-4">
-            Gestión de cookies
+          <h2 className="text-2xl mb-3">
+            {content.sections.thirdPartyCookies.title}
           </h2>
-          <p>
-            Puede controlar y/o eliminar las cookies según desee. Puede eliminar
-            todas las cookies que ya están en su ordenador y puede configurar la
-            mayoría de los navegadores para evitar que se coloquen. Sin embargo,
-            si hace esto, puede que tenga que ajustar manualmente algunas
-            preferencias cada vez que visite un sitio y algunos servicios y
-            funcionalidades pueden no funcionar.
+          <p className="leading-relaxed">
+            {content.sections.thirdPartyCookies.paragraph}
           </p>
+        </section>
+
+        {/* 6. Cambios en la Política de Cookies */}
+        <section>
+          <h2 className="text-2xl mb-3">
+            {content.sections.modifications.title}
+          </h2>
+          <p className="leading-relaxed">
+            {content.sections.modifications.paragraph}
+          </p>
+        </section>
+
+        {/* 7. Más información */}
+        <section>
+          <h2 className="text-2xl mb-3">{content.sections.moreInfo.title}</h2>
+          <p className="leading-relaxed mb-2">
+            {content.sections.moreInfo.intro}{' '}
+            <a href="/privacy" className="text-accent hover:underline">
+              {content.sections.moreInfo.linkText}
+            </a>
+            .
+          </p>
+        </section>
+
+        {/* 8. Contacto */}
+        <section>
+          <h2 className="text-2xl mb-3">{content.sections.contact.title}</h2>
+          <p className="leading-relaxed mb-2">
+            {content.sections.contact.intro}
+          </p>
+          <div className="space-y-1">
+            <p>
+              <span className="font-medium">
+                {content.sections.contact.email}:
+              </span>{' '}
+              <a
+                href="mailto:ascremosas.co@gmail.com"
+                className="text-accent hover:underline"
+              >
+                ascremosas.co@gmail.com
+              </a>
+            </p>
+            <p>
+              <span className="font-medium">
+                {content.sections.contact.phone}:
+              </span>{' '}
+              <a
+                href="tel:+34881068091"
+                className="text-accent hover:underline"
+              >
+                +34 881 06 80 91
+              </a>
+            </p>
+            <p>
+              <span className="font-medium">
+                {content.sections.contact.address}:
+              </span>{' '}
+              Calle San Nicolás 5, 15001 A Coruña, España
+            </p>
+          </div>
+        </section>
+
+        {/* 9. Enlaces útiles */}
+        <section>
+          <h2 className="text-2xl mb-3">
+            {content.sections.usefulLinks.title}
+          </h2>
+          <ul className="list-disc list-inside space-y-2 ml-4">
+            {content.sections.usefulLinks.links.map((link, index) => (
+              <li key={index} className="leading-relaxed">
+                <span className="font-medium">{link.title}:</span>{' '}
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline break-all"
+                >
+                  {link.url}
+                </a>
+              </li>
+            ))}
+          </ul>
         </section>
       </div>
     </div>

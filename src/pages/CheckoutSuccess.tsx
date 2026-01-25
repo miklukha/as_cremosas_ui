@@ -5,6 +5,7 @@ import { useCart } from '@/context/CartContext';
 import { Button, Card, CardContent, Skeleton } from '@/components/ui';
 import { ShoppingBag, Home } from 'lucide-react';
 import { cartService } from '@/api/services/cart.service';
+import { logPurchase } from '@/lib/analytics';
 
 interface OrderDetails {
   orderId: string;
@@ -42,7 +43,17 @@ export default function CheckoutSuccess() {
           return;
         }
 
-        setOrderDetails(response.data);
+        const data = response.data;
+        setOrderDetails(data);
+
+        const consent = localStorage.getItem('cookie-consent');
+        const isAnalyticsEnabled = consent
+          ? JSON.parse(consent).analytics
+          : false;
+
+        if (isAnalyticsEnabled) {
+          logPurchase(data.orderId, parseFloat(data.totalPrice || '0'));
+        }
       } catch (error) {
         console.error('Error fetching order details:', error);
         navigate('/404', { replace: true });

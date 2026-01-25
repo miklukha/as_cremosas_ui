@@ -55,21 +55,36 @@ export const logAddToCart = (item: {
   });
 };
 
-// todo
-export const logPurchase = (orderId: string, value: number, items: any[]) => {
+export const logPurchase = (orderId: string, value: number) => {
   ReactGA.event('purchase', {
     transaction_id: orderId,
     value: value,
-    currency: 'EUR',
-    items: items
+    currency: 'EUR'
   });
 };
 
-// todo
 export const logBeginCheckout = (value: number, items: any[]) => {
   ReactGA.event('begin_checkout', {
     currency: 'EUR',
     value: value,
     items: items
+  });
+};
+
+export const logViewItem = (item: {
+  id: string;
+  name: string;
+  price: number;
+}) => {
+  ReactGA.event('view_item', {
+    currency: 'EUR',
+    value: item.price,
+    items: [
+      {
+        item_id: item.id,
+        item_name: item.name,
+        price: item.price
+      }
+    ]
   });
 };

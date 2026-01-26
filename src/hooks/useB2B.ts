@@ -24,10 +24,7 @@ export function useB2B(): UseB2BReturn {
     setSuccess(false);
 
     try {
-      await b2bService.sendInquiry({
-        ...data,
-        lang: language
-      });
+      await b2bService.sendInquiry(data);
 
       setSuccess(true);
     } catch (err) {

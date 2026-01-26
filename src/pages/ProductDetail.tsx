@@ -33,7 +33,7 @@ export default function ProductDetail() {
 
   // Fetch recommended products (same category)
   const { products: recommendedProducts } = useProducts({
-    limit: 4
+    limit: 5
   });
 
   // Local state
@@ -42,6 +42,12 @@ export default function ProductDetail() {
   );
   const [dietaryOption, setDietaryOption] = useState<DietaryOption>('normal');
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    setDietaryOption('normal');
+    setQuantity(1);
+    setSelectedVariantId(null);
+  }, [id]);
 
   useEffect(() => {
     if (!product) return;

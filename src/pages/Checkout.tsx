@@ -206,7 +206,7 @@ export default function Checkout() {
         if (!value) {
           return (
             validation?.termsRequired ||
-            'Debes aceptar la política de privacidad'
+            'Debes aceptar los términos y condiciones para continuar'
           );
         }
         break;
@@ -218,13 +218,33 @@ export default function Checkout() {
     field: keyof FormData,
     value: string | Date | boolean
   ) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    // Special handling for phone field - allow only digits and +
+    let processedValue = value;
+
+    if (field === 'customerPhone' && typeof value === 'string') {
+      // Remove all characters except digits and +
+      processedValue = value.replace(/[^\d+]/g, '');
+
+      // Ensure + can only be at the beginning
+      if (processedValue.includes('+')) {
+        const plusCount = (processedValue.match(/\+/g) || []).length;
+        if (plusCount > 1 || processedValue.indexOf('+') !== 0) {
+          // Remove all + signs and add one at the beginning if original had it at start
+          processedValue = processedValue.replace(/\+/g, '');
+          if (value.trim().startsWith('+')) {
+            processedValue = '+' + processedValue;
+          }
+        }
+      }
+    }
+
+    setFormData(prev => ({ ...prev, [field]: processedValue }));
     setTouched(prev => ({ ...prev, [field]: true }));
 
     if (field in errors) {
       const error = validateField(
         field as keyof FormErrors,
-        value as string | Date | undefined
+        processedValue as string | Date | undefined
       );
       setErrors(prev => ({ ...prev, [field]: error }));
     }

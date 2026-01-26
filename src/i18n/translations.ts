@@ -218,7 +218,9 @@ export const translations = {
         message: 'Detalles adicionales',
         messagePlaceholder: 'Cuéntanos más sobre tu proyecto...',
         submit: 'Enviar',
-        sending: 'Enviando...'
+        sending: 'Enviando...',
+        privacyConsent: 'He leído y acepto la',
+        privacyPolicy: 'Política de Privacidad'
       },
       validation: {
         companyNameRequired: 'El nombre de la empresa es obligatorio',
@@ -232,7 +234,8 @@ export const translations = {
           'Formato inválido. Usa solo + y números (ej: +34600000000 o 600000000)',
         orderSizeRequired: 'El volumen estimado es obligatorio',
         messageRequired: 'El mensaje es obligatorio',
-        messageMinLength: 'El mensaje debe tener al menos 10 caracteres'
+        messageMinLength: 'El mensaje debe tener al menos 10 caracteres',
+        privacyRequired: 'Debes aceptar la política de privacidad'
       },
       success: {
         title: '¡Consulta enviada!',
@@ -565,7 +568,9 @@ export const translations = {
         message: 'Detalles adicionais',
         messagePlaceholder: 'Cóntanos máis sobre o teu proxecto...',
         submit: 'Enviar',
-        sending: 'Enviando...'
+        sending: 'Enviando...',
+        privacyConsent: 'Lin e acepto a',
+        privacyPolicy: 'Política de Privacidade'
       },
       validation: {
         companyNameRequired: 'O nome da empresa é obrigatorio',
@@ -579,7 +584,8 @@ export const translations = {
           'Formato inválido. Usa só + e números (ex: +34600000000 ou 600000000)',
         orderSizeRequired: 'O volume estimado é obrigatorio',
         messageRequired: 'A mensaxe é obrigatoria',
-        messageMinLength: 'A mensaxe debe ter polo menos 10 caracteres'
+        messageMinLength: 'A mensaxe debe ter polo menos 10 caracteres',
+        privacyRequired: 'Debes aceptar a política de privacidade'
       },
       success: {
         title: 'Consulta enviada!',
@@ -910,7 +916,9 @@ export const translations = {
         message: 'Additional details',
         messagePlaceholder: 'Tell us more about your project...',
         submit: 'Send',
-        sending: 'Sending...'
+        sending: 'Sending...',
+        privacyConsent: 'I have read and accept the',
+        privacyPolicy: 'Privacy Policy'
       },
       validation: {
         companyNameRequired: 'Company name is required',
@@ -924,7 +932,8 @@ export const translations = {
           'Invalid format. Use only + and numbers (e.g., +34600000000 or 600000000)',
         orderSizeRequired: 'Estimated volume is required',
         messageRequired: 'Message is required',
-        messageMinLength: 'Message must be at least 10 characters'
+        messageMinLength: 'Message must be at least 10 characters',
+        privacyRequired: 'You must accept the privacy policy'
       },
       success: {
         title: 'Inquiry sent!',

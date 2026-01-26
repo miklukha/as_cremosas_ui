@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { useB2B } from '@/hooks/useB2B';
 import { toast } from '@/components/ui/sonner';
@@ -8,9 +9,11 @@ import {
   Label,
   Textarea,
   Card,
-  CardContent
+  CardContent,
+  Checkbox
 } from '@/components/ui';
 import { Building2, Users, TrendingUp } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface FormData {
   companyName: string;
@@ -18,6 +21,7 @@ interface FormData {
   email: string;
   phone: string;
   message: string;
+  acceptTerms: boolean;
 }
 
 interface FormErrors {
@@ -26,6 +30,7 @@ interface FormErrors {
   email?: string;
   phone?: string;
   message?: string;
+  acceptTerms?: string;
 }
 
 export default function B2B() {
@@ -37,7 +42,8 @@ export default function B2B() {
     contactPerson: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
+    acceptTerms: false
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -46,7 +52,8 @@ export default function B2B() {
     contactPerson: false,
     email: false,
     phone: false,
-    message: false
+    message: false,
+    acceptTerms: false
   });
 
   useEffect(() => {
@@ -62,14 +69,16 @@ export default function B2B() {
         contactPerson: '',
         email: '',
         phone: '',
-        message: ''
+        message: '',
+        acceptTerms: false
       });
       setTouched({
         companyName: false,
         contactPerson: false,
         email: false,
         phone: false,
-        message: false
+        message: false,
+        acceptTerms: false
       });
       setErrors({});
 
@@ -88,39 +97,38 @@ export default function B2B() {
 
   const validateField = (
     name: keyof FormData,
-    value: string
+    value: string | boolean | undefined
   ): string | undefined => {
     switch (name) {
       case 'companyName':
-        if (!value.trim()) {
+        if (!value || !(value as string).trim()) {
           return t.b2b?.validation?.companyNameRequired;
         }
-        if (value.trim().length < 2) {
+        if ((value as string).trim().length < 2) {
           return t.b2b?.validation?.companyNameMinLength;
         }
         break;
 
       case 'contactPerson':
-        if (!value.trim()) {
+        if (!value || !(value as string).trim()) {
           return t.b2b?.validation?.contactPersonRequired;
         }
-        if (value.trim().length < 2) {
+        if ((value as string).trim().length < 2) {
           return t.b2b?.validation?.contactPersonMinLength;
         }
         break;
 
       case 'email':
-        if (!value.trim()) {
+        if (!value || !(value as string).trim()) {
           return t.b2b?.validation?.emailRequired;
         }
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value as string)) {
           return t.b2b?.validation?.emailInvalid;
         }
         break;
 
       case 'phone':
-        if (!value.trim()) {
+        if (typeof value !== 'string' || !value.trim()) {
           return t.b2b?.validation?.phoneRequired;
         }
         // Phone validation: only digits and + sign
@@ -144,7 +152,14 @@ export default function B2B() {
           return t.b2b?.validation?.phoneInvalid;
         }
         break;
+
+      case 'acceptTerms':
+        if (!value) {
+          return t.b2b?.validation?.privacyRequired;
+        }
+        break;
     }
+
     return undefined;
   };
 
@@ -180,6 +195,15 @@ export default function B2B() {
     }
   };
 
+  const handleCheckboxChange = (checked: boolean) => {
+    setFormData(prev => ({ ...prev, acceptTerms: checked }));
+
+    if (touched.acceptTerms) {
+      const error = validateField('acceptTerms', checked);
+      setErrors(prev => ({ ...prev, acceptTerms: error }));
+    }
+  };
+
   const handleBlur = (
     e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -190,14 +214,29 @@ export default function B2B() {
     setErrors(prev => ({ ...prev, [name]: error }));
   };
 
+  const handleCheckboxBlur = () => {
+    setTouched(prev => ({ ...prev, acceptTerms: true }));
+    const error = validateField('acceptTerms', formData.acceptTerms);
+    setErrors(prev => ({ ...prev, acceptTerms: error }));
+  };
+
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
     let isValid = true;
 
-    (Object.keys(formData) as Array<keyof FormData>).forEach(key => {
-      const error = validateField(key, formData[key]);
+    const fields: Array<keyof FormErrors> = [
+      'companyName',
+      'contactPerson',
+      'email',
+      'phone',
+      'acceptTerms'
+    ];
+
+    fields.forEach(field => {
+      const value = formData[field];
+      const error = validateField(field, value);
       if (error) {
-        newErrors[key] = error;
+        newErrors[field] = error;
         isValid = false;
       }
     });
@@ -208,8 +247,10 @@ export default function B2B() {
       contactPerson: true,
       email: true,
       phone: true,
-      message: true
+      message: true,
+      acceptTerms: true
     });
+
     return isValid;
   };
 
@@ -485,7 +526,7 @@ export default function B2B() {
                     aria-describedby={
                       errors.phone && touched.phone ? 'phone-error' : undefined
                     }
-                    className={`mt-1.5 bg-secondary/30${
+                    className={`mt-1.5 bg-secondary/30 ${
                       errors.phone && touched.phone ? 'border-destructive' : ''
                     }`}
                     disabled={loading}
@@ -541,6 +582,53 @@ export default function B2B() {
                     role="alert"
                   >
                     {errors.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Privacy Policy Consent */}
+              <div>
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    id="acceptTerms"
+                    checked={formData.acceptTerms}
+                    onCheckedChange={handleCheckboxChange}
+                    onBlur={handleCheckboxBlur}
+                    className={cn(
+                      errors.acceptTerms &&
+                        touched.acceptTerms &&
+                        'border-destructive'
+                    )}
+                    aria-invalid={!!(errors.acceptTerms && touched.acceptTerms)}
+                    aria-describedby={
+                      errors.acceptTerms && touched.acceptTerms
+                        ? 'acceptTerms-error'
+                        : undefined
+                    }
+                    disabled={loading}
+                  />
+                  <Label
+                    htmlFor="acceptTerms"
+                    className="font-normal cursor-pointer leading-tight text-sm"
+                  >
+                    {t.b2b?.form?.privacyConsent}{' '}
+                    <Link
+                      to="/privacy"
+                      className="text-accent underline underline-offset-2 hover:text-accent/80"
+                      target="_blank"
+                    >
+                      {t.b2b?.form?.privacyPolicy}
+                    </Link>{' '}
+                    <span className="text-destructive">*</span>
+                  </Label>
+                </div>
+                {errors.acceptTerms && touched.acceptTerms && (
+                  <p
+                    id="acceptTerms-error"
+                    className="text-sm text-destructive mt-1.5"
+                    role="alert"
+                  >
+                    {errors.acceptTerms}
                   </p>
                 )}
               </div>

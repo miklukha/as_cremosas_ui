@@ -6,6 +6,7 @@ import { Button, Card, CardContent, Skeleton } from '@/components/ui';
 import { ShoppingBag, Home } from 'lucide-react';
 import { cartService } from '@/api/services/cart.service';
 import { logPurchase } from '@/lib/analytics';
+import { type Language } from '@/i18n/translations';
 
 interface OrderDetails {
   orderId: string;
@@ -16,7 +17,7 @@ interface OrderDetails {
 }
 
 export default function CheckoutSuccess() {
-  const { t } = useLanguage();
+  const { t, setLanguage } = useLanguage();
   const { clearCart } = useCart();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -25,8 +26,13 @@ export default function CheckoutSuccess() {
   const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
 
   const sessionId = searchParams.get('session_id');
+  const lang = searchParams.get('lang');
 
   useEffect(() => {
+    if (lang && typeof setLanguage === 'function') {
+      setLanguage(lang as Language);
+    }
+
     if (!sessionId) {
       navigate('/404', { replace: true });
       return;

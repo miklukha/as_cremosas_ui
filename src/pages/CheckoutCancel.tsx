@@ -4,17 +4,26 @@ import { useLanguage } from '@/context/LanguageContext';
 import { Button, Card, CardContent, Skeleton } from '@/components/ui';
 import { ArrowLeft, RefreshCw } from 'lucide-react';
 import { cartService } from '@/api/services/cart.service';
+import { type Language } from '@/i18n/translations';
 
 export default function CheckoutCancel() {
-  const { t } = useLanguage();
+  const { t, setLanguage } = useLanguage();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(true);
 
   const orderId = searchParams.get('order_id');
+  const lang = searchParams.get('lang');
+
+  console.log(orderId);
+  console.log(lang);
 
   useEffect(() => {
+    if (lang && typeof setLanguage === 'function') {
+      setLanguage(lang as Language);
+    }
+
     if (!orderId) {
       navigate('/404', { replace: true });
       return;

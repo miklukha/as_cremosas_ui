@@ -19,7 +19,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger
 } from '@/components/ui';
-import { ShoppingBag, Trash2, ArrowRight, ShoppingCart } from 'lucide-react';
+import {
+  ShoppingBag,
+  Trash2,
+  ArrowRight,
+  ShoppingCart,
+  Wrench
+} from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function Cart() {
@@ -273,6 +279,28 @@ export default function Cart() {
                   {cart.totalPrice.toFixed(2)}€
                 </span>
               </div>
+
+              {/* Maintenance Notice */}
+              {/* <div className=" border rounded-lg p-4 mt-4">
+                <div className="flex items-start gap-3">
+                  <div className="shrink-0 mt-0.5">
+                    <Wrench className="h-5 w-5 text-accent" />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium ">
+                      {'Trabajos técnicos en curso'}
+                    </p>
+                    <p className="text-xs text-foreground leading-relaxed">
+                      {
+                        'Actualmente estamos realizando mejoras en nuestro sistema de pagos. Muy pronto podrás completar tu pedido online.'
+                      }
+                    </p>
+                    <p className="text-xs text-accent italic">
+                      {'Disculpa las molestias. ¡Gracias por tu paciencia!'}
+                    </p>
+                  </div>
+                </div>
+              </div> */}
 
               <Button className="w-full mt-2" size="lg" asChild>
                 <Link to="/checkout">

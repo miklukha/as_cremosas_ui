@@ -250,6 +250,29 @@ export default function Checkout() {
     }
   };
 
+  const submitTPVForm = (tpv: {
+    actionURL: string;
+    fields: Record<string, string>;
+  }) => {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = tpv.actionURL;
+    form.style.display = 'none';
+
+    Object.entries(tpv.fields).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = String(value);
+        form.appendChild(input);
+      }
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+  };
+
   const handleSubmitOrder = async () => {
     if (!validateForm()) return;
 
@@ -278,12 +301,29 @@ export default function Checkout() {
         lang: language
       };
 
-      const response = await cartService.createOrder(orderRequest);
-      console.log(response);
-      const checkoutUrl = response.data?.checkoutUrl;
+      // const response = await cartService.createOrder(orderRequest);
+      // console.log(response);
+      // const checkoutUrl = response.data?.checkoutUrl;
 
-      if (!!checkoutUrl) {
-        window.location.href = checkoutUrl;
+      // if (!!checkoutUrl) {
+      //   window.location.href = checkoutUrl;
+      // }
+      // if (response.data?.tpv) {
+      //   // Створюємо і відправляємо форму на TPV Cecabank
+      //   submitTPVForm(response.data.tpv);
+      // } else {
+      //   throw new Error('Invalid response from server');
+      // }
+
+      const response = await cartService.createOrder(orderRequest);
+      const tpvData = response?.data?.tpv;
+
+      if (tpvData && tpvData?.actionURL && tpvData?.fields) {
+        console.log('Submitting TPV form to:', tpvData.actionURL);
+        submitTPVForm(tpvData);
+      } else {
+        console.error('TPV data not found in response:', response);
+        throw new Error('Invalid response from server - TPV data missing');
       }
     } catch (error) {
       console.error('Error creating order:', error);
@@ -292,9 +332,12 @@ export default function Checkout() {
           t.checkout?.orderErrorMessage ||
           'Ha ocurrido un error. Por favor, inténtalo de nuevo.'
       });
-    } finally {
+
       setIsSubmitting(false);
     }
+    // finally {
+    //   setIsSubmitting(false);
+    // }
   };
 
   const getDietaryLabel = (item: {

@@ -50,10 +50,36 @@ export interface CreateOrderRequest {
   lang: 'es' | 'gl' | 'en';
 }
 
+// export interface CreateOrderResponse {
+//   status: 'success' | 'error';
+//   message: string | null;
+//   data: { checkoutUrl: string } | null;
+// }
 export interface CreateOrderResponse {
   status: 'success' | 'error';
   message: string | null;
-  data: { checkoutUrl: string } | null;
+  data: {
+    orderId: string;
+    tpv: {
+      actionURL: string;
+      fields: {
+        MerchantID: string;
+        AcquirerBIN: string;
+        TerminalID: string;
+        Num_operacion: string;
+        Importe: string;
+        TipoMoneda: string;
+        Exponente: string;
+        Cifrado: string;
+        Pago_soportado: string;
+        Idioma: string;
+        URL_OK: string;
+        URL_NOK: string;
+        Firma: string;
+        Descripcion?: string;
+      };
+    };
+  };
 }
 
 export interface VerifySessionResponse {

@@ -82,12 +82,13 @@ export interface CreateOrderResponse {
   };
 }
 
-export interface VerifySessionResponse {
+export interface FindOrderResponse {
   status: 'success' | 'error';
   message: string | null;
   data: {
     orderId: string;
     email?: string;
+    status?: string;
     pickupDate?: string;
     pickupTime?: string;
     totalPrice?: string;

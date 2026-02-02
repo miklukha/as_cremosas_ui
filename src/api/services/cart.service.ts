@@ -2,7 +2,7 @@ import axiosClient from '../config/axiosClient';
 import {
   type CreateOrderRequest,
   type CreateOrderResponse,
-  type VerifySessionResponse
+  type FindOrderResponse
 } from '../types/cart.types';
 
 class CartService {
@@ -17,12 +17,9 @@ class CartService {
     return response.data;
   }
 
-  async verifySession(
-    sessionId: string | null
-  ): Promise<VerifySessionResponse> {
-    const response = await axiosClient.post<VerifySessionResponse>(
-      `${this.basePath}/verify/session`,
-      { sessionId }
+  async findOrder(orderId: string | null): Promise<FindOrderResponse> {
+    const response = await axiosClient.get<FindOrderResponse>(
+      `${this.basePath}/find/${orderId}`
     );
     return response.data;
   }

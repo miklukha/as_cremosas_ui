@@ -344,12 +344,17 @@ export const translations = {
       possibleReasons: '¿Por qué se canceló el pago?',
       reasonsList: 'Posibles razones',
       reason1: 'Cancelaste el proceso manualmente',
-      reason2: 'La sesión de pago expiró',
-      reason3: 'Hubo un problema con la conexión',
+      reason2: 'Datos de tarjeta incorrectos (número, CVV o fecha)',
+      reason3: 'Fondos insuficientes en la tarjeta',
+      reason4: 'El banco rechazó la transacción',
+      reason5: 'La sesión de pago expiró',
       retryPayment: 'Intentar de nuevo',
       backToCart: 'Al carrito',
       needHelp: '¿Necesitas ayuda?',
-      contactSupport: 'Contacta con nosotros'
+      contactSupport: 'Contacta con nosotros',
+      verifying: 'Verificando estado del pedido...',
+      paymentSuccess: 'Pago realizado con éxito',
+      redirecting: 'Redirigiendo a la página de éxito...'
     }
   },
   gl: {
@@ -692,13 +697,18 @@ export const translations = {
         'A túa tarxeta non foi cobrada. Os produtos seguen no teu carriño.',
       possibleReasons: '¿Por que se cancelou o pago?',
       reasonsList: 'Posibles razóns',
-      reason1: 'Cancelaches o proceso manualmente',
-      reason2: 'A sesión de pago expirou',
-      reason3: 'Houbo un problema coa conexión',
+      reason1: 'You cancelled the process manually',
+      reason2: 'Incorrect card details (number, CVV or expiry date)',
+      reason3: 'Insufficient funds on the card',
+      reason4: 'The bank declined the transaction',
+      reason5: 'The payment session expired',
       retryPayment: 'Intentar de novo',
       backToCart: 'Ao carriño',
       needHelp: '¿Necesitas axuda?',
-      contactSupport: 'Contacta connosco'
+      contactSupport: 'Contacta connosco',
+      verifying: 'Verificando estado do pedido...',
+      paymentSuccess: 'Pago realizado con éxito',
+      redirecting: 'Redirixindo á páxina de éxito...'
     }
   },
   en: {
@@ -1042,12 +1052,17 @@ export const translations = {
       possibleReasons: 'Why was the payment cancelled?',
       reasonsList: 'Possible reasons',
       reason1: 'You cancelled the process manually',
-      reason2: 'The payment session expired',
-      reason3: 'There was a connection problem',
+      reason2: 'Incorrect card details (number, CVV or expiry date)',
+      reason3: 'Insufficient funds on the card',
+      reason4: 'The bank declined the transaction',
+      reason5: 'The payment session expired',
       retryPayment: 'Try again',
       backToCart: 'To cart',
       needHelp: 'Need help?',
-      contactSupport: 'Contact us'
+      contactSupport: 'Contact us',
+      verifying: 'Verifying order status...',
+      paymentSuccess: 'Payment successful',
+      redirecting: 'Redirecting to success page...'
     }
   }
 };

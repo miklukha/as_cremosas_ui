@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams, useNavigate } from 'react-router-dom';
+import {
+  Link,
+  useSearchParams,
+  useNavigate,
+  useLocation
+} from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
 import { Button, Card, CardContent, Skeleton } from '@/components/ui';
@@ -21,28 +26,52 @@ export default function CheckoutSuccess() {
   const { clearCart } = useCart();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isLoading, setIsLoading] = useState(true);
   const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
 
-  const sessionId = searchParams.get('session_id');
+  const orderId = searchParams.get('order_id');
   const lang = searchParams.get('lang');
+
+  const passedOrderDetails = (location.state as { orderDetails?: OrderDetails })
+    ?.orderDetails;
+
+  console.log(passedOrderDetails);
 
   useEffect(() => {
     if (lang && typeof setLanguage === 'function') {
       setLanguage(lang as Language);
     }
 
-    if (!sessionId) {
+    if (!orderId) {
       navigate('/404', { replace: true });
       return;
     }
 
     clearCart();
 
+    if (passedOrderDetails && passedOrderDetails.orderId) {
+      setOrderDetails(passedOrderDetails);
+      setIsLoading(false);
+
+      // Analytics
+      const consent = localStorage.getItem('cookie-consent');
+      const isAnalyticsEnabled = consent
+        ? JSON.parse(consent).analytics
+        : false;
+      if (isAnalyticsEnabled) {
+        logPurchase(
+          passedOrderDetails.orderId,
+          parseFloat(passedOrderDetails.totalPrice || '0')
+        );
+      }
+      return;
+    }
+
     const fetchOrderDetails = async () => {
       try {
-        const response = await cartService.verifySession(sessionId);
+        const response = await cartService.findOrder(orderId);
 
         if (!response.data || !response.data.orderId) {
           navigate('/404', { replace: true });
@@ -50,13 +79,19 @@ export default function CheckoutSuccess() {
         }
 
         const data = response.data;
-        setOrderDetails(data);
+        setOrderDetails({
+          orderId: data.orderId,
+          email: data.email,
+          pickupDate: data.pickupDate,
+          pickupTime: data.pickupTime,
+          totalPrice: data.totalPrice
+        });
 
+        // Analytics
         const consent = localStorage.getItem('cookie-consent');
         const isAnalyticsEnabled = consent
           ? JSON.parse(consent).analytics
           : false;
-
         if (isAnalyticsEnabled) {
           logPurchase(data.orderId, parseFloat(data.totalPrice || '0'));
         }
@@ -73,9 +108,8 @@ export default function CheckoutSuccess() {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [sessionId, clearCart, navigate]);
+  }, [orderId, lang, clearCart, navigate, setLanguage, passedOrderDetails]);
 
-  // Форматування дати
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('es-ES', {
       day: '2-digit',
@@ -163,10 +197,7 @@ export default function CheckoutSuccess() {
                     <dt className="text-xs sm:text-sm text-muted-foreground">
                       {t.checkout?.email || 'Correo electrónico'}
                     </dt>
-                    <dd
-                      className="text-xs sm:text-sm break-all"
-                      aria-label={`Email: ${orderDetails.email}`}
-                    >
+                    <dd className="text-xs sm:text-sm break-all">
                       {orderDetails.email}
                     </dd>
                   </div>
@@ -205,10 +236,7 @@ export default function CheckoutSuccess() {
                     <dt className="text-sm font-medium">
                       {t.checkout?.total || 'Total'}
                     </dt>
-                    <dd
-                      className="text-sm sm:text-base font-semibold text-accent"
-                      aria-label={`Total: ${orderDetails.totalPrice} euros`}
-                    >
+                    <dd className="text-sm sm:text-base font-semibold text-accent">
                       {orderDetails.totalPrice}€
                     </dd>
                   </div>
@@ -234,14 +262,9 @@ export default function CheckoutSuccess() {
             }
           >
             <Button size="lg" className="flex-1 min-h-10" asChild>
-              <Link
-                to="/shop"
-                aria-label={
-                  t.cart?.continueShopping || 'Continuar comprando en la tienda'
-                }
-              >
+              <Link to="/shop">
                 <ShoppingBag className="h-5 w-5" aria-hidden="true" />
-                {t.cart?.continueShopping || 'continuar comprando'}
+                {t.cart?.continueShopping || 'Continuar comprando'}
               </Link>
             </Button>
             <Button
@@ -250,12 +273,9 @@ export default function CheckoutSuccess() {
               className="flex-1 min-h-10"
               asChild
             >
-              <Link
-                to="/"
-                aria-label={t.nav?.home || 'Volver a la página de inicio'}
-              >
-                <Home className="h-5 w-5 " aria-hidden="true" />
-                {t.nav?.home || 'inicio'}
+              <Link to="/">
+                <Home className="h-5 w-5" aria-hidden="true" />
+                {t.nav?.home || 'Inicio'}
               </Link>
             </Button>
           </nav>
@@ -267,10 +287,7 @@ export default function CheckoutSuccess() {
         {t.checkoutSuccess?.questions || '¿Tienes alguna pregunta?'}{' '}
         <Link
           to="/contact"
-          className="underline underline-offset-4 hover:text-foreground focus:text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 rounded transition-colors"
-          aria-label={
-            t.checkoutSuccess?.contactUs || 'Ir a la página de contacto'
-          }
+          className="underline underline-offset-4 hover:text-foreground"
         >
           {t.checkoutSuccess?.contactUs || 'Contáctanos'}
         </Link>

@@ -319,7 +319,7 @@ export default function Checkout() {
       const tpvData = response?.data?.tpv;
 
       if (tpvData && tpvData?.actionURL && tpvData?.fields) {
-        console.log('Submitting TPV form to:', tpvData.actionURL);
+        // console.log('Submitting TPV form to:', tpvData.actionURL);
         submitTPVForm(tpvData);
       } else {
         console.error('TPV data not found in response:', response);

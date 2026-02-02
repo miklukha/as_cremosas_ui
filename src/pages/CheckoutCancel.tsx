@@ -2,22 +2,21 @@ import { useEffect, useState } from 'react';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button, Card, CardContent, Skeleton } from '@/components/ui';
-import { ArrowLeft, RefreshCw } from 'lucide-react';
+import { ArrowLeft, RefreshCw, Check } from 'lucide-react';
 import { cartService } from '@/api/services/cart.service';
 import { type Language } from '@/i18n/translations';
+
+type PageStatus = 'loading' | 'paid' | 'cancelled';
 
 export default function CheckoutCancel() {
   const { t, setLanguage } = useLanguage();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [pageStatus, setPageStatus] = useState<PageStatus>('loading');
 
   const orderId = searchParams.get('order_id');
   const lang = searchParams.get('lang');
-
-  console.log(orderId);
-  console.log(lang);
 
   useEffect(() => {
     if (lang && typeof setLanguage === 'function') {
@@ -29,31 +28,62 @@ export default function CheckoutCancel() {
       return;
     }
 
-    const cancelOrder = async () => {
+    const checkOrderStatus = async () => {
       try {
-        await cartService.cancelOrder(orderId);
+        const response = await cartService.findOrder(orderId);
+        const orderData = response.data;
+
+        if (orderData?.status === 'paid') {
+          setPageStatus('paid');
+
+          const params = new URLSearchParams({
+            order_id: orderId,
+            lang: lang || 'es'
+          });
+
+          setTimeout(() => {
+            navigate(`/checkout/success?${params.toString()}`, {
+              replace: true,
+              state: {
+                orderDetails: {
+                  orderId: orderData.orderId,
+                  email: orderData.email,
+                  pickupDate: orderData.pickupDate,
+                  pickupTime: orderData.pickupTime,
+                  totalPrice: orderData.totalPrice
+                }
+              }
+            });
+          }, 1500);
+        } else {
+          setPageStatus('cancelled');
+
+          try {
+            await cartService.cancelOrder(orderId);
+          } catch (cancelError) {
+            console.error('Error cancelling order:', cancelError);
+          }
+        }
       } catch (error) {
-        console.error('Error cancelling order:', error);
-      } finally {
-        setIsLoading(false);
+        console.error('Error checking order status:', error);
+        setPageStatus('cancelled');
       }
     };
 
     const timer = setTimeout(() => {
-      cancelOrder();
+      checkOrderStatus();
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [orderId, navigate]);
+  }, [orderId, lang, navigate, setLanguage]);
 
-  if (isLoading) {
+  if (pageStatus === 'loading') {
     return (
       <main
         className="container mx-auto px-4 py-12 max-w-2xl animate-fade-in"
         role="status"
         aria-live="polite"
         aria-busy="true"
-        aria-label={t.checkoutCancel?.loading || 'Cargando...'}
       >
         <Card className="bg-primary-foreground">
           <CardContent className="py-12 space-y-6">
@@ -62,13 +92,27 @@ export default function CheckoutCancel() {
             </div>
             <Skeleton className="h-8 w-3/4 mx-auto" aria-hidden="true" />
             <Skeleton className="h-4 w-1/2 mx-auto" aria-hidden="true" />
-            <div className="space-y-3 pt-4">
-              <Skeleton className="h-12 w-full" aria-hidden="true" />
-              <Skeleton className="h-12 w-full" aria-hidden="true" />
-            </div>
-            <span className="sr-only">
-              {t.checkoutCancel?.loading || 'Cargando...'}
-            </span>
+            <p className="text-center text-muted-foreground">
+              {t.checkoutCancel?.verifying || 'Verificando estado del pago...'}
+            </p>
+          </CardContent>
+        </Card>
+      </main>
+    );
+  }
+
+  if (pageStatus === 'paid') {
+    return (
+      <main className="container mx-auto px-4 py-12 max-w-2xl animate-fade-in">
+        <Card className="bg-primary-foreground">
+          <CardContent className="py-12 text-center space-y-4">
+            <h1 className="text-xl sm:text-2xl font-semibold text-green-600">
+              {t.checkoutCancel?.paymentSuccess || '¡Pago completado!'}
+            </h1>
+            <p className="text-muted-foreground">
+              {t.checkoutCancel?.redirecting ||
+                'Redirigiendo a la página de confirmación...'}
+            </p>
           </CardContent>
         </Card>
       </main>
@@ -81,7 +125,7 @@ export default function CheckoutCancel() {
       role="main"
       aria-labelledby="checkout-cancel-title"
     >
-      <Card className="bg-primary-foreground overflow-hidden ">
+      <Card className="bg-primary-foreground overflow-hidden">
         <CardContent className="p-4 sm:p-6 lg:p-8">
           {/* Cancel Message */}
           <header className="text-center space-y-2 mb-5">
@@ -132,14 +176,14 @@ export default function CheckoutCancel() {
               className="text-sm font-medium text-center mb-3"
             >
               {t.checkoutCancel?.possibleReasons ||
-                '¿Por qué se canceló el pago?'}
+                '¿Por qué no se completó el pago?'}
             </h2>
             <ul
               className="text-sm text-muted-foreground space-y-2"
               aria-label={t.checkoutCancel?.reasonsList || 'Posibles razones'}
             >
-              <li className="flex items-start gap-2 text-center">
-                <span className="text-muted-foreground/60 " aria-hidden="true">
+              <li className="flex items-start gap-2">
+                <span className="text-muted-foreground/60" aria-hidden="true">
                   •
                 </span>
                 <span>
@@ -152,7 +196,8 @@ export default function CheckoutCancel() {
                   •
                 </span>
                 <span>
-                  {t.checkoutCancel?.reason2 || 'La sesión de pago expiró'}
+                  {t.checkoutCancel?.reason2 ||
+                    'Datos de tarjeta incorrectos (número, CVV o fecha)'}
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -161,7 +206,24 @@ export default function CheckoutCancel() {
                 </span>
                 <span>
                   {t.checkoutCancel?.reason3 ||
-                    'Hubo un problema con la conexión'}
+                    'Fondos insuficientes en la tarjeta'}
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-muted-foreground/60" aria-hidden="true">
+                  •
+                </span>
+                <span>
+                  {t.checkoutCancel?.reason4 ||
+                    'El banco rechazó la transacción'}
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-muted-foreground/60" aria-hidden="true">
+                  •
+                </span>
+                <span>
+                  {t.checkoutCancel?.reason5 || 'La sesión de pago expiró'}
                 </span>
               </li>
             </ul>
@@ -183,7 +245,7 @@ export default function CheckoutCancel() {
               >
                 <RefreshCw className="h-5 w-5 shrink-0" aria-hidden="true" />
                 <span className="truncate">
-                  {t.checkoutCancel?.retryPayment || 'intentar de nuevo'}
+                  {t.checkoutCancel?.retryPayment || 'Intentar de nuevo'}
                 </span>
               </Link>
             </Button>
@@ -202,7 +264,7 @@ export default function CheckoutCancel() {
               >
                 <ArrowLeft className="h-5 w-5 shrink-0" aria-hidden="true" />
                 <span className="truncate">
-                  {t.checkoutCancel?.backToCart || 'volver al carrito'}
+                  {t.checkoutCancel?.backToCart || 'Volver al carrito'}
                 </span>
               </Link>
             </Button>
@@ -216,9 +278,6 @@ export default function CheckoutCancel() {
         <Link
           to="/contact"
           className="underline underline-offset-4 hover:text-foreground focus:text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 rounded transition-colors"
-          aria-label={
-            t.checkoutCancel?.contactSupport || 'Ir a la página de contacto'
-          }
         >
           {t.checkoutCancel?.contactSupport || 'Contacta con nosotros'}
         </Link>

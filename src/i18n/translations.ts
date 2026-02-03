@@ -1,3 +1,4 @@
+import { EMAIL, PHONE } from '@/helpers/constants';
 export type Language = 'es' | 'gl' | 'en';
 
 export const translations = {
@@ -266,8 +267,8 @@ export const translations = {
       rights: 'Todos los derechos reservados',
       contact: 'Contactos',
       social: 'Redes sociales',
-      phoneLabel: 'Llamar al 881068091',
-      emailLabel: 'Enviar correo a ascremosas.co@gmail.com',
+      phoneLabel: `Llamar al ${PHONE}`,
+      emailLabel: `Enviar correo a ${EMAIL}`,
       instagramLabel: 'Visitar nuestro Instagram',
       facebookLabel: 'Visitar nuestro Facebook',
       tiktokLabel: 'Visitar nuestro TikTok',
@@ -621,8 +622,8 @@ export const translations = {
       rights: 'Todos os dereitos reservados',
       contact: 'Contactos',
       social: 'Redes sociales',
-      phoneLabel: 'Chamar ao  881068091',
-      emailLabel: 'Enviar correo a ascremosas.co@gmail.com',
+      phoneLabel: `Chamar ao ${PHONE}`,
+      emailLabel: `Enviar correo a ${EMAIL}`,
       instagramLabel: 'Visitar o noso Instagram',
       facebookLabel: 'Visitar o noso Facebook',
       tiktokLabel: 'Visitar o noso TikTok',
@@ -974,8 +975,8 @@ export const translations = {
       rights: 'All rights reserved',
       contact: 'Contacts',
       social: 'Social media',
-      phoneLabel: 'Call +34881068091',
-      emailLabel: 'Send email to ascremosas.co@gmail.com',
+      phoneLabel: `Call ${PHONE}`,
+      emailLabel: `Send email to ${EMAIL}`,
       instagramLabel: 'Visit our Instagram',
       facebookLabel: 'Visit our Facebook',
       tiktokLabel: 'Visit our TikTok',

@@ -13,6 +13,7 @@ import { useContact } from '@/hooks/useContact';
 //   AlertDescription
 // } from '@/components/ui';
 import { MapPin, Mail, Phone, CheckCircle2, AlertCircle } from 'lucide-react';
+import { EMAIL, PHONE } from '@/helpers/constants';
 
 // interface FormData {
 //   name: string;
@@ -166,11 +167,11 @@ export default function Contact() {
                 </div>
                 <div className="flex-1 pt-1">
                   <a
-                    href="tel:881068091"
+                    href={`tel:${PHONE}`}
                     className="text-sm sm:text-base text-muted-foreground hover:scale-105 transition-all duration-300 inline-block"
-                    aria-label="Llamar al 881068091"
+                    aria-label={`Llamar al ${PHONE}`}
                   >
-                    881068091
+                    {PHONE}
                   </a>
                 </div>
               </div>
@@ -185,11 +186,11 @@ export default function Contact() {
                 </div>
                 <div className="flex-1 pt-1">
                   <a
-                    href="mailto:ascremosas.co@gmail.com"
+                    href={`mailto:${EMAIL}`}
                     className="text-sm sm:text-base text-muted-foreground hover:scale-105 transition-all duration-300 break-all inline-block"
-                    aria-label="Enviar email a ascremosas.co@gmail.com"
+                    aria-label={`Enviar email a ${EMAIL}`}
                   >
-                    ascremosas.co@gmail.com
+                    {EMAIL}
                   </a>
                 </div>
               </div>

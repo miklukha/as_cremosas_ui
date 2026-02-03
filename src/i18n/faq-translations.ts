@@ -1,3 +1,5 @@
+import { EMAIL, PHONE } from '@/helpers/constants';
+
 export const faqs = [
   {
     question: {
@@ -66,9 +68,9 @@ export const faqs = [
       en: 'Is it possible to modify or cancel an order?'
     },
     answer: {
-      es: 'No se aceptan modificaciones ni cancelaciones una vez confirmado el pago, debido a la naturaleza perecedera del producto y el proceso de elaboración artesanal. En caso de circunstancias excepcionales, contacta con nosotros por teléfono 881068091 o email ascremosas.co@gmail.com.',
-      gl: 'Non se aceptan modificacións nin cancelacións unha vez confirmado o pago, debido á natureza perecedera do produto e o proceso de elaboración artesanal. En caso de circunstancias excepcionais, contacta connosco por teléfono 881068091 ou email ascremosas.co@gmail.com.',
-      en: 'Modifications and cancellations are not accepted once payment has been confirmed, due to the perishable nature of the product and the artisanal production process. In case of exceptional circumstances, please contact us by phone +34 881 06 80 91 or email ascremosas.co@gmail.com.'
+      es: `No se aceptan modificaciones ni cancelaciones una vez confirmado el pago, debido a la naturaleza perecedera del producto y el proceso de elaboración artesanal. En caso de circunstancias excepcionales, contacta con nosotros por teléfono ${PHONE} o email ${EMAIL}.`,
+      gl: `Non se aceptan modificacións nin cancelacións unha vez confirmado o pago, debido á natureza perecedera do produto e o proceso de elaboración artesanal. En caso de circunstancias excepcionais, contacta connosco por teléfono ${PHONE} ou email ${EMAIL}.`,
+      en: `Modifications and cancellations are not accepted once payment has been confirmed, due to the perishable nature of the product and the artisanal production process. In case of exceptional circumstances, please contact us by phone ${PHONE} or email ${EMAIL}.`
     }
   },
   {
@@ -90,9 +92,9 @@ export const faqs = [
       en: 'What should I do if there is an issue with my order?'
     },
     answer: {
-      es: 'Si ha ocurrido algún problema con tu pedido, por favor contáctanos por teléfono 881068091 o escríbenos a nuestro correo electrónico ascremosas.co@gmail.com.',
-      gl: 'Se ocorreu algún problema co teu pedido, por favor contáctanos por teléfono 881068091 ou escríbenos ao noso correo electrónico ascremosas.co@gmail.com.',
-      en: 'If there is any issue with your order, please contact us by phone +34 881 06 80 91 or email ascremosas.co@gmail.com.'
+      es: `Si ha ocurrido algún problema con tu pedido, por favor contáctanos por teléfono ${PHONE} o escríbenos a nuestro correo electrónico ${EMAIL}.`,
+      gl: `Se ocorreu algún problema co teu pedido, por favor contáctanos por teléfono ${PHONE} ou escríbenos ao noso correo electrónico ${EMAIL}.`,
+      en: `If there is any issue with your order, please contact us by phone ${PHONE} or email ${EMAIL}.`
     }
   }
 ];

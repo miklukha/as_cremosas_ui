@@ -144,9 +144,9 @@ export const privacyContent = {
         intro: 'Tus datos personales pueden ser comunicados a:',
         items: [
           {
-            title: 'Stripe',
+            title: 'ABANCA / Cecabank',
             description:
-              'Procesador de pagos que cumple con PCI-DSS y está ubicado en la UE. Para más información: https://stripe.com/es/privacy'
+              'Entidad financiera y procesador de pagos que cumple con PCI-DSS y la normativa europea de servicios de pago (PSD2). Para más información: https://www.abanca.com/es/proteccion-datos/'
           },
           {
             title: 'Proveedores de servicios tecnológicos',
@@ -408,9 +408,9 @@ export const privacyContent = {
         intro: 'Os teus datos persoais poden ser comunicados a:',
         items: [
           {
-            title: 'Stripe',
+            title: 'ABANCA / Cecabank',
             description:
-              'Procesador de pagos que cumpre con PCI-DSS e está ubicado na UE. Para máis información: https://stripe.com/es/privacy'
+              'Entidade financeira e procesador de pagos que cumpre con PCI-DSS e a normativa europea de servizos de pago (PSD2). Para máis información: https://www.abanca.com/es/proteccion-datos/'
           },
           {
             title: 'Provedores de servizos tecnolóxicos',
@@ -670,9 +670,9 @@ export const privacyContent = {
         intro: 'Your personal data may be communicated to:',
         items: [
           {
-            title: 'Stripe',
+            title: 'ABANCA / Cecabank',
             description:
-              'Payment processor that complies with PCI-DSS and is located in the EU. For more information: https://stripe.com/privacy'
+              'Financial institution and payment processor that complies with PCI-DSS and European payment services regulation (PSD2). For more information: https://www.abanca.com/es/proteccion-datos/'
           },
           {
             title: 'Technology service providers',

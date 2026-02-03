@@ -1,5 +1,6 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { privacyContent } from '@/i18n/privacy-translations';
+import { EMAIL, PHONE } from '@/helpers/constants';
 
 export default function Privacy() {
   const { language } = useLanguage();
@@ -49,10 +50,11 @@ export default function Privacy() {
                 {content.sections.dataController.email}:
               </span>{' '}
               <a
-                href="mailto:ascremosas.co@gmail.com"
+                href={`mailto:${EMAIL}`}
                 className="text-accent hover:underline"
+                aria-label={`Enviar email a ${EMAIL}`}
               >
-                ascremosas.co@gmail.com
+                {EMAIL}
               </a>
             </p>
             <p>
@@ -60,10 +62,11 @@ export default function Privacy() {
                 {content.sections.dataController.phone}:
               </span>{' '}
               <a
-                href="tel:+34881068091"
+                href={`tel:${PHONE}`}
                 className="text-accent hover:underline"
+                aria-label={`Llamar al ${PHONE}`}
               >
-                +34 881 06 80 91
+                {PHONE}
               </a>
             </p>
           </div>
@@ -234,10 +237,11 @@ export default function Privacy() {
                 {content.sections.rights.contact.email}:
               </span>{' '}
               <a
-                href="mailto:ascremosas.co@gmail.com"
+                href={`mailto:${EMAIL}`}
                 className="text-accent hover:underline"
+                aria-label={`Enviar email a ${EMAIL}`}
               >
-                ascremosas.co@gmail.com
+                {EMAIL}
               </a>
             </p>
             <p>
@@ -251,10 +255,11 @@ export default function Privacy() {
                 {content.sections.rights.contact.phone}:
               </span>{' '}
               <a
-                href="tel:+34881068091"
+                href={`tel:${PHONE}`}
                 className="text-accent hover:underline"
+                aria-label={`Llamar al ${PHONE}`}
               >
-                +34 881 06 80 91
+                {PHONE}
               </a>
             </p>
           </div>
@@ -334,10 +339,11 @@ export default function Privacy() {
                 {content.sections.contact.email}:
               </span>{' '}
               <a
-                href="mailto:ascremosas.co@gmail.com"
+                href={`mailto:${EMAIL}`}
                 className="text-accent hover:underline"
+                aria-label={`Enviar email a ${EMAIL}`}
               >
-                ascremosas.co@gmail.com
+                {EMAIL}
               </a>
             </p>
             <p>
@@ -345,10 +351,11 @@ export default function Privacy() {
                 {content.sections.contact.phone}:
               </span>{' '}
               <a
-                href="tel:+34881068091"
+                href={`tel:${PHONE}`}
                 className="text-accent hover:underline"
+                aria-label={`Llamar al ${PHONE}`}
               >
-                +34 881 06 80 91
+                {PHONE}
               </a>
             </p>
             <p>

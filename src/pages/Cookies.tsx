@@ -1,5 +1,6 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { cookiesContent } from '@/i18n/cookies-translations-page';
+import { EMAIL, PHONE } from '@/helpers/constants';
 
 export default function Cookies() {
   const { language } = useLanguage();
@@ -124,21 +125,18 @@ export default function Cookies() {
                 {content.sections.contact.email}:
               </span>{' '}
               <a
-                href="mailto:ascremosas.co@gmail.com"
+                href={`mailto:${EMAIL}`}
                 className="text-accent hover:underline"
               >
-                ascremosas.co@gmail.com
+                {EMAIL}
               </a>
             </p>
             <p>
               <span className="font-medium">
                 {content.sections.contact.phone}:
               </span>{' '}
-              <a
-                href="tel:+34881068091"
-                className="text-accent hover:underline"
-              >
-                +34 881 06 80 91
+              <a href={`tel:${PHONE}`} className="text-accent hover:underline">
+                {PHONE}
               </a>
             </p>
             <p>

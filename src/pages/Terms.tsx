@@ -1,5 +1,6 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { termsContent } from '@/i18n/terms-translations';
+import { EMAIL, PHONE } from '@/helpers/constants';
 
 export default function Terms() {
   const { language } = useLanguage();
@@ -49,10 +50,11 @@ export default function Terms() {
                 {content.sections.general.sellerData.email}:
               </span>{' '}
               <a
-                href="mailto:ascremosas.co@gmail.com"
+                href={`mailto:${EMAIL}`}
                 className="text-accent hover:underline"
+                aria-label={`Enviar email a ${EMAIL}`}
               >
-                ascremosas.co@gmail.com
+                {EMAIL}
               </a>
             </p>
             <p>
@@ -60,10 +62,11 @@ export default function Terms() {
                 {content.sections.general.sellerData.phone}:
               </span>{' '}
               <a
-                href="tel:+34881068091"
+                href={`tel:${PHONE}`}
                 className="text-accent hover:underline"
+                aria-label={`Llamar al ${PHONE}`}
               >
-                +34 881 06 80 91
+                {PHONE}
               </a>
             </p>
             <p>
@@ -548,10 +551,11 @@ export default function Terms() {
                     {content.sections.customerService.contact.phone}:
                   </span>{' '}
                   <a
-                    href="tel:+34881068091"
+                    href={`tel:${PHONE}`}
                     className="text-accent hover:underline"
+                    aria-label={`Llamar al ${PHONE}`}
                   >
-                    +34 881 06 80 91
+                    {PHONE}
                   </a>
                 </li>
                 <li>
@@ -559,10 +563,11 @@ export default function Terms() {
                     {content.sections.customerService.contact.email}:
                   </span>{' '}
                   <a
-                    href="mailto:ascremosas.co@gmail.com"
+                    href={`mailto:${EMAIL}`}
                     className="text-accent hover:underline"
+                    aria-label={`Enviar email a ${EMAIL}`}
                   >
-                    ascremosas.co@gmail.com
+                    {EMAIL}
                   </a>
                 </li>
                 <li>

@@ -11,6 +11,7 @@ import {
 import logo from '@/assets/logo-light.png';
 import { TikTokIcon } from '@/components/ui/tiktok-icon';
 import { useLanguage } from '@/context/LanguageContext';
+import { EMAIL, PHONE } from '@/helpers/constants';
 
 // Collapsible Footer Section Component for Mobile
 interface CollapsibleFooterSectionProps {
@@ -32,32 +33,30 @@ const ContactInfo = () => {
     <ul className="space-y-3" role="list">
       <li>
         <a
-          href="tel:881068091"
+          href={`tel:${PHONE}`}
           className="flex items-center gap-3 text-sm text-secondary 
                       hover:font-semibold hover:scale-105 
                      transition-all duration-200 focus-visible:outline-none 
                      focus-visible:ring-2 focus-visible:ring-primary 
                      focus-visible:ring-offset-2 rounded-sm"
-          aria-label={t.footer.phoneLabel || 'Llamar al 881068091'}
+          aria-label={t.footer.phoneLabel || `Llamar al ${PHONE}`}
         >
           <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
-          <span>881068091</span>
+          <span>{PHONE}</span>
         </a>
       </li>
       <li>
         <a
-          href="mailto:ascremosas.co@gmail.com"
+          href={`mailto:${EMAIL}`}
           className="flex items-center gap-3 text-sm text-secondary 
                       hover:font-semibold hover:scale-105 
                      transition-all duration-200 focus-visible:outline-none 
                      focus-visible:ring-2 focus-visible:ring-primary 
                      focus-visible:ring-offset-2 rounded-sm"
-          aria-label={
-            t.footer.emailLabel || 'Enviar correo a ascremosas.co@gmail.com'
-          }
+          aria-label={t.footer.emailLabel || `Enviar correo a ${EMAIL}`}
         >
           <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
-          <span className="break-all">ascremosas.co@gmail.com</span>
+          <span className="break-all">{EMAIL}</span>
         </a>
       </li>
       <li>

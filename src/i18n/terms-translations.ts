@@ -1,3 +1,5 @@
+import { PHONE } from '@/helpers/constants';
+
 export const termsContent = {
   es: {
     title: 'Términos y Condiciones de Compra',
@@ -67,7 +69,7 @@ export const termsContent = {
             { title: 'Online', description: 'A través de nuestra tienda web' },
             {
               title: 'Por teléfono',
-              description: 'Llamando al +34 881 06 80 91'
+              description: `Llamando al ${PHONE}`
             },
             {
               title: 'En tienda física',
@@ -365,7 +367,7 @@ export const termsContent = {
             { title: 'Online', description: 'A través da nosa tenda web' },
             {
               title: 'Por teléfono',
-              description: 'Chamando ao +34 881 06 80 91'
+              description: `Chamando ao ${PHONE}`
             },
             {
               title: 'Na tenda física',
@@ -659,7 +661,7 @@ export const termsContent = {
           intro: 'You can place your order:',
           methods: [
             { title: 'Online', description: 'Through our web store' },
-            { title: 'By phone', description: 'Calling +34 881 06 80 91' },
+            { title: 'By phone', description: `Calling ${PHONE}` },
             {
               title: 'At our physical store',
               description: 'Calle San Nicolás 5, 15001 A Coruña'

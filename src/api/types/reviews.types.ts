@@ -15,6 +15,7 @@ export interface ReviewsData {
   name: string;
   rating: number;
   reviews: Review[];
+  user_ratings_total: number;
 }
 
 export interface GetReviewsParams {

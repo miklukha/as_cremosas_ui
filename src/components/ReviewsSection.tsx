@@ -132,7 +132,7 @@ export function ReviewsSection() {
     return null;
   }
 
-  const reviewCount = data?.reviews?.length || 0;
+  const reviewCount = data?.user_ratings_total || 0;
 
   // Show arrows logic:
   // Mobile (< 640px): Show if > 1 review
@@ -160,7 +160,7 @@ export function ReviewsSection() {
           role="img"
           aria-label={`Calificación promedio: ${data.rating.toFixed(
             1
-          )} de 5 estrellas, basado en ${data.reviews.length} reseñas`}
+          )} de 5 estrellas, basado en ${reviewCount} reseñas`}
         >
           <div className="flex items-center gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
@@ -177,8 +177,8 @@ export function ReviewsSection() {
           </div>
           <span className="text-l font-semibold">{data.rating.toFixed(1)}</span>
           <span className="text-muted-foreground text-sm">
-            ({data.reviews.length}{' '}
-            {data.reviews.length === 1
+            ({reviewCount}{' '}
+            {reviewCount === 1
               ? t.reviews?.review || 'reseña'
               : t.reviews?.reviews || 'reseñas'}
             )

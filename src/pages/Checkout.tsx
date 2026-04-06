@@ -22,6 +22,7 @@ import { format, addDays, startOfDay } from 'date-fns';
 import { cn } from '@/lib/utils';
 import { toast } from '@/components/ui/sonner';
 import { logBeginCheckout } from '@/lib/analytics';
+import { VACATION_CONFIG, isVacationDate } from '@/helpers/vacation';
 
 interface FormData {
   customerName: string;
@@ -192,6 +193,13 @@ export default function Checkout() {
           return (
             validation?.minDaysNotice ||
             'Los pedidos requieren mínimo 2 días de antelación'
+          );
+        }
+
+        if (isVacationDate(selectedDate)) {
+          return (
+            validation?.vacationDateError ||
+            'No disponible: estamos de vacaciones del 9 al 16 de abril'
           );
         }
         break;
@@ -370,6 +378,12 @@ export default function Checkout() {
       minDate = addDays(minDate, 1);
     }
 
+    while (VACATION_CONFIG.isActive && isVacationDate(minDate)) {
+      minDate = addDays(minDate, 1);
+
+      if (minDate.getDay() === 0) minDate = addDays(minDate, 1);
+    }
+
     return minDate;
   };
 
@@ -393,6 +407,22 @@ export default function Checkout() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <Card className="bg-primary-foreground">
+            {VACATION_CONFIG.isActive && (
+              <div className="rounded-lg border bg-secondary/60 p-5 flex gap-3">
+                <span className=" text-xl mt-0.5">🌴</span>
+
+                <div>
+                  <p className="font-medium text-sm">
+                    {t.checkout?.vacationTitle || 'Estamos de vacaciones '}
+                  </p>
+
+                  <p className="text-xs mt-1">
+                    {t.checkout?.vacationMessage ||
+                      'No aceptamos pedidos del 9 al 16 de abril. ¡Volvemos el 17 con mucha energía!'}
+                  </p>
+                </div>
+              </div>
+            )}
             <CardHeader className="p-4 md:p-5 pb-3 md:pb-4">
               <CardTitle className="text-base md:text-lg">
                 {t.checkout?.customerDetails || 'Datos del Cliente'}

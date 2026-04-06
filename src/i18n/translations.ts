@@ -112,14 +112,21 @@ export const translations = {
           'Pedidos realizados en sábado después de las 12:00: recogida desde el martes siguiente',
         minDaysNotice:
           'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrado.',
-        termsRequired: 'Debes aceptar los términos y condiciones para continuar'
+        termsRequired:
+          'Debes aceptar los términos y condiciones para continuar',
+
+        vacationDateError:
+          'Fecha no disponible: estamos de vacaciones del 9 al 16 de abril'
       },
       notePlaceholder: 'Por favor, incluye cualquier instrucción especial...',
       nonRefundableNotice:
         'Los pedidos no son reembolsables debido a la naturaleza perecedera del producto.',
       privacyConsent: 'He leído y acepto los',
       privacyPolicy: 'Política de Privacidad',
-      terms: 'Términos y Condiciones de Compra'
+      terms: 'Términos y Condiciones de Compra',
+      vacationTitle: 'Estamos de vacaciones',
+      vacationMessage:
+        'No aceptamos pedidos del 9 al 16 de abril. ¡Volvemos el 17 con mucha energía y muchas ganas!'
     },
     cart: {
       title: 'Tu Carrito',
@@ -469,14 +476,20 @@ export const translations = {
           'Pedidos realizados en sábado despois das 12:00: recollida desde o martes seguinte',
         minDaysNotice:
           'Os pedidos acéptanse con mínimo 2 días de antelación. Domingos pechado.',
-        termsRequired: 'Debes aceptar os términos e condicións para continuar'
+        termsRequired: 'Debes aceptar os términos e condicións para continuar',
+
+        vacationDateError:
+          'Data non dispoñible: estamos de vacacións do 9 ao 16 de abril'
       },
       notePlaceholder: 'Por favor, inclúe calquera instrución especial...',
       nonRefundableNotice:
         'Os pedidos non son reembolsables debido á natureza perecedoeira do produto.',
       privacyConsent: 'Lin e acepto os',
       privacyPolicy: 'Política de Privacidade',
-      terms: 'Termos e Condicións de Compra'
+      terms: 'Termos e Condicións de Compra',
+      vacationTitle: 'Estamos de vacacións ',
+      vacationMessage:
+        'Non aceptamos pedidos do 9 ao 16 de abril. Voltamos o 17 con moitas ganas!'
     },
     cart: {
       title: 'O Teu Carriño',
@@ -822,14 +835,19 @@ export const translations = {
           'Orders placed on Saturday after 12:00: pickup from the following Tuesday',
         minDaysNotice:
           'Orders are accepted with a minimum of 2 days notice. Sundays closed.',
-        termsRequired: 'You must accept the terms and conditions to continue'
+        termsRequired: 'You must accept the terms and conditions to continue',
+
+        vacationDateError: "Date unavailable: we're on holiday from April 9–16"
       },
       notePlaceholder: 'Please include any special instructions...',
       nonRefundableNotice:
         'Orders are non-refundable due to the perishable nature of the product.',
       privacyConsent: 'I have read and accept the',
       privacyPolicy: 'Privacy Policy',
-      terms: 'Terms and Conditions of Purchase'
+      terms: 'Terms and Conditions of Purchase',
+      vacationTitle: "We're on holiday",
+      vacationMessage:
+        "No orders from April 9–16. We'll be back on April 17, refreshed and ready!"
     },
     cart: {
       title: 'Your Cart',

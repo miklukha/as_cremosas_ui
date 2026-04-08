@@ -93,22 +93,22 @@ const BusinessHours = () => {
   const { t } = useLanguage();
   const hours = [
     {
-      day: t.footer.hours?.laborales || 'Lunes - Viernes',
+      day: t.footer.hours?.laborales || 'Lunes - Jueves',
       time: (
         <>
-          11:00 - 14:00
+          12:00 - 14:30
           <br />
           16:30 - 20:30
         </>
       )
     },
     {
-      day: t.footer.hours?.saturday || 'Sábado',
+      day: t.footer.hours?.saturday || 'Viernes - Sábado',
       time: (
         <>
-          11:00 - 14:00
+          11:00 - 14:30
           <br />
-          17:00 - 21:00
+          16:30 - 21:00
         </>
       )
     },

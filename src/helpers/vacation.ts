@@ -3,11 +3,11 @@ import { startOfDay } from 'date-fns';
 export const VACATION_CONFIG = {
   isActive: true,
   /** inclusive: first day closed */
-  start: new Date('2026-04-09'),
+  start: new Date('2026-04-20'),
   /** inclusive: last day closed */
-  end: new Date('2026-04-16'),
+  end: new Date('2026-04-26'),
   /** first available pickup after vacation */
-  reopenDate: new Date('2026-04-17')
+  reopenDate: new Date('2026-04-27')
 } as const;
 
 /** Returns true if `date` falls within the vacation period. */

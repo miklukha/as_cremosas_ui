@@ -1,7 +1,7 @@
 import { startOfDay } from 'date-fns';
 
 export const VACATION_CONFIG = {
-  isActive: true,
+  isActive: false,
   /** inclusive: first day closed */
   start: new Date('2026-04-20'),
   /** inclusive: last day closed */

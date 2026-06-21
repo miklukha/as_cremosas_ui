@@ -91,14 +91,46 @@ const ContactInfo = () => {
 // Business Hours Component
 const BusinessHours = () => {
   const { t } = useLanguage();
+  // const hours = [
+  //   {
+  //     day: t.footer.hours?.laborales || 'Lunes - Jueves',
+  //     time: (
+  //       <>
+  //         12:00 - 14:30
+  //         <br />
+  //         16:30 - 20:30
+  //       </>
+  //     )
+  //   },
+  //   {
+  //     day: t.footer.hours?.saturday || 'Viernes - Sábado',
+  //     time: (
+  //       <>
+  //         11:00 - 14:30
+  //         <br />
+  //         16:30 - 21:00
+  //       </>
+  //     )
+  //   },
+  //   {
+  //     day: t.footer.hours?.sunday || 'Domingo',
+  //     time: t.footer.hours?.closed || 'Cerrado'
+  //   }
+  // ];
+
+  // VERANO
   const hours = [
     {
-      day: t.footer.hours?.laborales || 'Lunes - Jueves',
+      day: t.footer.hours?.monday || 'Lunes',
+      time: t.footer.hours?.closed || 'Cerrado'
+    },
+    {
+      day: t.footer.hours?.laboralesSummer || 'Martes - Jueves',
       time: (
         <>
-          12:00 - 14:30
+          11:30 - 14:00
           <br />
-          16:30 - 20:30
+          17:00 - 21:30
         </>
       )
     },
@@ -106,16 +138,22 @@ const BusinessHours = () => {
       day: t.footer.hours?.saturday || 'Viernes - Sábado',
       time: (
         <>
-          11:00 - 14:30
+          11:30 - 14:00
           <br />
-          16:30 - 21:00
+          17:00 - 22:00
         </>
       )
-    },
-    {
-      day: t.footer.hours?.sunday || 'Domingo',
-      time: t.footer.hours?.closed || 'Cerrado'
     }
+    // {
+    //   day: t.footer.hours?.sunday || 'Domingo',
+    //   time: (
+    //     <>
+    //       11:30 - 14:00
+    //       <br />
+    //       17:00 - 21:30
+    //     </>
+    //   )
+    // }
   ];
 
   return (
@@ -126,7 +164,7 @@ const BusinessHours = () => {
             key={index}
             className="flex justify-between text-sm text-secondary"
           >
-            <span>{schedule.day}</span>
+            <span className="basis-[50%]">{schedule.day}</span>
             <span className="font-medium text-right">{schedule.time}</span>
           </li>
         ))}

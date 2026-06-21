@@ -172,9 +172,16 @@ export default function Checkout() {
           );
         }
         const selectedDate = value as Date;
-        if (selectedDate.getDay() === 0) {
+        // if (selectedDate.getDay() === 0) {
+        //   return (
+        //     validation?.invalidDay || 'No disponible para recogida los domingos'
+        //   );
+        // }
+
+        if (selectedDate.getDay() === 1) {
           return (
-            validation?.invalidDay || 'No disponible para recogida los domingos'
+            validation?.invalidDaySummer ||
+            'No disponible para recogida los lunes en verano'
           );
         }
 

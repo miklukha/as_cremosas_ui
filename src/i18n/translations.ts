@@ -108,13 +108,13 @@ export const translations = {
         dateRequired: 'La fecha de recogida es obligatoria',
         timeRequired: 'La hora de recogida es obligatoria',
         invalidDay: 'No disponible para recogida los domingos',
-        invalidDaySummer: 'No disponible para recogida los lunes en verano',
+        invalidDaySummer: 'No disponible para recogida los martes en verano',
         minDaysNoticeSaturday:
           'Pedidos realizados en sábado después de las 12:00: recogida desde el martes siguiente',
         minDaysNotice:
           'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrado.',
         minDaysNoticeSummer:
-          'Los pedidos se aceptan con mínimo 2 días de antelación. Lunes cerrado en verano.',
+          'Los pedidos se aceptan con mínimo 2 días de antelación. Martes cerrado en verano.',
         termsRequired:
           'Debes aceptar los términos y condiciones para continuar',
 
@@ -297,8 +297,11 @@ export const translations = {
         sunday: 'Domingo',
         closed: 'Cerrado',
 
-        laboralesSummer: 'Martes - Jueves, Domingo',
-        weekend: 'Viernes - Domingo'
+        laboralesSummer: 'Miércoles - Jueves',
+        tuesday: 'Martes',
+        sundayMonday: 'Domingo - Lunes'
+        // wednesday: 'Miércoles',
+        // thursday: 'Jueves'
       }
     },
     alert: {
@@ -478,13 +481,13 @@ export const translations = {
         dateRequired: 'A data de recollida é obrigatoria',
         timeRequired: 'A hora de recollida é obrigatoria',
         invalidDay: 'Non dispoñible para recollida os domingos',
-        invalidDaySummer: 'Non dispoñible para recollida os luns en verán',
+        invalidDaySummer: 'Non dispoñible para recollida os martes en verán',
         minDaysNoticeSaturday:
           'Pedidos realizados en sábado despois das 12:00: recollida desde o martes seguinte',
         minDaysNotice:
           'Os pedidos acéptanse con mínimo 2 días de antelación. Domingos pechado.',
         minDaysNoticeSummer:
-          'Os pedidos acéptanse con mínimo 2 días de antelación. Luns pechado en verán.',
+          'Os pedidos acéptanse con mínimo 2 días de antelación. Martes pechado en verán.',
         termsRequired: 'Debes aceptar os términos e condicións para continuar',
 
         vacationDateError:
@@ -665,7 +668,8 @@ export const translations = {
         closed: 'Pechado',
 
         laboralesSummer: 'Martes - Xoves, Domingo',
-        weekend: 'Venres - Domingo'
+        tuesday: 'Martes',
+        sundayMonday: 'Domingo - Luns'
       }
     },
     alert: {
@@ -843,13 +847,13 @@ export const translations = {
         dateRequired: 'Pickup date is required',
         timeRequired: 'Pickup time is required',
         invalidDay: 'Not available for pickup on Sundays',
-        invalidDaySummer: 'Not available for pickup on Mondays in summer',
+        invalidDaySummer: 'Not available for pickup on Tuesdays in summer',
         minDaysNoticeSaturday:
           'Orders placed on Saturday after 12:00: pickup from the following Tuesday',
         minDaysNotice:
           'Orders are accepted with a minimum of 2 days notice. Sundays closed.',
         minDaysNoticeSummer:
-          'Orders are accepted with a minimum of 2 days notice. Mondays closed in summer.',
+          'Orders are accepted with a minimum of 2 days notice. Tuesdays closed in summer.',
         termsRequired: 'You must accept the terms and conditions to continue',
 
         vacationDateError: "Date unavailable: we're on holiday from April 20–26"
@@ -1029,7 +1033,8 @@ export const translations = {
         closed: 'Closed',
 
         laboralesSummer: 'Tuesday - Thursday, Sunday',
-        weekend: 'Friday - Sunday'
+        tuesday: 'Tuesday',
+        sundayMonday: 'Sunday - Monday'
       }
     },
     alert: {

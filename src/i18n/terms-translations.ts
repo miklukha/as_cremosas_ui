@@ -143,7 +143,8 @@ export const termsContent = {
             { title: 'Mañana', hours: '11:00 - 14:00' },
             { title: 'Tarde', hours: '16:00 - 20:00' }
           ],
-          closed: 'Domingos cerrado.'
+          // closed: 'Domingos cerrado.',
+          closed: 'Martes cerrado.'
         },
         collecting: {
           title: '5.3 Recogida del pedido',
@@ -441,7 +442,8 @@ export const termsContent = {
             { title: 'Mañá', hours: '11:00 - 14:00' },
             { title: 'Tarde', hours: '16:00 - 20:00' }
           ],
-          closed: 'Domingos pechado.'
+          // closed: 'Domingos pechado.'
+          closed: 'Martes pechado.'
         },
         collecting: {
           title: '5.3 Recollida do pedido',
@@ -733,7 +735,8 @@ export const termsContent = {
             { title: 'Morning', hours: '11:00 - 14:00' },
             { title: 'Afternoon', hours: '16:00 - 20:00' }
           ],
-          closed: 'Closed on Sundays.'
+          // closed: 'Closed on Sundays.'
+          closed: 'Closed on Tuesdays.'
         },
         collecting: {
           title: '5.3 Collecting your order',

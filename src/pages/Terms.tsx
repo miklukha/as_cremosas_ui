@@ -172,9 +172,10 @@ export default function Terms() {
           <p className="leading-relaxed mb-2 font-medium">
             {content.sections.orderProcess.minimumNotice.main}
           </p>
-          <p className="leading-relaxed mb-2">
+          {/*!!! UNCOMMENT WHAN CHANGING THE SCHEDULE */}
+          {/* <p className="leading-relaxed mb-2">
             {content.sections.orderProcess.minimumNotice.exceptionsTitle}
-          </p>
+          </p> */}
           <ul className="list-disc list-inside space-y-1 ml-4">
             {content.sections.orderProcess.minimumNotice.exceptions.map(
               (item, index) => (

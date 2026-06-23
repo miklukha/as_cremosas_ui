@@ -178,10 +178,10 @@ export default function Checkout() {
         //   );
         // }
 
-        if (selectedDate.getDay() === 1) {
+        if (selectedDate.getDay() === 2) {
           return (
             validation?.invalidDaySummer ||
-            'No disponible para recogida los lunes en verano'
+            'No disponible para recogida los martes en verano'
           );
         }
 
@@ -191,12 +191,13 @@ export default function Checkout() {
           const currentHour = now.getHours();
           const currentDay = now.getDay();
 
-          if (currentDay === 6 && currentHour >= 12) {
-            return (
-              validation?.minDaysNoticeSaturday ||
-              'Los pedidos realizados en sábado después de las 12:00 requieren mínimo 3 días de antelación'
-            );
-          }
+          // !!! UNCOMMENT THIS WHEN CHANGING THE SCHEDULE
+          // if (currentDay === 6 && currentHour >= 12) {
+          //   return (
+          //     validation?.minDaysNoticeSaturday ||
+          //     'Los pedidos realizados en sábado después de las 12:00 requieren mínimo 3 días de antelación'
+          //   );
+          // }
           return (
             validation?.minDaysNotice ||
             'Los pedidos requieren mínimo 2 días de antelación'
@@ -559,19 +560,19 @@ export default function Checkout() {
                 )}
                 <p className="text-xs text-muted-foreground">
                   {(() => {
-                    const now = new Date();
-                    const currentHour = now.getHours();
-                    const currentDay = now.getDay();
+                    // const now = new Date();
+                    // const currentHour = now.getHours();
+                    // const currentDay = now.getDay();
 
-                    if (currentDay === 6 && currentHour >= 12) {
-                      return (
-                        t.checkout?.validation?.minDaysNoticeSaturday ||
-                        'Pedidos en sábado después de las 12:00: mínimo 3 días de antelación. Domingos cerrado.'
-                      );
-                    }
+                    // if (currentDay === 6 && currentHour >= 12) {
+                    //   return (
+                    //     t.checkout?.validation?.minDaysNoticeSaturday ||
+                    //     'Pedidos en sábado después de las 12:00: mínimo 3 días de antelación. Domingos cerrado.'
+                    //   );
+                    // }
                     return (
-                      t.checkout?.validation?.minDaysNotice ||
-                      'Pedidos realizados en sábado después de las 12:00: recogida desde el martes siguiente'
+                      t.checkout?.validation?.minDaysNoticeSummer ||
+                      'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrados. Martes cerrados en verano.'
                     );
                   })()}
                 </p>

@@ -375,17 +375,21 @@ export default function Checkout() {
     let minDays = 2;
 
     // Якщо сьогодні субота ДО 12:00, потрібно 3 дні
-    if (currentDay === 6 && currentHour >= 12) {
-      minDays = 3;
-    }
+    // if (currentDay === 6 && currentHour >= 12) {
+    //   minDays = 3;
+    // }
 
     let minDate = addDays(now, minDays);
 
     // Пропускаємо неділі
-    if (minDate.getDay() === 0) {
+    // if (minDate.getDay() === 0) {
+    //   minDate = addDays(minDate, 1);
+    // }
+    if (minDate.getDay() === 2) {
       minDate = addDays(minDate, 1);
     }
 
+    // vacation check
     while (VACATION_CONFIG.isActive && isVacationDate(minDate)) {
       minDate = addDays(minDate, 1);
 

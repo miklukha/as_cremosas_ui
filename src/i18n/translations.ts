@@ -270,6 +270,7 @@ export const translations = {
     footer: {
       about: 'Sobre Nosotros',
       legal: 'Legal',
+      helps: 'Ayudas',
       privacy: 'Política de Privacidad',
       cookies: 'Política de Cookies',
       legalPage: 'Aviso Legal',
@@ -640,6 +641,7 @@ export const translations = {
     footer: {
       about: 'Sobre Nós',
       legal: 'Legal',
+      helps: 'Axudas',
       privacy: 'Política de Privacidade',
       cookies: 'Política de Cookies',
       legalPage: 'Aviso Legal',
@@ -1005,6 +1007,7 @@ export const translations = {
     footer: {
       about: 'About Us',
       legal: 'Legal',
+      helps: 'Grants',
       privacy: 'Privacy Policy',
       cookies: 'Cookie Policy',
       legalPage: 'Legal Notice',

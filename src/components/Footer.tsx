@@ -408,6 +408,24 @@ export const Footer = () => {
                 </nav>
               </CollapsibleFooterSection>
             </div>
+
+            {/* Carteles */}
+            <div className="flex flex-col flex-1 lg:max-w-[200px] gap-2.5">
+              <CollapsibleFooterSection title={t.footer.helps || 'Ayudas'}>
+                <div className="flex flex-row lg:flex-col gap-2.5">
+                  <img
+                    src="https://res.cloudinary.com/ddz81wl4h/image/upload/v1782831491/TR342C_-_2026_xdn5h8.png"
+                    alt="TR342C - 2026"
+                    className="w-40 lg:w-30"
+                  />
+                  <img
+                    src="https://res.cloudinary.com/ddz81wl4h/image/upload/v1782831491/TR341D_-_2026_utc9yp.png"
+                    alt="TR341D - 2026"
+                    className="w-40 lg:w-30"
+                  />
+                </div>
+              </CollapsibleFooterSection>
+            </div>
           </div>
         </div>
       </div>

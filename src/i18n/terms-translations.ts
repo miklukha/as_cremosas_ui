@@ -139,12 +139,16 @@ export const termsContent = {
         schedule: {
           title: '5.2 Horarios de recogida',
           intro: 'Puedes seleccionar uno de los siguientes horarios:',
+          // times: [
+          //   { title: 'Mañana', hours: '11:30 - 14:00' },
+          //   { title: 'Tarde', hours: '17:00 - 21:30' }
+          // ],
           times: [
             { title: 'Mañana', hours: '11:00 - 14:00' },
             { title: 'Tarde', hours: '16:00 - 20:00' }
           ],
-          // closed: 'Domingos cerrado.',
-          closed: 'Martes cerrado.'
+          closed: 'Domingos cerrado.'
+          // closed: ''
         },
         collecting: {
           title: '5.3 Recogida del pedido',

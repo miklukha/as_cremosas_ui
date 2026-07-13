@@ -178,20 +178,20 @@ export default function Checkout() {
         //   );
         // }
 
-        if (selectedDate.getDay() === 2) {
-          return (
-            validation?.invalidDaySummer ||
-            'No disponible para recogida los martes en verano'
-          );
-        }
+        // if (selectedDate.getDay() === 2) {
+        //   return (
+        //     validation?.invalidDaySummer ||
+        //     'No disponible para recogida los martes en verano'
+        //   );
+        // }
 
         const minDate = getMinOrderDate();
         if (startOfDay(selectedDate) < startOfDay(minDate)) {
-          const now = new Date();
-          const currentHour = now.getHours();
-          const currentDay = now.getDay();
-
           // !!! UNCOMMENT THIS WHEN CHANGING THE SCHEDULE
+          // const now = new Date();
+          // const currentHour = now.getHours();
+          // const currentDay = now.getDay();
+
           // if (currentDay === 6 && currentHour >= 12) {
           //   return (
           //     validation?.minDaysNoticeSaturday ||
@@ -576,7 +576,8 @@ export default function Checkout() {
                     // }
                     return (
                       t.checkout?.validation?.minDaysNoticeSummer ||
-                      'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrados. Martes cerrados en verano.'
+                      // 'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrados.'
+                      'Los pedidos se aceptan con mínimo 2 días de antelación.'
                     );
                   })()}
                 </p>

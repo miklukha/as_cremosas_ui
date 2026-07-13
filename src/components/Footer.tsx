@@ -159,11 +159,7 @@ const BusinessHours = () => {
   // VERANO 2
   const hours = [
     {
-      day: t.footer.hours?.tuesday || 'Martes',
-      time: t.footer.hours?.closed || 'Cerrado'
-    },
-    {
-      day: t.footer.hours?.laboralesSummer || 'Miércoles - Jueves',
+      day: t.footer.hours?.laboralesSummer || 'Domingo - Jueves',
       time: (
         <>
           11:30 - 14:00
@@ -181,27 +177,7 @@ const BusinessHours = () => {
           17:00 - 22:00
         </>
       )
-    },
-    {
-      day: t.footer.hours?.sundayMonday || 'Domingo - Lunes',
-      time: (
-        <>
-          11:30 - 14:00
-          <br />
-          17:00 - 21:30
-        </>
-      )
     }
-    // {
-    //   day: t.footer.hours?.sunday || 'Domingo',
-    //   time: (
-    //     <>
-    //       11:30 - 14:00
-    //       <br />
-    //       17:00 - 21:30
-    //     </>
-    //   )
-    // }
   ];
 
   return (

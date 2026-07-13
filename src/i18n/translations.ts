@@ -114,7 +114,7 @@ export const translations = {
         minDaysNotice:
           'Los pedidos se aceptan con mínimo 2 días de antelación. Domingos cerrado.',
         minDaysNoticeSummer:
-          'Los pedidos se aceptan con mínimo 2 días de antelación. Martes cerrado en verano.',
+          'Los pedidos se aceptan con mínimo 2 días de antelación.',
         termsRequired:
           'Debes aceptar los términos y condiciones para continuar',
 
@@ -298,7 +298,7 @@ export const translations = {
         sunday: 'Domingo',
         closed: 'Cerrado',
 
-        laboralesSummer: 'Miércoles - Jueves',
+        laboralesSummer: 'Domingo - Jueves',
         tuesday: 'Martes',
         sundayMonday: 'Domingo - Lunes'
         // wednesday: 'Miércoles',
@@ -488,7 +488,7 @@ export const translations = {
         minDaysNotice:
           'Os pedidos acéptanse con mínimo 2 días de antelación. Domingos pechado.',
         minDaysNoticeSummer:
-          'Os pedidos acéptanse con mínimo 2 días de antelación. Martes pechado en verán.',
+          'Os pedidos acéptanse con mínimo 2 días de antelación. ',
         termsRequired: 'Debes aceptar os términos e condicións para continuar',
 
         vacationDateError:
@@ -669,7 +669,7 @@ export const translations = {
         sunday: 'Domingo',
         closed: 'Pechado',
 
-        laboralesSummer: 'Martes - Xoves, Domingo',
+        laboralesSummer: 'Domingo - Xoves',
         tuesday: 'Martes',
         sundayMonday: 'Domingo - Luns'
       }
@@ -855,7 +855,7 @@ export const translations = {
         minDaysNotice:
           'Orders are accepted with a minimum of 2 days notice. Sundays closed.',
         minDaysNoticeSummer:
-          'Orders are accepted with a minimum of 2 days notice. Tuesdays closed in summer.',
+          'Orders are accepted with a minimum of 2 days notice. ',
         termsRequired: 'You must accept the terms and conditions to continue',
 
         vacationDateError: "Date unavailable: we're on holiday from April 20–26"
@@ -1035,7 +1035,7 @@ export const translations = {
         sunday: 'Sunday',
         closed: 'Closed',
 
-        laboralesSummer: 'Tuesday - Thursday, Sunday',
+        laboralesSummer: 'Sunday - Thursday',
         tuesday: 'Tuesday',
         sundayMonday: 'Sunday - Monday'
       }

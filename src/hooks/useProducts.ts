@@ -230,6 +230,39 @@ export function useProductsByCategory(
   return useProducts({ ...config, categoryId });
 }
 
+export function useProductBySlug(slug: string) {
+  const { language } = useLanguage();
+  const [state, setState] = useState<{
+    product: Product | null;
+    loading: boolean;
+    error: ApiError | null;
+  }>({
+    product: null,
+    loading: true,
+    error: null
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchProduct = async () => {
+      setState(prev => ({ ...prev, loading: true, error: null }));
+      try {
+        const data = await productsService.getBySlug({ slug, lang: language });
+        if (isMounted) setState({ product: data, loading: false, error: null });
+      } catch (err) {
+        const error = err as ApiError;
+        if (isMounted) setState({ product: null, loading: false, error });
+      }
+    };
+    fetchProduct();
+    return () => {
+      isMounted = false;
+    };
+  }, [slug, language]);
+
+  return state;
+}
+
 /** Example usage of useProducts hook
  *
  * function ProductsList() {

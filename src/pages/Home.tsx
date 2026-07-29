@@ -7,7 +7,6 @@ import { useProducts } from '@/hooks/useProducts';
 export default function Home() {
   const { t } = useLanguage();
   const { products } = useProducts();
-  console.log(products);
 
   const displayedProducts = products.sort((a, b) => {
     return (

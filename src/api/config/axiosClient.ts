@@ -21,15 +21,15 @@ const axiosClient: AxiosInstance = axios.create({
 axiosClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     // Log request in development
-    if (import.meta.env.DEV) {
-      console.log(
-        `🚀 [API Request] ${config.method?.toUpperCase()} ${config.url}`,
-        {
-          params: config.params,
-          data: config.data
-        }
-      );
-    }
+    // if (import.meta.env.DEV) {
+    //   console.log(
+    //     `🚀 [API Request] ${config.method?.toUpperCase()} ${config.url}`,
+    //     {
+    //       params: config.params,
+    //       data: config.data
+    //     }
+    //   );
+    // }
 
     // Add authentication token if available
     // const token = localStorage.getItem('authToken');
@@ -50,12 +50,12 @@ axiosClient.interceptors.request.use(
 axiosClient.interceptors.response.use(
   (response: AxiosResponse<ApiResponse<unknown>>) => {
     // Log response in development
-    if (import.meta.env.DEV) {
-      console.log(`✅ [API Response] ${response.config.url}`, {
-        status: response.status,
-        data: response.data
-      });
-    }
+    // if (import.meta.env.DEV) {
+    //   console.log(`✅ [API Response] ${response.config.url}`, {
+    //     status: response.status,
+    //     data: response.data
+    //   });
+    // }
 
     return response;
   },

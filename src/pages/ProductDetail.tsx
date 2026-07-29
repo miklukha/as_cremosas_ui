@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useProduct, useProducts } from '@/hooks/useProducts';
+import { useProduct, useProducts, useProductBySlug } from '@/hooks/useProducts';
 import { useLanguage } from '@/context/LanguageContext';
 import { useCart } from '@/context/CartContext';
 import {
@@ -24,12 +24,14 @@ import { logAddToCart, logViewItem } from '@/lib/analytics';
 type DietaryOption = 'normal' | 'glutenFree' | 'lactoseFree';
 
 export default function ProductDetail() {
-  const { id } = useParams();
+  // const { id } = useParams();
+  const { slug } = useParams();
   const { t } = useLanguage();
   const navigate = useNavigate();
   const { addToCart, isInCart } = useCart();
 
-  const { product, loading, error } = useProduct(Number(id));
+  // const { product, loading, error } = useProduct(Number(id));
+  const { product, loading, error } = useProductBySlug(slug!);
 
   // Fetch recommended products (same category)
   const { products: recommendedProducts } = useProducts({
@@ -47,7 +49,7 @@ export default function ProductDetail() {
     setDietaryOption('normal');
     setQuantity(1);
     setSelectedVariantId(null);
-  }, [id]);
+  }, [slug]);
 
   useEffect(() => {
     if (!product) return;
@@ -98,20 +100,35 @@ export default function ProductDetail() {
     v => v.id === selectedVariantId
   );
 
-  const isMediumVariant = (variantName: string): boolean => {
+  // medium and LARGE variants are allowed for special dietary options
+  const isMediumOrLargeVariant = (variantName: string): boolean => {
     const name = variantName.toLowerCase();
-    return name.includes('mediana') || name.includes('medium');
+    return (
+      name.includes('mediana') ||
+      name.includes('medium') ||
+      name.includes('large') ||
+      name.includes('grande')
+    );
   };
 
   const getFinalPrice = (): number => {
     if (!selectedVariant) return 0;
 
-    let finalPrice = selectedVariant.price;
+    const priceByDiet = {
+      normal: selectedVariant.price,
+      glutenFree: selectedVariant.priceGluten,
+      lactoseFree: selectedVariant.priceLactose
+    };
+
+    const finalPrice = priceByDiet[dietaryOption];
+
+    // let finalPrice = selectedVariant.price;
 
     // Add 1€ for special dietary options
-    if (dietaryOption === 'glutenFree' || dietaryOption === 'lactoseFree') {
-      finalPrice += 1;
-    }
+    // if (dietaryOption === 'glutenFree' || dietaryOption === 'lactoseFree') {
+    //   console.log('Adding 1€ for special dietary option: ', selectedVariant);
+    //   finalPrice += 1;
+    // }
 
     return finalPrice;
   };
@@ -132,9 +149,11 @@ export default function ProductDetail() {
 
     // If selecting special option, switch to medium variant
     if (option !== 'normal' && product) {
-      const mediumVariant = product.variants.find(v => isMediumVariant(v.name));
-      if (mediumVariant) {
-        setSelectedVariantId(mediumVariant.id);
+      const mediumOrLargeVariant = product.variants.find(v =>
+        isMediumOrLargeVariant(v.name)
+      );
+      if (mediumOrLargeVariant) {
+        setSelectedVariantId(mediumOrLargeVariant.id);
       }
     }
   };
@@ -378,7 +397,7 @@ export default function ProductDetail() {
                 >
                   {product.variants.map(variant => {
                     const isDisabled =
-                      isSpecialDiet && !isMediumVariant(variant.name);
+                      isSpecialDiet && !isMediumOrLargeVariant(variant.name);
                     const isSelected = selectedVariantId === variant.id;
 
                     return (
@@ -414,7 +433,7 @@ export default function ProductDetail() {
                 {isSpecialDiet && (
                   <AlertDescription className="text-xs font-medium">
                     {t.product?.mediumSizeOnly ||
-                      'Las tartas sin gluten o sin lactosa solo están disponibles en tamaño mediano.'}
+                      'Las tartas sin gluten o sin lactosa solo están disponibles en tamaño mediano o grande.'}
                   </AlertDescription>
                 )}
               </div>

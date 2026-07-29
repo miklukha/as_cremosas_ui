@@ -37,7 +37,7 @@ export default function CheckoutSuccess() {
   const passedOrderDetails = (location.state as { orderDetails?: OrderDetails })
     ?.orderDetails;
 
-  console.log(passedOrderDetails);
+  // console.log(passedOrderDetails);
 
   useEffect(() => {
     if (lang && typeof setLanguage === 'function') {

@@ -5,6 +5,8 @@ export interface ProductVariant {
   weightGrams: number;
   price: number;
   sortOrder: number;
+  priceGluten: number;
+  priceLactose: number;
 }
 
 export interface Product {
@@ -28,7 +30,9 @@ export interface ProductListItem {
   id: number;
   name: string;
   slug: string;
-  prices: number[];
+  // prices: number[];
+  minPrice: string;
+  maxPrice: string;
   images: string[];
   available: boolean;
   categoryId: number;

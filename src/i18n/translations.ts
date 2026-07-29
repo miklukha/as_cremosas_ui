@@ -68,7 +68,7 @@ export const translations = {
       glutenFreeDesc: 'Elaborado con ingredientes sin gluten',
       lactoseFreeDesc: 'Elaborado con ingredientes sin lactosa',
       mediumSizeOnly:
-        'Las tartas sin gluten o sin lactosa solo están disponibles en tamaño mediano.',
+        'Las tartas sin gluten o sin lactosa solo están disponibles en tamaño mediano o grande.',
       fromPrice: 'de',
       price: 'Precio'
     },
@@ -442,7 +442,7 @@ export const translations = {
       glutenFreeDesc: 'Elaborado con ingredientes sen glute',
       lactoseFreeDesc: 'Elaborado con ingredientes sen lactosa',
       mediumSizeOnly:
-        'As tartas sen glute ou sen lactosa só están dispoñibles en tamaño mediano.',
+        'As tartas sen glute ou sen lactosa só están dispoñibles en tamaño mediano ou grande.',
       fromPrice: 'de',
       price: 'Prezo'
     },
@@ -809,7 +809,7 @@ export const translations = {
       glutenFreeDesc: 'Made with gluten-free ingredients',
       lactoseFreeDesc: 'Made with lactose-free ingredients',
       mediumSizeOnly:
-        'Gluten-free or lactose-free cakes are only available in medium size.',
+        'Gluten-free or lactose-free cakes are only available in medium size or large size.',
       fromPrice: 'from',
       price: 'Price'
     },

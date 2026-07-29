@@ -10,21 +10,17 @@ interface ProductCardProps {
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { t } = useLanguage();
   const {
-    prices = [],
-    id,
+    minPrice,
+    maxPrice,
+    slug,
     name = '-',
     images = [],
     available = true,
     isCakeOfTheMonth = false
   } = product || {};
 
-  // const pricesStr = prices
-  //   ?.map((e, index) => {
-  //     const price = index === prices.length - 1 ? e + 1 : e;
-  //     return `${price.toFixed(2)}€`;
-  //   })
-  //   .join(' - ');
-  const pricesStr = prices?.map(e => `${e.toFixed(2)}€`).join(' | ');
+  const pricesStr = `${minPrice}€ - ${maxPrice}€`;
+  // const pricesStr = prices?.map(e => `${e.toFixed(2)}€`).join(' | ');
 
   const imageUrl =
     images?.length > 0
@@ -33,7 +29,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <Link
-      to={`/product/${id}`}
+      to={`/product/${slug}`}
       className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
       aria-label={`${name}, ${available ? pricesStr : t.product.outOfStock}`}
     >

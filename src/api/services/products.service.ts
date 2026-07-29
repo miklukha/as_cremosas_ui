@@ -53,6 +53,24 @@ class ProductsService {
     return response.data.data;
   }
 
+  async getBySlug(params: {
+    slug: string;
+    lang?: 'es' | 'en' | 'gl';
+  }): Promise<Product> {
+    const { slug, lang } = params;
+
+    const response = await axiosClient.get<ApiResponse<Product>>(
+      `${this.basePath}/slug/${slug}`,
+      { params: { lang } }
+    );
+
+    if (!response.data.data) {
+      throw new Error(`Product with slug ${slug} not found`);
+    }
+
+    return response.data.data;
+  }
+
   async delete(id: number): Promise<{ id: number }> {
     const response = await axiosClient.delete<ApiResponse<{ id: number }>>(
       `${this.basePath}/${id}`

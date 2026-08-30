@@ -119,7 +119,7 @@ export const translations = {
           'Debes aceptar los términos y condiciones para continuar',
 
         vacationDateError:
-          'Fecha no disponible: estamos de vacaciones del 20 al 26 de abril'
+          'Fecha no disponible: estamos de vacaciones del 14 al 26 de septiembre'
       },
       notePlaceholder: 'Por favor, incluye cualquier instrucción especial...',
       nonRefundableNotice:
@@ -129,7 +129,7 @@ export const translations = {
       terms: 'Términos y Condiciones de Compra',
       vacationTitle: 'Estamos de vacaciones',
       vacationMessage:
-        'No aceptamos pedidos del 20 al 26 de abril. ¡Volvemos el 27 con mucha energía y muchas ganas!'
+        'No aceptamos pedidos del 14 al 26 de septiembre. ¡Volvemos el 27 con mucha energía y muchas ganas!'
     },
     cart: {
       title: 'Tu Carrito',
@@ -492,7 +492,7 @@ export const translations = {
         termsRequired: 'Debes aceptar os términos e condicións para continuar',
 
         vacationDateError:
-          'Data non dispoñible: estamos de vacacións do 20 ao 26 de abril'
+          'Data non dispoñible: estamos de vacacións do 14 ao 26 de septiembre'
       },
       notePlaceholder: 'Por favor, inclúe calquera instrución especial...',
       nonRefundableNotice:
@@ -502,7 +502,7 @@ export const translations = {
       terms: 'Termos e Condicións de Compra',
       vacationTitle: 'Estamos de vacacións ',
       vacationMessage:
-        'Non aceptamos pedidos do 20 ao 26 de abril. Voltamos o 27 con moitas ganas!'
+        'Non aceptamos pedidos do 14 ao 26 de septiembre. Voltamos o 27 con moitas ganas!'
     },
     cart: {
       title: 'O Teu Carriño',
@@ -858,7 +858,8 @@ export const translations = {
           'Orders are accepted with a minimum of 2 days notice. ',
         termsRequired: 'You must accept the terms and conditions to continue',
 
-        vacationDateError: "Date unavailable: we're on holiday from April 20–26"
+        vacationDateError:
+          "Date unavailable: we're on holiday from September 14–26"
       },
       notePlaceholder: 'Please include any special instructions...',
       nonRefundableNotice:
@@ -868,7 +869,7 @@ export const translations = {
       terms: 'Terms and Conditions of Purchase',
       vacationTitle: "We're on holiday",
       vacationMessage:
-        "No orders from April 20–26. We'll be back on April 27, refreshed and ready!"
+        "No orders from September 14–26. We'll be back on September 27, refreshed and ready!"
     },
     cart: {
       title: 'Your Cart',

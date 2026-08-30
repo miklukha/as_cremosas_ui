@@ -207,7 +207,7 @@ export default function Checkout() {
         if (isVacationDate(selectedDate)) {
           return (
             validation?.vacationDateError ||
-            'No disponible: estamos de vacaciones del 9 al 16 de abril'
+            'No disponible: estamos de vacaciones del 14 al 26 de septiembre'
           );
         }
         break;
@@ -430,7 +430,7 @@ export default function Checkout() {
 
                   <p className="text-xs mt-1">
                     {t.checkout?.vacationMessage ||
-                      'No aceptamos pedidos del 9 al 16 de abril. ¡Volvemos el 17 con mucha energía!'}
+                      'No aceptamos pedidos del 14 al 26 de septiembre. ¡Volvemos el 27 con mucha energía!'}
                   </p>
                 </div>
               </div>

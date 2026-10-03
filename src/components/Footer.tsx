@@ -91,32 +91,38 @@ const ContactInfo = () => {
 // Business Hours Component
 const BusinessHours = () => {
   const { t } = useLanguage();
-  // const hours = [
-  //   {
-  //     day: t.footer.hours?.laborales || 'Lunes - Jueves',
-  //     time: (
-  //       <>
-  //         12:00 - 14:30
-  //         <br />
-  //         16:30 - 20:30
-  //       </>
-  //     )
-  //   },
-  //   {
-  //     day: t.footer.hours?.saturday || 'Viernes - Sábado',
-  //     time: (
-  //       <>
-  //         11:00 - 14:30
-  //         <br />
-  //         16:30 - 21:00
-  //       </>
-  //     )
-  //   },
-  //   {
-  //     day: t.footer.hours?.sunday || 'Domingo',
-  //     time: t.footer.hours?.closed || 'Cerrado'
-  //   }
-  // ];
+  const hours = [
+    {
+      day: t.footer.hours?.monWedSun || 'Lunes - Miércoles - Domingo',
+      time: (
+        <>
+          11:30 - 14:30
+          <br />
+          17:00 - 21:00
+        </>
+      )
+    },
+    {
+      day: t.footer.hours?.tueThu || 'Martes - Jueves',
+      time: (
+        <>
+          11:30 - 14:30
+          <br />
+          17:00 - 20:30
+        </>
+      )
+    },
+    {
+      day: t.footer.hours?.friSat || 'Viernes - Sábado',
+      time: (
+        <>
+          11:30 - 14:30
+          <br />
+          17:00 - 21:30
+        </>
+      )
+    }
+  ];
 
   // VERANO 1
   // const hours = [
@@ -157,28 +163,28 @@ const BusinessHours = () => {
   // ];
 
   // VERANO 2
-  const hours = [
-    {
-      day: t.footer.hours?.laboralesSummer || 'Domingo - Jueves',
-      time: (
-        <>
-          11:30 - 14:00
-          <br />
-          17:00 - 21:30
-        </>
-      )
-    },
-    {
-      day: t.footer.hours?.saturday || 'Viernes - Sábado',
-      time: (
-        <>
-          11:30 - 14:00
-          <br />
-          17:00 - 22:00
-        </>
-      )
-    }
-  ];
+  // const hours = [
+  //   {
+  //     day: t.footer.hours?.laboralesSummer || 'Domingo - Jueves',
+  //     time: (
+  //       <>
+  //         11:30 - 14:00
+  //         <br />
+  //         17:00 - 21:30
+  //       </>
+  //     )
+  //   },
+  //   {
+  //     day: t.footer.hours?.saturday || 'Viernes - Sábado',
+  //     time: (
+  //       <>
+  //         11:30 - 14:00
+  //         <br />
+  //         17:00 - 22:00
+  //       </>
+  //     )
+  //   }
+  // ];
 
   return (
     <div className="space-y-3 w-full md:max-w-[250px]">

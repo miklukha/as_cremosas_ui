@@ -294,13 +294,15 @@ export const translations = {
         title: 'Horario',
         laborales: 'Lunes - Jueves',
         monday: 'Lunes',
-        saturday: 'Viernes - Sábado',
+        friSat: 'Vie - Sáb',
         sunday: 'Domingo',
         closed: 'Cerrado',
 
         laboralesSummer: 'Domingo - Jueves',
         tuesday: 'Martes',
-        sundayMonday: 'Domingo - Lunes'
+        sundayMonday: 'Domingo - Lunes',
+        monWedSun: 'Lun, Mié, Dom',
+        tueThu: 'Mar - Jue'
         // wednesday: 'Miércoles',
         // thursday: 'Jueves'
       }
@@ -665,13 +667,17 @@ export const translations = {
         title: 'Horario',
         laborales: 'Luns - Xoves',
         monday: 'Luns',
-        saturday: 'Venres - Sábado',
+        friSat: 'Ven - Sáb',
         sunday: 'Domingo',
         closed: 'Pechado',
 
         laboralesSummer: 'Domingo - Xoves',
         tuesday: 'Martes',
-        sundayMonday: 'Domingo - Luns'
+        sundayMonday: 'Domingo - Luns',
+        monWedSun: 'Lun - Mér - Dom',
+        tueThu: 'Mar - Xov'
+        // wednesday: 'Mércores',
+        // thursday: 'Xoves'
       }
     },
     alert: {
@@ -1032,13 +1038,15 @@ export const translations = {
         title: 'Hours',
         laborales: 'Monday - Thursday',
         monday: 'Monday',
-        saturday: 'Friday - Saturday',
+        friSat: 'Fri - Sat',
         sunday: 'Sunday',
         closed: 'Closed',
 
         laboralesSummer: 'Sunday - Thursday',
         tuesday: 'Tuesday',
-        sundayMonday: 'Sunday - Monday'
+        sundayMonday: 'Sunday - Monday',
+        monWedSun: 'Mon - Wed - Sun',
+        tueThu: 'Tue - Thu'
       }
     },
     alert: {
